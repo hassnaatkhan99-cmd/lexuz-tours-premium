@@ -8,7 +8,7 @@ function cityLabel(value: string | null | undefined) {
 }
 
 function line(label: string, value: string | number | null | undefined) {
-  return `${label}: ${value || "-"}`;
+  return `${label}: ${value ?? "-"}`;
 }
 
 function findTour(booking: Booking) {
@@ -25,6 +25,14 @@ function paymentAmount(value: number | null | undefined) {
   return typeof value === "number" ? `PKR ${value.toLocaleString("en-PK")}` : "To be confirmed by our team";
 }
 
+function paymentLines(booking: Booking) {
+  return [
+    line("Total Amount", paymentAmount(booking.total_amount)),
+    line("Advance Paid", paymentAmount(booking.advance_paid)),
+    line("Remaining Balance", paymentAmount(booking.remaining_amount))
+  ];
+}
+
 function bookingReceivedMessage(booking: Booking) {
   return [
     "Hello from Lexuz Tours & Adventures,",
@@ -38,6 +46,7 @@ function bookingReceivedMessage(booking: Booking) {
     line("Departure City", cityLabel(booking.departure_city)),
     line("Pickup Location", booking.pickup_location),
     line("Travelers", booking.number_of_travelers),
+    ...paymentLines(booking),
     "Status: Pending Verification",
     "",
     "Your payment screenshot has been received and will be reviewed by our team.",
@@ -50,8 +59,11 @@ function approvalMessage(booking: Booking) {
   return [
     "Hello from Lexuz Tours & Adventures,",
     "",
+    line("Customer", booking.customers?.full_name),
     line("Booking Reference", booking.reference_id),
     line("Tour", booking.tour_name),
+    line("Travelers", booking.number_of_travelers),
+    ...paymentLines(booking),
     "Status: Approved",
     "",
     "Your booking has been approved. Your payment is now being verified by our team."
@@ -62,8 +74,11 @@ function rejectionMessage(booking: Booking) {
   return [
     "Hello from Lexuz Tours & Adventures,",
     "",
+    line("Customer", booking.customers?.full_name),
     line("Booking Reference", booking.reference_id),
     line("Tour", booking.tour_name),
+    line("Travelers", booking.number_of_travelers),
+    ...paymentLines(booking),
     "Status: Rejected",
     "",
     "Your booking request could not be approved at this time. If you believe this is a mistake, please contact Lexuz Tours on WhatsApp."
@@ -85,9 +100,7 @@ function paymentConfirmedMessage(booking: Booking) {
     line("Pickup Location", booking.pickup_location),
     line("Travelers", booking.number_of_travelers),
     line("Payment Method", payment?.payment_method),
-    line("Total Amount", paymentAmount(booking.total_amount)),
-    line("Advance Paid", paymentAmount(booking.advance_paid)),
-    line("Remaining Balance", paymentAmount(booking.remaining_amount)),
+    ...paymentLines(booking),
     line("Payment Status", payment?.status || "Confirmed"),
     "Status: Confirmed",
     "",
@@ -112,9 +125,7 @@ function invoiceMessage(booking: Booking) {
     line("Departure City", cityLabel(booking.departure_city)),
     line("Pickup Location", booking.pickup_location),
     line("Payment Method", payment?.payment_method),
-    line("Total Amount", paymentAmount(booking.total_amount)),
-    line("Advance Paid", paymentAmount(booking.advance_paid)),
-    line("Remaining Balance", paymentAmount(booking.remaining_amount)),
+    ...paymentLines(booking),
     line("Payment Status", payment?.status),
     line("Booking Status", booking.status),
     "",

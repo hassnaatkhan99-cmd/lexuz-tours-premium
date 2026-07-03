@@ -31,6 +31,9 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
     formData.set("departure", tour.departure);
     formData.set("departureCity", departureSelection);
     formData.set("paymentMethod", paymentMethod);
+    formData.set("totalAmount", String(selectedPrice));
+    formData.set("advancePaid", "");
+    formData.set("remainingAmount", "");
 
     try {
       const response = await fetch("/api/bookings", { method: "POST", body: formData });

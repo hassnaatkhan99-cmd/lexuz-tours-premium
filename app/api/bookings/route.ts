@@ -7,6 +7,12 @@ function asText(formData: FormData, key: string) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function optionalAmount(value: string) {
+  if (!value) return null;
+  const amount = Number(value);
+  return Number.isFinite(amount) && amount >= 0 ? amount : null;
+}
+
 function createReferenceId() {
   const date = new Date();
   const stamp = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, "0")}${String(date.getDate()).padStart(2, "0")}`;
@@ -42,6 +48,9 @@ export async function POST(request: Request) {
   const departure = asText(formData, "departure");
   const departureCity = asText(formData, "departureCity");
   const paymentMethod = asText(formData, "paymentMethod");
+  const totalAmount = optionalAmount(asText(formData, "totalAmount"));
+  const advancePaid = optionalAmount(asText(formData, "advancePaid"));
+  const remainingAmount = optionalAmount(asText(formData, "remainingAmount"));
 
   if (!fullName || !phone || !email || !cnic || !travelers || !emergencyContact || !pickupCity || !pickupLocation || !tourName || !departure || !paymentMethod) {
     return NextResponse.json({ error: "Please complete all required booking fields." }, { status: 400 });
@@ -77,9 +86,9 @@ export async function POST(request: Request) {
       pickup_city: pickupCity,
       pickup_location: pickupLocation,
       number_of_travelers: travelers,
-      total_amount: null,
-      advance_paid: null,
-      remaining_amount: null,
+      total_amount: totalAmount,
+      advance_paid: advancePaid,
+      remaining_amount: remainingAmount,
       status: "Pending Verification"
     })
     .select("id")
@@ -130,6 +139,9 @@ export async function POST(request: Request) {
     pickupCity,
     pickupLocation,
     paymentMethod,
+    totalAmount,
+    advancePaid,
+    remainingAmount,
     status: "Pending Verification"
   });
 
