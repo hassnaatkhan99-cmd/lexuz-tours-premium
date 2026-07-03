@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fbfcf8;
+  --foreground: #111512;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition: all 180ms ease;
+}
+
+.container-page {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.script {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+}
+
+.hero-premium {
+  background-image:
+    linear-gradient(90deg, rgba(7, 31, 8, .92), rgba(7, 31, 8, .60), rgba(7, 31, 8, .28)),
+    url("/images/hero-lexuz-premium.png");
+  background-position: center center;
+  background-size: cover;
+}
+
+.shadow-soft,
+.shadow-premium,
+details,
+article,
+aside,
+table {
+  border: 1px solid rgba(0, 0, 0, .12) !important;
+}
+
+.premium-border {
+  border: 1px solid rgba(0, 0, 0, .12);
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-4 focus:ring-saffron-300/50;
+}
