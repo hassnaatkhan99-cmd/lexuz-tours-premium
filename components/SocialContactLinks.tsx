@@ -37,25 +37,20 @@ const links = [
   }
 ] as const;
 
-function stylesFor(variant: NonNullable<SocialContactLinksProps["variant"]>) {
-  if (variant === "footer") {
-    return "border-white/15 bg-white/10 text-white hover:border-saffron-300 hover:bg-saffron-300 hover:text-forest-950";
-  }
-
-  if (variant === "contact") {
-    return "border-white/20 bg-white/10 text-white hover:border-saffron-300 hover:bg-saffron-300 hover:text-forest-950";
-  }
-
-  return "border-forest-900/10 bg-forest-50 text-forest-800 hover:border-saffron-300 hover:bg-saffron-300 hover:text-forest-950";
+function stylesFor(text: string, variant: NonNullable<SocialContactLinksProps["variant"]>) {
+  const base = variant === "footer" || variant === "contact" ? "border-white/15 bg-white/10 text-white" : "border-lexuzNeutral-line bg-white text-brand-primary";
+  if (text === "WhatsApp") return `${base} hover:border-brand-whatsapp hover:bg-brand-whatsapp hover:text-white`;
+  if (text === "Facebook") return `${base} hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white`;
+  if (text === "Instagram") return `${base} hover:border-transparent hover:bg-[linear-gradient(135deg,#f58529,#dd2a7b,#8134af)] hover:text-white`;
+  return `${base} hover:border-brand-primary hover:bg-brand-secondary hover:text-brand-primary`;
 }
 
 export function SocialContactLinks({ variant = "header", showLabels = false }: SocialContactLinksProps) {
-  const iconStyles = stylesFor(variant);
-
   return (
     <div className="flex flex-wrap items-center gap-2">
       {links.map((item) => {
         const Icon = item.icon;
+        const iconStyles = stylesFor(item.text, variant);
         return (
           <a
             key={item.label}
@@ -64,7 +59,7 @@ export function SocialContactLinks({ variant = "header", showLabels = false }: S
             title={item.label}
             target={item.external ? "_blank" : undefined}
             rel={item.external ? "noreferrer" : undefined}
-            className={`focus-ring inline-flex h-10 items-center justify-center gap-2 rounded-full border px-3 text-sm font-black transition ${iconStyles}`}
+            className={`focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full border px-3 text-sm font-black shadow-ds1 transition hover:-translate-y-0.5 hover:shadow-ds2 ${iconStyles}`}
           >
             <Icon size={17} />
             {showLabels ? <span>{item.text}</span> : <span className="sr-only">{item.text}</span>}
@@ -74,4 +69,3 @@ export function SocialContactLinks({ variant = "header", showLabels = false }: S
     </div>
   );
 }
-

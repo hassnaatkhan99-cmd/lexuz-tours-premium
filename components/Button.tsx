@@ -1,26 +1,23 @@
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { whatsappUrl } from "@/data/company";
+import { DesignLinkButton } from "@/components/ui/button";
+import { DesignIcon } from "@/components/ui/icon";
 
 export function ButtonLink({ href, children, variant = "primary" }: { href: string; children: React.ReactNode; variant?: "primary" | "dark" | "outline" }) {
-  const styles = {
-    primary: "bg-saffron-400 text-forest-900 hover:bg-saffron-300",
-    dark: "bg-forest-800 text-white hover:bg-forest-700",
-    outline: "border border-white/50 bg-white/10 text-white hover:bg-white hover:text-forest-900"
-  };
+  const designVariant = variant === "outline" ? "outline" : variant === "dark" ? "primary" : "secondary";
   return (
-    <Link href={href} className={`focus-ring inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-black shadow-soft ${styles[variant]}`}>
+    <DesignLinkButton href={href} variant={designVariant} size="md" rightIcon={<DesignIcon icon={ArrowRight} size="sm" />} className={variant === "outline" ? "border-white/50 bg-white/10 text-white hover:bg-white hover:text-brand-primary" : ""}>
       {children}
-      <ArrowRight size={18} />
-    </Link>
+    </DesignLinkButton>
   );
 }
 
 export function WhatsAppButton({ tourName }: { tourName?: string }) {
   const message = tourName ? `Hello Lexuz Tours,\nI want to book the ${tourName} Tour.\nPlease guide me.` : "Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.";
   return (
-    <Link href={whatsappUrl(message)} target="_blank" className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-[#12a84f] px-5 py-3 text-sm font-black text-white shadow-soft hover:bg-[#0d8b40]">
-      <MessageCircle size={18} />
+    <Link href={whatsappUrl(message)} target="_blank" className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-dsMd bg-brand-whatsapp px-5 py-3 text-sm font-bold text-white shadow-ds1 transition hover:-translate-y-0.5 hover:brightness-95 hover:shadow-ds2">
+      <MessageCircle size={18} aria-hidden="true" />
       Book On WhatsApp
     </Link>
   );

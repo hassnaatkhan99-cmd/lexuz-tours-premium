@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, ChevronRight, MapPin } from "lucide-react";
 import { money, Tour } from "@/data/tours";
+import { DesignIcon } from "@/components/ui/icon";
+import { DesignPrice } from "@/components/ui/card";
 
 export function TourCard({ tour }: { tour: Tour }) {
   const price = tour.prices[0];
@@ -9,20 +11,32 @@ export function TourCard({ tour }: { tour: Tour }) {
     <article>
       <Link
         href={`/tours/${tour.slug}`}
-        className="focus-ring group block h-full cursor-pointer overflow-hidden rounded-lg border border-forest-900/10 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:border-forest-800/30 hover:shadow-premium"
+        className="focus-ring group block h-full cursor-pointer overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds1 transition duration-200 ease-out hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-ds3"
         aria-label={`View details for ${tour.title}`}
       >
-        <div className="relative h-52 overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <Image src={tour.heroImage} alt={`${tour.title} tour`} fill sizes="(min-width:1024px) 25vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
-          <span className="absolute left-3 top-3 rounded-full bg-saffron-400 px-3 py-1 text-xs font-black text-forest-900">{tour.departure}</span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-80" />
+          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-black text-brand-primary shadow-ds1 backdrop-blur">{tour.duration}</span>
         </div>
-        <div className="p-5">
-          <h3 className="text-xl font-black transition group-hover:text-forest-800">{tour.title}</h3>
-          <p className="mt-2 flex items-center gap-2 text-sm text-neutral-600"><MapPin size={16} />{tour.region}</p>
-          <p className="mt-3 flex items-center gap-2 text-sm font-bold text-forest-800"><CalendarDays size={16} />{tour.duration}</p>
-          <div className="mt-5 flex items-end justify-between gap-3">
-            <div><p className="text-xs font-bold text-neutral-500">Starting From</p><p className="text-xl font-black text-forest-800">{money(price.islamabadPrice)}</p><p className="text-xs text-neutral-500">{price.unit}</p></div>
-            <span className="rounded-md bg-forest-800 px-4 py-2 text-sm font-black text-white transition group-hover:bg-saffron-400 group-hover:text-forest-900">View Details</span>
+        <div className="flex min-h-[230px] flex-col p-5">
+          <h3 className="line-clamp-2 text-lg font-bold leading-snug text-lexuzNeutral-100 transition group-hover:text-brand-primary">{tour.title}</h3>
+          <p className="mt-2 flex items-center gap-2 text-sm text-lexuzNeutral-60">
+            <DesignIcon icon={MapPin} size="sm" tone="muted" />
+            {tour.region}
+          </p>
+          <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-brand-secondary px-3 py-1 text-xs font-bold text-brand-primary">
+            <DesignIcon icon={CalendarDays} size="sm" tone="primary" />
+            {tour.departure || "To be confirmed"}
+          </div>
+          <div className="mt-auto flex items-end justify-between gap-3 pt-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.06em] text-lexuzNeutral-60">From Islamabad</p>
+              <DesignPrice amount={money(price.islamabadPrice)} qualifier={price.unit} />
+            </div>
+            <span className="grid h-10 w-10 place-items-center rounded-full border border-lexuzNeutral-line bg-white text-brand-primary shadow-ds1 transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white" aria-hidden="true">
+              <ChevronRight size={18} />
+            </span>
           </div>
         </div>
       </Link>

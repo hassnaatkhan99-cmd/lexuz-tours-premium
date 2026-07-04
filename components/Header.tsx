@@ -2,21 +2,31 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
+import { ChevronDown, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { company, whatsappUrl } from "@/data/company";
 import { DesignIcon } from "@/components/ui/icon";
 import { DesignLinkButton } from "@/components/ui/button";
 
-const nav = [
-  ["Home", "/"],
+const tourLinks = [
   ["Public Trips", "/public-trips"],
-  ["Destinations", "/destinations"],
-  ["Price List", "/price-list"],
   ["Corporate", "/corporate-tours"],
   ["University", "/university-tours"],
+  ["Honeymoon", "/honeymoon-tours"],
+  ["Custom Tours", "/custom-tours"]
+] as const;
+
+const nav = [
+  ["Destinations", "/destinations"],
+  ["Price List", "/price-list"],
   ["Reviews", "/reviews"],
   ["Contact", "/contact"]
+];
+
+const mobileNav = [
+  ["Home", "/"],
+  ...tourLinks,
+  ...nav
 ];
 
 const contactActions = [
@@ -33,20 +43,6 @@ const contactActions = [
     icon: MessageCircle,
     tone: "whatsapp",
     className: "text-brand-whatsapp hover:bg-brand-whatsapp/10"
-  },
-  {
-    label: "Follow Lexuz Tours on Instagram",
-    href: company.instagram,
-    icon: Instagram,
-    tone: "default",
-    className: "bg-[linear-gradient(135deg,#f58529_0%,#dd2a7b_45%,#8134af_100%)] text-white hover:brightness-105"
-  },
-  {
-    label: "Follow Lexuz Tours on Facebook",
-    href: company.facebook,
-    icon: Facebook,
-    tone: "default",
-    className: "text-[#1877F2] hover:bg-[#1877F2]/10"
   }
 ] as const;
 
@@ -83,6 +79,23 @@ export function Header() {
         </Link>
 
         <nav aria-label="Primary navigation" className="hidden flex-1 items-center justify-center gap-1 text-[13px] font-semibold text-lexuzNeutral-70 lg:flex xl:gap-2 xl:text-sm">
+          <div className="group relative">
+            <Link
+              href="/public-trips"
+              className="focus-ring relative inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 transition duration-150 hover:bg-brand-secondary hover:text-brand-primary after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:origin-center after:scale-x-0 after:bg-brand-accent after:transition-transform group-hover:after:scale-x-100"
+              aria-haspopup="true"
+            >
+              Tours
+              <DesignIcon icon={ChevronDown} size="sm" tone="muted" className="transition group-hover:rotate-180 group-hover:text-brand-primary" />
+            </Link>
+            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-dsLg border border-lexuzNeutral-line bg-white p-2 opacity-0 shadow-ds3 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              {tourLinks.map(([label, href]) => (
+                <Link key={href} href={href} className="focus-ring block rounded-dsMd px-3 py-2.5 text-sm text-lexuzNeutral-70 transition hover:bg-brand-secondary hover:text-brand-primary">
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
           {nav.map(([label, href]) => (
             <Link
               key={href}
@@ -94,8 +107,11 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-2 lg:flex" aria-label="Contact links">
-          {contactActions.map((action) => <IconAction key={action.label} action={action} />)}
+        <div className="hidden shrink-0 items-center gap-3 lg:flex" aria-label="Contact links">
+          <a href={company.callHref} className="focus-ring hidden items-center gap-2 rounded-full border border-lexuzNeutral-line bg-white px-3 py-2 text-sm font-bold text-brand-primary shadow-ds1 transition hover:-translate-y-0.5 hover:bg-brand-secondary hover:shadow-ds2 xl:inline-flex" aria-label="Call Lexuz Tours">
+            <DesignIcon icon={Phone} size="sm" tone="primary" />
+            {company.callPhone}
+          </a>
           <DesignLinkButton
             href={whatsappUrl(bookMessage)}
             target="_blank"
@@ -111,7 +127,6 @@ export function Header() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
-          <IconAction action={contactActions[0]} mobile />
           <IconAction action={contactActions[1]} mobile />
           <button
             className="focus-ring group relative grid h-10 w-10 place-items-center rounded-full border border-lexuzNeutral-line bg-white text-brand-primary shadow-ds1 transition hover:bg-brand-secondary"
@@ -133,11 +148,11 @@ export function Header() {
       {open ? (
         <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-lexuzNeutral-line bg-white px-4 py-4 text-sm font-semibold shadow-[0_20px_40px_rgba(7,31,8,.08)] lg:hidden">
           <div className="mx-auto grid max-w-[1280px] gap-1">
-            {nav.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)} className="focus-ring rounded-dsMd px-3 py-3 text-lexuzNeutral-70 transition hover:bg-brand-secondary hover:text-brand-primary">{label}</Link>)}
+            {mobileNav.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)} className="focus-ring rounded-dsMd px-3 py-3 text-lexuzNeutral-70 transition hover:bg-brand-secondary hover:text-brand-primary">{label}</Link>)}
             <div className="mt-3 rounded-dsLg border border-lexuzNeutral-line bg-lexuzNeutral-5 p-3">
               <p className="px-1 pb-3 text-xs font-black uppercase tracking-[.12em] text-lexuzNeutral-60">Contact Lexuz</p>
               <div className="flex items-center gap-2">
-                {contactActions.slice(2).map((action) => <IconAction key={action.label} action={action} />)}
+                <IconAction action={contactActions[0]} />
                 <DesignLinkButton
                   href={whatsappUrl(bookMessage)}
                   target="_blank"

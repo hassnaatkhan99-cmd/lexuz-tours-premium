@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, Mountain, ShieldCheck, Star, Users, XCircle } from "lucide-react";
+import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, MinusCircle, Mountain, ShieldCheck, Star, Users } from "lucide-react";
 import { reviews } from "@/data/reviews";
 import { lahorePrice, money, Tour, tours } from "@/data/tours";
 import { absoluteUrl } from "@/lib/seo";
@@ -144,8 +144,8 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
 
           <div className="grid gap-8 lg:grid-cols-[1fr_390px] lg:items-end">
             <div className="max-w-4xl">
-              <p className="script text-4xl text-saffron-400">Escape • Explore • Enjoy</p>
-              <h1 className="mt-3 text-4xl font-black uppercase leading-none md:text-6xl">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-accent">Official Lexuz tour product</p>
+              <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight md:text-6xl">
                 {tour.title} Tour — {tour.duration} {hasLahore ? "from Islamabad & Lahore" : "from Islamabad"}
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/85 md:text-lg">{tour.overview}</p>
@@ -157,7 +157,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   [Mountain, difficulty(tour), "Adventure level"]
                 ].map(([Icon, value, label]) => (
                   <div key={String(label)} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
-                    <Icon className="text-saffron-300" size={22} />
+                    <Icon className="text-brand-accent" size={22} />
                     <p className="mt-3 text-xs font-black uppercase tracking-wide text-white/60">{String(label)}</p>
                     <p className="mt-1 text-sm font-black text-white">{String(value)}</p>
                   </div>
@@ -171,7 +171,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
 
       <section className="container-page grid gap-8 py-12 lg:grid-cols-[1fr_360px]">
         <main className="min-w-0">
-          <section className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-premium md:p-8">
+          <section className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
             <div className="grid gap-5 md:grid-cols-3">
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
@@ -179,9 +179,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                 ["Track your booking", "Reference ID, payment proof and status tracking after submission."]
               ].map(([title, copy]) => (
                 <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
-                  <ShieldCheck className="text-forest-800" size={24} />
-                  <h2 className="mt-3 font-black text-forest-950">{title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-neutral-600">{copy}</p>
+                  <ShieldCheck className="text-brand-primary" size={24} />
+                  <h2 className="mt-3 font-black text-lexuzNeutral-100">{title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{copy}</p>
                 </div>
               ))}
             </div>
@@ -284,13 +284,13 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
               <h2 className="text-2xl font-black text-forest-950">Not included</h2>
               <div className="mt-5 grid gap-3">
-                {tour.excluded.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><XCircle className="shrink-0 text-red-600" size={18} />{item}</p>)}
+                {tour.excluded.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><MinusCircle className="shrink-0 text-lexuzNeutral-60" size={18} />{item}</p>)}
               </div>
             </div>
           </section>
 
           {needsJeepDisclosure(tour) ? (
-            <section id="jeep-charges" className="mt-6 scroll-mt-28 rounded-2xl border border-saffron-500/40 bg-saffron-100/70 p-6 shadow-soft">
+            <section id="jeep-charges" className="mt-6 scroll-mt-28 rounded-dsLg border border-brand-accent/35 bg-[#fbf6e8] p-6 shadow-ds1">
               <div className="flex items-start gap-4">
                 <Info className="mt-1 shrink-0 text-forest-900" size={24} />
                 <div>
@@ -355,7 +355,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <FAQ items={faqs} />
           </section>
 
-          <section className="mt-12 rounded-3xl bg-forest-950 p-6 text-white shadow-premium md:p-8">
+          <section className="mt-12 rounded-dsLg bg-brand-primary p-6 text-white shadow-ds3 md:p-8">
             <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-saffron-300">Ready to reserve?</p>
@@ -368,7 +368,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         </main>
 
         <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-premium">
+          <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-forest-700">Tour summary</p>
             <h2 className="mt-2 text-2xl font-black text-forest-950">{tour.title}</h2>
             <div className="mt-5 grid gap-3 text-sm">
