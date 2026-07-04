@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { company } from "@/data/company";
 import { seoLandingPages } from "@/data/seoLandingPages";
+import { SocialContactLinks } from "./SocialContactLinks";
 
 export function Footer() {
   const links = ["Public Trips", "Destinations", "Price List", "Booking Status", "About", "Reviews", "Blog", "Contact", "Admin"];
@@ -15,6 +16,9 @@ export function Footer() {
             <div><strong className="text-xl font-black uppercase">Lexuz Tours</strong><p className="text-sm font-bold">& Adventures</p></div>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/75">{company.mission}</p>
+          <div className="mt-5">
+            <SocialContactLinks variant="footer" />
+          </div>
         </div>
         <div>
           <h2 className="font-black text-saffron-300">Quick Links</h2>
@@ -31,7 +35,7 @@ export function Footer() {
         <div>
           <h2 className="font-black text-saffron-300">Contact</h2>
           <div className="mt-4 grid gap-3 text-sm text-white/75">
-            <p className="flex gap-2"><Phone size={18} className="text-saffron-300" />{company.phone}</p>
+            <a href={company.callHref} className="flex gap-2 hover:text-white"><Phone size={18} className="text-saffron-300" />{company.callPhone}</a>
             <p className="flex gap-2"><Mail size={18} className="text-saffron-300" />{company.email}</p>
             <p className="flex gap-2"><MapPin size={18} className="shrink-0 text-saffron-300" />{company.address}</p>
             <Link href={company.maps} target="_blank" className="w-fit rounded-md bg-saffron-400 px-4 py-2 font-black text-forest-900">Open Google Maps</Link>

@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         name: company.name,
         url: company.website,
         logo: `${company.website}/logo.png`,
-        sameAs: ["https://www.instagram.com/lexuz_tours_adventures"]
+        sameAs: [company.facebook, company.instagram]
       },
       {
         "@type": ["TravelAgency", "LocalBusiness"],
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         url: company.website,
         image: `${company.website}/logo.png`,
         email: company.email,
-        telephone: company.phone,
+        telephone: company.callPhone,
         priceRange: "PKR",
         foundingDate: String(company.founded),
         parentOrganization: { "@id": `${company.website}/#organization` },
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           reviewBody: review.text,
           itemReviewed: { "@id": `${company.website}/#travelagency` }
         })),
-        sameAs: ["https://www.instagram.com/lexuz_tours_adventures"]
+        sameAs: [company.facebook, company.instagram]
       }
     ]
   };
