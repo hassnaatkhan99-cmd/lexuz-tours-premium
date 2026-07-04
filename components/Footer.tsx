@@ -6,7 +6,7 @@ import { seoLandingPages } from "@/data/seoLandingPages";
 import { SocialContactLinks } from "./SocialContactLinks";
 
 export function Footer() {
-  const links = ["Public Trips", "Destinations", "Price List", "Booking Status", "About", "Reviews", "Blog", "Contact", "Admin"];
+  const links = ["Public Trips", "Destinations", "Price List", "Booking Status", "About", "Reviews", "Blog", "Contact"];
   return (
     <footer className="bg-forest-900 text-white">
       <div className="container-page grid gap-8 py-12 md:grid-cols-[1.2fr_1fr_1fr_1.2fr]">
@@ -23,7 +23,7 @@ export function Footer() {
         <div>
           <h2 className="font-black text-saffron-300">Quick Links</h2>
           <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/75">
-            {links.map((link) => <Link key={link} href={link === "Admin" ? "/admin" : `/${link.toLowerCase().replaceAll(" ", "-")}`}>{link}</Link>)}
+            {links.map((link) => <Link key={link} href={`/${link.toLowerCase().replaceAll(" ", "-")}`}>{link}</Link>)}
           </div>
         </div>
         <div>

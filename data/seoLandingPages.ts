@@ -101,7 +101,7 @@ export function buildLandingSections(page: SeoLandingPage): LandingSection[] {
     {
       title: "Booking With Lexuz",
       paragraphs: [
-        `Booking a ${page.keyword} plan with Lexuz is straightforward. Open the tour page, review the itinerary, compare Islamabad and Lahore pricing where applicable, submit the booking form with traveler details, select a payment method and upload the payment screenshot. The booking enters pending verification, then the admin team reviews it and confirms status through the booking workflow.`,
+        `Booking a ${page.keyword} plan with Lexuz is straightforward. Open the tour page, review the itinerary, compare Islamabad and Lahore pricing where applicable, submit the booking form with traveler details, select a payment method and upload the payment screenshot. The booking enters pending verification, then the Lexuz team reviews it and confirms the next step.`,
         `Customers can use the booking status page to track progress with their reference ID. For fast guidance, the WhatsApp button connects directly with Lexuz support. This gives travelers a cleaner path from research to confirmation while preserving the human support that matters when planning northern Pakistan travel.`
       ]
     }
