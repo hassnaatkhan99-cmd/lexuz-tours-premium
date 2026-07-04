@@ -22,11 +22,16 @@ export function expandedItinerary(tour: Tour) {
   return tour.itinerary.map((item, index) => {
     const day = index + 1;
     const opening = day === 1
-      ? `Day ${day} begins with coordinated departure from the selected pickup city, luggage loading, traveler check-in and movement toward the northern route.`
+      ? `Day ${day} starts with traveler check-in, luggage loading and coordinated movement from the selected pickup city.`
       : day === tour.itinerary.length
-        ? `Day ${day} is the return phase of the journey, planned with breakfast, check-out and managed travel back toward the selected city.`
-        : `Day ${day} continues the destination experience with breakfast, sightseeing coordination and enough flexibility for real mountain conditions.`;
-    return `${opening} ${item} The Lexuz team keeps the group informed about road timing, meal breaks and photography stops throughout the day. Travelers can expect a balance of scenic pauses, practical comfort stops and destination-focused sightseeing rather than a rushed checklist. Evening arrangements normally include dinner, rest time and hotel coordination where applicable, with bonfire or BBQ included where conditions and hotel arrangements allow. Weather, traffic, local permissions and road condition can change the order of activities, but the goal remains to preserve the best possible travel experience for the group.`;
+        ? `Day ${day} focuses on a managed return after breakfast and check-out, with practical breaks on the way back.`
+        : `Day ${day} is planned around the main destination experience, with breakfast first and sightseeing shaped by weather and road access.`;
+    const close = day === 1
+      ? "The team shares route updates during the first travel leg so guests know when to expect meal, rest and photography stops."
+      : day === tour.itinerary.length
+        ? "Return timing can shift with traffic and mountain-road conditions, so the team keeps travelers informed until arrival."
+        : "Evening arrangements normally include dinner and rest time, with bonfire or BBQ included where conditions and hotel arrangements allow.";
+    return `${opening} ${item} ${close}`;
   });
 }
 
@@ -34,7 +39,7 @@ export function whyChooseTour(tour: Tour) {
   return [
     `Managed ${tour.duration.toLowerCase()} plan with clear departure information`,
     "Trusted Lexuz transport coordination and tour management",
-    "Transparent inclusions, exclusions and booking workflow",
+    "Transparent inclusions, exclusions and booking steps",
     "Suitable for public trips, families and private groups",
     `Destination-focused sightseeing across ${tour.region}`,
     "WhatsApp support before booking and during planning",

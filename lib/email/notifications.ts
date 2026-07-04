@@ -278,7 +278,7 @@ export async function notifyBookingStatus(details: BookingEmailDetails & { statu
     },
     Approved: {
       title: "Booking Approved",
-      intro: "Your booking has been approved by the Lexuz team. Payment verification and final confirmation will follow according to the booking workflow."
+      intro: "Your booking has been approved by the Lexuz team. Payment verification and final confirmation will follow through the normal booking steps."
     },
     Confirmed: {
       title: "Booking Confirmed",

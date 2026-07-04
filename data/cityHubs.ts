@@ -124,7 +124,7 @@ export const cityHubs: Record<CityHubCode, CityHub> = {
     heroImage: "/images/fleet-road.jpeg",
     heroAlt: "Lexuz Tours fleet on the road for multi-day northern Pakistan departures from Lahore",
     intro: [
-      "Lahore departures require a longer road approach before travelers reach the main northern routes, so the best fit is a multi-day trip rather than a one-day escape. Lexuz Tours keeps Lahore travelers on the same official tour product pages while showing the Lahore departure context, pricing logic and travel format clearly.",
+      "Lahore departures require a longer road approach before travelers reach the main northern routes, so the best fit is a multi-day trip rather than a one-day escape. Lexuz Tours keeps Lahore travelers on the main tour pages while showing Lahore departure guidance, pricing and travel format clearly.",
       "This hub lists only tours that support Lahore departure. One-day trips are not shown here because they are currently available from Islamabad / Rawalpindi only. For Lahore travelers, the focus is organized weekend and extended tours where the additional travel time is planned into the route."
     ],
     availableDepartures: [
@@ -141,13 +141,13 @@ export const cityHubs: Record<CityHubCode, CityHub> = {
     ],
     travelFormat: [
       "Lahore departures usually include additional road time before reaching the main northern route, so travelers should pack light, keep essentials accessible and expect comfort stops on the motorway.",
-      "For longer northern trips, Lahore travelers join the same managed tour plan after route alignment. This keeps pricing, inclusions, cancellation rules and booking workflow consistent with the official tour product page."
+      "For longer northern trips, Lahore travelers join the same managed tour plan after route alignment. This keeps pricing, inclusions, cancellation rules and booking steps consistent with the official tour details."
     ],
     whyChoose: [
       "Lahore travelers can join selected multi-day northern Pakistan tours without needing to self-arrange transport to Islamabad.",
       "Clear city-specific pricing is shown where Lahore departure is available through the official tour page.",
       "WhatsApp guidance helps travelers understand the route, pickup coordination and expected travel format before booking.",
-      "Lexuz keeps one canonical tour page per destination, reducing confusion and duplicate city versions."
+      "Lexuz keeps one clear tour detail page per destination, reducing confusion between Islamabad and Lahore departure options."
     ],
     faqs: [
       {

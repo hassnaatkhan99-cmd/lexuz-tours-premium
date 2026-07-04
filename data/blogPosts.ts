@@ -93,7 +93,7 @@ export function buildBlogSections(post: BlogPost): BlogSection[] {
       title: "Booking With Lexuz",
       paragraphs: [
         `The easiest way to book is to open the relevant tour page, review the itinerary and price, then submit the booking form with payment proof. Lexuz also supports WhatsApp booking for travelers who want quick guidance. After submission, the booking enters pending verification and can be tracked with a reference ID on the booking status page.`,
-        `This workflow is useful for travelers comparing travel agency Rawalpindi, travel agency Islamabad, northern Pakistan tours or Pakistan tour packages because it combines clear public information with a real booking process. Customers can review prices, departure days, pickup city options and tour details before committing.`
+        `This booking path is useful for travelers comparing travel agency Rawalpindi, travel agency Islamabad, northern Pakistan tours or Pakistan tour packages because it combines clear public information with a real booking process. Customers can review prices, departure days, pickup city options and tour details before committing.`
       ]
     }
   ];

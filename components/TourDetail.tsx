@@ -176,7 +176,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
                 ["Transparent exclusions", "Jeep charges and personal expenses are clearly separated."],
-                ["Booking workflow", "Reference ID, payment proof and status tracking after submission."]
+                ["Track your booking", "Reference ID, payment proof and status tracking after submission."]
               ].map(([title, copy]) => (
                 <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
                   <ShieldCheck className="text-forest-800" size={24} />
@@ -207,7 +207,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
           </section>
 
           <section className="mt-12" id="departures">
-            <SectionHeading eyebrow="Departures & pricing" title="Choose your departure city" copy="One canonical tour page serves both Islamabad and Lahore context. Final seats, room details and exact reporting instructions are confirmed by the Lexuz team." />
+            <SectionHeading eyebrow="Departures & pricing" title="Choose your departure city" copy="Choose your starting point for the same tour. Final seats, room details and exact reporting instructions are confirmed by the Lexuz team." />
             <div className="grid gap-5 md:grid-cols-2">
               <div id="from-islamabad" className="scroll-mt-28 rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-forest-700">Departures from Islamabad</p>
