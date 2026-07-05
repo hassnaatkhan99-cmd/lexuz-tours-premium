@@ -4,7 +4,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 export const metadata: Metadata = { title: "Cancellation Policy" };
 
 export default function CancellationPage() {
-  return <PolicyPage title="Cancellation Policy" items={[
+  return <PolicyPage title="Cancellation Policy" path="/cancellation-policy" description="Refund and cancellation rules for confirmed paid bookings." items={[
     "If a customer cancels less than 7 days before departure, no refund will be given.",
     "If a customer cancels more than 7 days before departure, 100% payment will be refunded.",
     "Refunds only apply to confirmed paid bookings.",

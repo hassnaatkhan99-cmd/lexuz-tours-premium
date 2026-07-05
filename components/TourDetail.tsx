@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, MinusCircle, Mountain, ShieldCheck, Star, Users } from "lucide-react";
 import { reviews } from "@/data/reviews";
-import { lahorePrice, money, Tour, tours } from "@/data/tours";
+import { hasJeepNotice, isJeepIncluded, lahorePrice, money, Tour, tours } from "@/data/tours";
 import { absoluteUrl } from "@/lib/seo";
 import { buildBreadcrumbJsonLd, buildFaqSchema } from "@/lib/seo-foundation";
 import { detailedOverview, expandedFaqs, expandedItinerary, travelInformation, whyChooseTour } from "@/lib/tourContent";
@@ -20,11 +20,6 @@ function difficulty(tour: Tour) {
   if (tour.slug.includes("fairy") || tour.slug.includes("katora")) return "Moderate adventure";
   if (tour.durationDays >= 5) return "Moderate road journey";
   return "Easy to moderate";
-}
-
-function needsJeepDisclosure(tour: Tour) {
-  const text = [...tour.excluded, ...tour.notes, tour.title].join(" ").toLowerCase();
-  return text.includes("jeep") || ["fairy-meadows", "shogran-siri-paye", "sharaan-forest-waterfall", "swat-kalam-mahodand", "kumrat-valley", "kumrat-jahaz-banda-katora-lake"].includes(tour.slug);
 }
 
 function relatedTours(tour: Tour) {
@@ -65,6 +60,8 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
   const related = relatedTours(tour);
   const featuredReviews = matchingReviews(tour);
   const hasLahore = tour.category !== "one-day";
+  const showJeepInfo = hasJeepNotice(tour);
+  const jeepIncluded = isJeepIncluded(tour);
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Public Trips", path: "/public-trips" },
@@ -175,7 +172,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <div className="grid gap-5 md:grid-cols-3">
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
-                ["Transparent exclusions", "Jeep charges and personal expenses are clearly separated."],
+                ["Clear trip details", "Included and not-included services are separated before booking."],
                 ["Track your booking", "Reference ID, payment proof and status tracking after submission."]
               ].map(([title, copy]) => (
                 <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
@@ -264,7 +261,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-forest-800">
                     {tour.category !== "one-day" ? <span className="rounded-full bg-forest-50 px-3 py-1">Meals: Breakfast + Dinner</span> : <span className="rounded-full bg-forest-50 px-3 py-1">Dinner included</span>}
                     {tour.category !== "one-day" ? <span className="rounded-full bg-forest-50 px-3 py-1">Overnight: category confirmed on booking</span> : null}
-                    {needsJeepDisclosure(tour) ? <a href="#jeep-charges" className="rounded-full bg-saffron-300/40 px-3 py-1 hover:bg-saffron-300">Jeep note</a> : null}
+                    {showJeepInfo ? <a href="#jeep-charges" className="rounded-full bg-saffron-300/40 px-3 py-1 hover:bg-saffron-300">Jeep note</a> : null}
                   </div>
                 </details>
               ))}
@@ -289,18 +286,26 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             </div>
           </section>
 
-          {needsJeepDisclosure(tour) ? (
-            <section id="jeep-charges" className="mt-6 scroll-mt-28 rounded-dsLg border border-brand-accent/35 bg-[#fbf6e8] p-6 shadow-ds1">
+          {showJeepInfo ? (
+            <section id="jeep-charges" className="mt-6 scroll-mt-28 rounded-dsLg border border-brand-accent/25 bg-[#fbf6e8] p-5 shadow-ds1">
               <div className="flex items-start gap-4">
-                <Info className="mt-1 shrink-0 text-forest-900" size={24} />
+                <Info className="mt-1 shrink-0 text-forest-900" size={20} />
                 <div>
-                  <h2 className="text-2xl font-black text-forest-950">Jeep charges disclosure</h2>
-                  <p className="mt-3 text-sm leading-7 text-forest-900">
-                    Jeep charges are not included in the package price. Where local access requires a jeep, payment is handled locally with jeep operators and may be shared between passengers depending on the route and vehicle arrangement.
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-forest-900">
-                    For {tour.title}, local access can depend on road, weather and seasonal conditions. Lexuz keeps this separate so the package remains transparent and customers know exactly what is included before booking.
-                  </p>
+                  <h2 className="text-lg font-black text-forest-950">Jeep transport information</h2>
+                  {jeepIncluded ? (
+                    <p className="mt-2 text-sm leading-7 text-forest-900">
+                      Jeep transport is listed in the included services for this package. Final local movement can still depend on weather, route access and safety decisions.
+                    </p>
+                  ) : (
+                    <>
+                      <p className="mt-2 text-sm leading-7 text-forest-900">
+                        Jeep charges are not included for this route where local access requires jeep transport.
+                      </p>
+                      <p className="mt-2 text-sm leading-7 text-forest-900">
+                        Lexuz keeps this separate so the package remains transparent and customers know exactly what is included before booking.
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             </section>

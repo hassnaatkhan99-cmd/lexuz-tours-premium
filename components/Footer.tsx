@@ -16,6 +16,7 @@ export function Footer() {
   const companyLinks = [
     ["About", "/about"],
     ["Booking Status", "/booking-status"],
+    ["Policies", "/policies"],
     ["Contact", "/contact"],
     ["Terms", "/terms-and-conditions"],
     ["Privacy", "/privacy-policy"],

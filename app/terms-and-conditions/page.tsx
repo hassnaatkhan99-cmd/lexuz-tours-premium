@@ -4,7 +4,7 @@ import { PolicyPage } from "@/components/PolicyPage";
 export const metadata: Metadata = { title: "Terms & Conditions" };
 
 export default function TermsPage() {
-  return <PolicyPage title="Terms & Conditions" items={[
+  return <PolicyPage title="Terms & Conditions" path="/terms-and-conditions" description="The core booking terms that apply when customers reserve a Lexuz Tours departure." items={[
     "Seats are confirmed after booking approval and payment verification.",
     "Tour plans may change due to weather, road closures, hotel availability, safety concerns, government restrictions or unavoidable operational reasons.",
     "If Lexuz Tours cancels a trip, customers may choose a full refund or transfer to another available departure.",

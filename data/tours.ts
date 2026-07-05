@@ -29,6 +29,14 @@ export type Tour = {
   prices: PriceTier[];
 };
 
+export function hasJeepNotice(tour: Tour) {
+  return [...tour.notes, ...tour.excluded, ...tour.included].some((item) => item.toLowerCase().includes("jeep"));
+}
+
+export function isJeepIncluded(tour: Tour) {
+  return tour.included.some((item) => item.toLowerCase().includes("jeep"));
+}
+
 const destination = {
   swat: "/images/destinations/swat-mahodand.jpg",
   swatAlt: "/images/destinations/swat-mahodand-2.jpg",
@@ -65,7 +73,6 @@ export const companyImages = {
 };
 
 export const commonExcluded = [
-  "Jeep charges are not included.",
   "Personal expenses",
   "Entry tickets where applicable",
   "Extra meals",
@@ -214,7 +221,7 @@ export const tours: Tour[] = [
     tripPlan: "Travel from the selected departure city to Upper Dir, then proceed toward the Jahaz Banda and Kumrat region with local support.",
     itinerary: ["Morning departure from Islamabad / Rawalpindi or Lahore toward Upper Dir with breakfast and comfort stops en route. Arrival in the Dir region, transfer/check-in at arranged accommodation, dinner and night stay.", "Breakfast followed by movement toward Jazz Banda meadows subject to local access and weather. Enjoy meadow views, photography and free time in the highland setting. Dinner, bonfire or BBQ where arranged, and night stay.", "Breakfast and guided excursion toward Katora Lake route for travelers who are comfortable with the terrain. Enjoy mountain viewpoints, photography and nature time before returning to the stay area for dinner and night stay.", "Breakfast, check-out and return journey toward Islamabad / Rawalpindi or Lahore with scenic stops and refreshment breaks. Arrival back by evening/night depending on traffic and road conditions."],
     included: commonIncluded,
-    excluded: commonExcluded,
+    excluded: [...commonExcluded, "Jeep charges are not included."],
     notes: ["This tour requires better fitness than standard sightseeing tours.", "Jeep charges are not included."],
     pickup,
     faqs: tourFaqs,
@@ -259,7 +266,7 @@ export const tours: Tour[] = [
     tripPlan: "Travel toward Chilas and Raikot, transfer toward Fairy Meadows and experience one of Pakistan's most iconic mountain landscapes.",
     itinerary: ["Saturday morning departure from Islamabad / Rawalpindi or Lahore toward Chilas with breakfast, comfort stops and scenic views along the northern route. Dinner and night stay in the Chilas/Raikot region.", "Breakfast followed by movement toward Raikot and onward transfer toward Fairy Meadows route subject to local access. Trek or local transfer continues as per conditions, arrival at the meadow area, dinner and night stay.", "Breakfast with Nanga Parbat views followed by full-day exploration of Fairy Meadows, photography points and optional viewpoint walk for interested travelers. Dinner, bonfire or BBQ where arranged, and night stay.", "Breakfast and return from Fairy Meadows toward the Chilas/Raikot region. Rest stops and scenic breaks on the way, dinner and night stay.", "Breakfast and check-out. Begin return journey to Islamabad / Rawalpindi or Lahore with meal and comfort stops en route. Arrival back depending on traffic and road conditions."],
     included: commonIncluded,
-    excluded: commonExcluded,
+    excluded: [...commonExcluded, "Jeep charges are not included."],
     notes: ["Jeep charges are not included.", "This tour includes uneven terrain and adventure-style travel."],
     pickup,
     faqs: tourFaqs,
@@ -308,7 +315,7 @@ export const tours: Tour[] = [
     tripPlan: "The trip starts early from Islamabad / Rawalpindi, travels through Hazara Expressway and Balakot, continues toward Shogran and Siri Paye where access allows, then returns to Islamabad / Rawalpindi around late evening.",
     itinerary: ["Depart from Islamabad / Rawalpindi and travel via Hazara Expressway.", "Short comfort stop near Balakot before continuing toward Kiwai.", "Visit Kiwai Waterfall and continue toward Shogran Valley.", "Explore Shogran Valley and Siri Paye Meadows subject to weather and access.", "Dinner break during the return journey.", "Arrive back in Islamabad / Rawalpindi around 10:30 PM, subject to traffic and road conditions."],
     included: oneDayIncluded,
-    excluded: oneDayExcluded,
+    excluded: [...oneDayExcluded, "Jeep charges are not included."],
     notes: ["One-day trips are available only from Islamabad / Rawalpindi.", "Jeep charges are not included.", "Departure is usually around 5:30 AM."],
     pickup: oneDayPickup,
     faqs: oneDayFaqs,
@@ -330,7 +337,7 @@ export const tours: Tour[] = [
     tripPlan: "The journey starts from Islamabad / Rawalpindi, follows the Hazara Expressway route toward Balakot and Sharaan, includes forest and waterfall sightseeing, then returns the same day.",
     itinerary: ["Depart from Islamabad / Rawalpindi and travel via Hazara Expressway.", "Enjoy scenic drive sections through mountain valleys with a short comfort stop en route.", "Arrive at Sharaan Forest for nature exploration and photography.", "Visit Sharaan Waterfall where access and conditions allow.", "Dinner break during the return journey.", "Travel back to Islamabad / Rawalpindi with expected late evening arrival."],
     included: oneDayIncluded,
-    excluded: oneDayExcluded,
+    excluded: [...oneDayExcluded, "Jeep charges are not included."],
     notes: ["Available only from Islamabad / Rawalpindi.", "Wear comfortable shoes.", "Jeep charges are not included."],
     pickup: oneDayPickup,
     faqs: oneDayFaqs,
@@ -352,7 +359,7 @@ export const tours: Tour[] = [
     tripPlan: "The journey starts early from Islamabad / Rawalpindi, travels toward the Bagh and Ganga Choti region through scenic Kashmir routes, gives travelers time to enjoy the views and returns by late evening.",
     itinerary: ["Depart from Islamabad / Rawalpindi in the early morning via Muzaffarabad Expressway.", "Short refreshment stop during the journey.", "Continue the scenic drive toward Ganga Choti through winding mountain roads.", "Arrive near Ganga Choti and enjoy panoramic views, photography and free time.", "Lunch or dinner stop during the return journey.", "Return toward Islamabad / Rawalpindi with expected late evening arrival."],
     included: oneDayIncluded,
-    excluded: oneDayExcluded,
+    excluded: [...oneDayExcluded, "Jeep charges are not included."],
     notes: ["Available only from Islamabad / Rawalpindi.", "Road and weather conditions can affect access.", "Jeep charges are not included."],
     pickup: oneDayPickup,
     faqs: oneDayFaqs,

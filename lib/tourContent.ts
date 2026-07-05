@@ -1,11 +1,11 @@
-import type { Tour } from "@/data/tours";
+import { hasJeepNotice, isJeepIncluded, type Tour } from "@/data/tours";
 
 export function detailedOverview(tour: Tour) {
   const base = tour.overview;
   return [
     `${base} This ${tour.duration.toLowerCase()} experience is planned for travelers who want a managed journey rather than a confusing self-arranged road trip. Lexuz focuses on transport coordination, hotel handling, route guidance, meal planning and realistic sightseeing so customers understand both the beauty of ${tour.region} and the practical nature of mountain travel in Pakistan.`,
     `The route is part of the experience. Guests travel from the listed pickup cities with planned comfort stops, scenic pauses and guidance from the tour team. Depending on the destination, the journey may include motorway sections, mountain roads, riverside valleys, forest tracks, lakeside viewpoints, bazaars and hotel stays. The schedule is designed for families, couples, student groups and public-trip travelers who want clear communication and a safer, more organized travel flow.`,
-    `This tour suits travelers who enjoy photography, changing landscapes and shared group experiences. Mountain weather, local traffic, seasonal road access and hotel availability can affect the final order of sightseeing, so the Lexuz team keeps the plan flexible while protecting the main experience. Customers should review inclusions and exclusions before booking, especially the note that jeep charges are not included where local transfers are required.`
+    `This tour suits travelers who enjoy photography, changing landscapes and shared group experiences. Mountain weather, local traffic, seasonal road access and hotel availability can affect the final order of sightseeing, so the Lexuz team keeps the plan flexible while protecting the main experience. Customers should review inclusions and exclusions before booking so expectations stay clear before payment.`
   ];
 }
 
@@ -59,9 +59,17 @@ export function travelInformation(tour: Tour) {
 }
 
 export function expandedFaqs(tour: Tour) {
+  const jeepFaq = hasJeepNotice(tour)
+    ? [{
+        question: "Are jeep charges included?",
+        answer: isJeepIncluded(tour)
+          ? "Yes. Jeep transport is listed in the included services for this package."
+          : "No. Jeep charges are not included and are handled separately where local access requires them."
+      }]
+    : [];
   const extras = [
     { question: `What is included in the ${tour.title} tour?`, answer: tour.included.join(", ") + "." },
-    { question: "Are jeep charges included?", answer: "No. Jeep charges are not included and are handled separately where local access requires them." },
+    ...jeepFaq,
     { question: "Can the sightseeing order change?", answer: "Yes. Weather, traffic, hotel timing and road conditions can change the final order while keeping the main experience intact." },
     { question: "Is this tour suitable for families?", answer: `${tour.title} is suitable for families who are comfortable with ${tour.category === "one-day" ? "same-day road travel" : "multi-day mountain travel and hotel stays"}.` },
     { question: "How do I confirm my booking?", answer: "Submit the booking form, select payment method, upload payment screenshot and wait for pending verification to be reviewed." },

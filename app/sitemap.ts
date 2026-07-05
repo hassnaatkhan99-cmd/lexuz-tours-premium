@@ -19,6 +19,7 @@ const staticRoutes = [
   "/custom-tours",
   "/booking",
   "/booking-status",
+  "/policies",
   "/terms-and-conditions",
   "/privacy-policy",
   "/cancellation-policy"
