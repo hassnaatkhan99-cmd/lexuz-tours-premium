@@ -8,7 +8,7 @@ export const sourceFacts = {
   founder: {
     name: "Hassnaat Khan",
     position: "Owner, CEO & Founder",
-    photo: null as string | null,
+    photo: "/images/founder-hassnaat-khan.jpg",
     biography: "Hassnaat Khan started Lexuz Tours in 2018 after organising the first Miranjani Top trip through hand-printed posters and flyers. The first departure drew 110 participants and became the beginning of weekly Lexuz travel operations.",
     vision: "Build trips run by people who genuinely love the road, with clear communication, real operational experience and transparent booking expectations.",
     message: "We plan every journey with the same reason Lexuz began: a love for Pakistan's mountains and a responsibility to guide travellers with honesty."
