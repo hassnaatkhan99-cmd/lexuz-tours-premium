@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, ChevronRight, FileText, MapPin, ShieldCheck, UserRound } from "lucide-react";
+import { FounderImage } from "@/components/FounderImage";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import type { BreadcrumbItem } from "@/lib/seo-foundation/breadcrumbs";
 
@@ -39,11 +39,7 @@ export function FounderPhotoPlaceholder({ name }: { name: string }) {
 export function FounderSection({ founder }: { founder: { name: string; position: string; photo: string | null; biography: string; vision: string; message: string } }) {
   return (
     <section className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-      {founder.photo ? (
-        <Image src={founder.photo} alt={`${founder.name}, ${founder.position}`} width={720} height={900} className="aspect-[4/5] rounded-dsLg object-cover shadow-ds3" />
-      ) : (
-        <FounderPhotoPlaceholder name={founder.name} />
-      )}
+      <FounderImage src={founder.photo} name={founder.name} position={founder.position} />
       <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Founder</p>
         <h2 className="mt-2 text-3xl font-black tracking-tight text-lexuzNeutral-100 md:text-4xl">{founder.name}</h2>
