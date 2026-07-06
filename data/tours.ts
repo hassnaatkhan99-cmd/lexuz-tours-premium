@@ -1,3 +1,5 @@
+import { tripPhotos } from "./tripPhotos";
+
 export type PriceTier = {
   label: "Solo Traveler" | "Married Couple";
   unit: "Per Person" | "Per Couple";
@@ -122,7 +124,7 @@ export const tours: Tour[] = [
     category: "featured",
     region: "Swat Valley, Khyber Pakhtunkhwa",
     heroImage: destination.swat,
-    gallery: [destination.swatAlt, destination.swat],
+    gallery: [tripPhotos.malamJabbaWinterGroup.src, destination.swatAlt, destination.swat],
     overview: "A premium short escape into Swat, Kalam and Mahodand Lake for travelers who want riverside views, cool weather, mountain roads and a comfortable managed group experience.",
     highlights: ["Kalam Bazaar", "Ushu Forest", "Mahodand Lake", "Swat Expressway route", "Family-friendly hotel stays"],
     tripPlan: "The journey starts from Islamabad / Rawalpindi or Lahore, continues through Swat Expressway and reaches Kalam for hotel stay, valley sightseeing and a scenic return.",

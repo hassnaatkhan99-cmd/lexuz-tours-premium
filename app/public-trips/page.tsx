@@ -3,7 +3,19 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TourCard } from "@/components/TourCard";
 import { tours } from "@/data/tours";
 
-export const metadata: Metadata = { title: "Public Trips", description: "Book Lexuz public trips with Islamabad and Lahore pricing." };
+export const metadata: Metadata = {
+  title: "Public Trips",
+  description: "Book Lexuz public trips with Islamabad and Lahore pricing.",
+  openGraph: {
+    title: "Lexuz Public Trips",
+    description: "Browse Lexuz public departures with clear pricing, schedules and booking links.",
+    images: ["/images/trip/lexuz-fleet-three-coasters-night.webp"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/trip/lexuz-fleet-three-coasters-night.webp"]
+  }
+};
 
 export default function PublicTripsPage() {
   return (

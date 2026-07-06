@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { CheckCircle2, ShieldCheck, UploadCloud } from "lucide-react";
 import { paymentMethods } from "@/data/payments";
+import { tripPhotos } from "@/data/tripPhotos";
 import { lahorePrice, money, Tour } from "@/data/tours";
 import { PaymentMethodCard } from "./PaymentMethodCard";
 import { DesignInput, DesignSelect, FeedbackNotice, FieldGroup, FieldHelp, FieldLabel, SegmentedControl } from "@/components/ui";
@@ -56,7 +58,7 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Secure booking</p>
           <h2 className="mt-2 text-3xl font-black text-lexuzNeutral-100">Booking details</h2>
-          <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">Submit your traveler details and payment screenshot. Your booking will remain pending until the Lexuz team verifies it.</p>
+          <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">Submit your traveler details and payment screenshot. The Lexuz team will review everything before final confirmation.</p>
         </div>
 
         <section className="mt-8">
@@ -99,7 +101,13 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
             </SegmentedControl>
           </FieldGroup>
           <div className="mt-4">
-            {paymentMethods.filter((method) => method.id === paymentMethod).map((method) => <PaymentMethodCard key={method.id} method={method} />)}
+            <div className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
+              <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds1">
+                <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} className="h-56 w-full object-cover" />
+                <figcaption className="px-4 py-3 text-xs font-black leading-5 text-brand-primary">{tripPhotos.fleetThreeCoastersNight.caption}</figcaption>
+              </figure>
+              {paymentMethods.filter((method) => method.id === paymentMethod).map((method) => <PaymentMethodCard key={method.id} method={method} />)}
+            </div>
           </div>
           <label className="mt-6 grid cursor-pointer place-items-center rounded-dsLg border border-dashed border-brand-primary/40 bg-brand-secondary/60 p-8 text-center transition hover:bg-brand-secondary">
           <UploadCloud className="text-brand-primary" size={42} />
@@ -118,7 +126,7 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
         </section>
 
         <button disabled={submitting} className="focus-ring mt-8 w-full rounded-dsMd bg-brand-primary px-5 py-4 font-black text-white shadow-ds1 hover:bg-brand-primaryHover hover:shadow-ds2 disabled:cursor-not-allowed disabled:opacity-60">{submitting ? "Submitting..." : "Submit Booking"}</button>
-        {bookingReference ? <div className="mt-4"><FeedbackNotice tone="success" title="Booking received">Status: Pending Verification. Reference ID: <strong>{bookingReference}</strong></FeedbackNotice></div> : null}
+        {bookingReference ? <div className="mt-4"><FeedbackNotice tone="success" title="Booking received">Your request is being reviewed. Reference ID: <strong>{bookingReference}</strong></FeedbackNotice></div> : null}
         {error ? <div className="mt-4"><FeedbackNotice tone="error" title="Booking could not be submitted">{error}</FeedbackNotice></div> : null}
       </form>
       <aside className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds3 lg:sticky lg:top-28 lg:self-start">
@@ -128,7 +136,7 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
           <p className="flex justify-between"><span>Duration</span><strong>{tour.duration}</strong></p>
           <p className="flex justify-between"><span>Departure</span><strong>{tour.departure}</strong></p>
           <p className="flex justify-between"><span>Departure City</span><strong>{departureSelection === "lahore" ? "Lahore" : "Islamabad / Rawalpindi"}</strong></p>
-          <p className="flex justify-between"><span>Status</span><strong>Pending Verification</strong></p>
+          <p className="flex justify-between"><span>Status</span><strong>Review by Lexuz team</strong></p>
         </div>
         <div className="mt-6 rounded-dsLg bg-brand-primary p-5 text-white">
           <p className="text-sm text-white/70">Starting Price</p>

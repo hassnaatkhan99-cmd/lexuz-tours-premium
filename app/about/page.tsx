@@ -7,12 +7,22 @@ import { FounderSection, PageBreadcrumbs, PromiseList, TrustFactGrid } from "@/c
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import { company } from "@/data/company";
 import { companyImages } from "@/data/tours";
+import { tripPhotos } from "@/data/tripPhotos";
 import { sourceFacts, trustFaqs } from "@/data/trust";
 import { buildBreadcrumbJsonLd, buildFaqSchema, buildOrganizationSchema } from "@/lib/seo-foundation";
 
 export const metadata: Metadata = {
   title: "About Lexuz Tours & Adventures",
-  description: "Learn the confirmed story, founder details, office information, customer promise and travel policies behind Lexuz Tours & Adventures."
+  description: "Learn the story, founder details, office information, customer promise and travel policies behind Lexuz Tours & Adventures.",
+  openGraph: {
+    title: "About Lexuz Tours & Adventures",
+    description: "Real office, fleet and trip proof from Lexuz Tours & Adventures.",
+    images: [tripPhotos.groupDepartureSummer.src]
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [tripPhotos.groupDepartureSummer.src]
+  }
 };
 
 export default function AboutPage() {
@@ -23,7 +33,7 @@ export default function AboutPage() {
   const whyChoose = [
     { icon: Route, title: "Started on the road", text: "Lexuz began with a Miranjani Top trip in 2018, planned by a founder who loved travelling northern Pakistan." },
     { icon: Bus, title: "Real Lexuz visuals", text: "The website prioritizes real office, fleet and trip photography over generic destination stock." },
-    { icon: FileCheck2, title: "Registered claims only", text: "The approved public claim is SECP registered and FBR registered. Numbers will be added only when confirmed." },
+    { icon: FileCheck2, title: "Clear public details", text: "Lexuz keeps office, contact, pricing and policy information visible before customers book." },
     { icon: MessageCircle, title: "Direct contact", text: "Customers can call or WhatsApp Lexuz through the official numbers published across the website." }
   ];
 
@@ -69,16 +79,16 @@ export default function AboutPage() {
       </section>
 
       <section className="container-page pb-16">
-        <SectionHeading eyebrow="Real photography" title="Office, fleet and trip proof" copy="Lexuz trust pages prioritize real company visuals. Placeholder imagery can be replaced later by changing the image files, not the page structure." />
+        <SectionHeading eyebrow="Real photography" title="Office, fleet and trip proof" copy="Real Lexuz photos help customers see the people, vehicles and departures behind the service before they book." />
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            [companyImages.office, "Lexuz Tours office in Rawalpindi", "Office"],
-            [companyImages.fleetBuses, "Lexuz branded fleet with tour lead", "Fleet"],
-            [companyImages.groupSnow, "Lexuz group trip in northern Pakistan", "Trips"]
-          ].map(([src, alt, label]) => (
-            <figure key={src} className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds2">
-              <Image src={src} alt={alt} width={720} height={520} className="h-64 w-full object-cover" />
-              <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{label}</figcaption>
+            { src: tripPhotos.groupDepartureSummer.src, alt: tripPhotos.groupDepartureSummer.alt, caption: tripPhotos.groupDepartureSummer.caption, width: tripPhotos.groupDepartureSummer.width, height: tripPhotos.groupDepartureSummer.height },
+            { src: tripPhotos.studentGroupCoaster.src, alt: tripPhotos.studentGroupCoaster.alt, caption: tripPhotos.studentGroupCoaster.caption, width: tripPhotos.studentGroupCoaster.width, height: tripPhotos.studentGroupCoaster.height },
+            { src: companyImages.office, alt: "Lexuz Tours office in Rawalpindi", caption: "Lexuz Tours office in Rawalpindi", width: 720, height: 520 }
+          ].map((photo) => (
+            <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds2">
+              <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-64 w-full object-cover" />
+              <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{photo.caption}</figcaption>
             </figure>
           ))}
         </div>
@@ -86,7 +96,7 @@ export default function AboutPage() {
 
       <section className="bg-brand-secondary py-16" id="why-choose-lexuz">
         <div className="container-page">
-          <SectionHeading eyebrow="Why choose Lexuz" title="Trust built from proof, not inflated numbers" copy="These statements come from the Lexuz source facts document. Missing or unconfirmed information is not invented." />
+          <SectionHeading eyebrow="Why choose Lexuz" title="Trust built from visible proof" copy="Lexuz keeps customer information practical, direct and supported by real office, fleet and trip visuals." />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {whyChoose.map((item) => (
               <DesignCard key={item.title} variant="interactive">
@@ -107,6 +117,17 @@ export default function AboutPage() {
         <div>
           <SectionHeading eyebrow="Booking process" title="Simple steps from inquiry to verification" />
           <PromiseList items={sourceFacts.bookingProcess} icon="file" />
+        </div>
+      </section>
+
+      <section className="container-page grid gap-8 pb-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+        <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds3">
+          <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} className="h-[360px] w-full object-cover" />
+          <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{tripPhotos.fleetThreeCoastersNight.caption}</figcaption>
+        </figure>
+        <div>
+          <SectionHeading eyebrow="Our fleet" title="Visible transport before departure" copy="Fleet photography is shown separately from destination imagery so customers can distinguish real Lexuz assets from scenic travel photos." />
+          <PromiseList items={["Branded coasters are used as a visible trust signal for group travel.", "Transport coordination is handled before departure and during route movement.", "Customers can review booking, pickup and payment details with the team before final confirmation."]} />
         </div>
       </section>
 

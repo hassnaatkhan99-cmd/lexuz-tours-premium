@@ -3,7 +3,19 @@ import { DestinationCard } from "@/components/DestinationCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { tours } from "@/data/tours";
 
-export const metadata: Metadata = { title: "Destinations", description: "Explore Pakistan destinations with Lexuz Tours." };
+export const metadata: Metadata = {
+  title: "Destinations",
+  description: "Explore Pakistan destinations with Lexuz Tours.",
+  openGraph: {
+    title: "Lexuz Tours Destinations",
+    description: "Explore valleys, forests and mountain journeys available through Lexuz.",
+    images: ["/images/destinations/hunza-attabad.jpg"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/destinations/hunza-attabad.jpg"]
+  }
+};
 
 export default function DestinationsPage() {
   return (

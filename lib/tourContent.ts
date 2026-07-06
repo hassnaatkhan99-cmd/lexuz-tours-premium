@@ -19,20 +19,7 @@ export function expandedItinerary(tour: Tour) {
     ];
   }
 
-  return tour.itinerary.map((item, index) => {
-    const day = index + 1;
-    const opening = day === 1
-      ? `Day ${day} starts with traveler check-in, luggage loading and coordinated movement from the selected pickup city.`
-      : day === tour.itinerary.length
-        ? `Day ${day} focuses on a managed return after breakfast and check-out, with practical breaks on the way back.`
-        : `Day ${day} is planned around the main destination experience, with breakfast first and sightseeing shaped by weather and road access.`;
-    const close = day === 1
-      ? "The team shares route updates during the first travel leg so guests know when to expect meal, rest and photography stops."
-      : day === tour.itinerary.length
-        ? "Return timing can shift with traffic and mountain-road conditions, so the team keeps travelers informed until arrival."
-        : "Evening arrangements normally include dinner and rest time, with bonfire or BBQ included where conditions and hotel arrangements allow.";
-    return `${opening} ${item} ${close}`;
-  });
+  return tour.itinerary;
 }
 
 export function whyChooseTour(tour: Tour) {
@@ -72,7 +59,7 @@ export function expandedFaqs(tour: Tour) {
     ...jeepFaq,
     { question: "Can the sightseeing order change?", answer: "Yes. Weather, traffic, hotel timing and road conditions can change the final order while keeping the main experience intact." },
     { question: "Is this tour suitable for families?", answer: `${tour.title} is suitable for families who are comfortable with ${tour.category === "one-day" ? "same-day road travel" : "multi-day mountain travel and hotel stays"}.` },
-    { question: "How do I confirm my booking?", answer: "Submit the booking form, select payment method, upload payment screenshot and wait for pending verification to be reviewed." },
+    { question: "How do I confirm my booking?", answer: "Submit the booking form, select payment method, upload your payment screenshot and wait for the Lexuz team to review the details." },
     { question: "Can I book on WhatsApp?", answer: "Yes. Use the Book On WhatsApp button for direct guidance from Lexuz Tours & Adventures." },
     { question: "What should I pack?", answer: "Carry warm layers, comfortable shoes, CNIC/passport, personal medicine, charger, power bank and a compact day bag." },
     { question: "What is the refund policy?", answer: "Confirmed paid bookings are fully refundable if the customer cancels more than 7 days before departure. Cancellations less than 7 days before departure are non-refundable." }

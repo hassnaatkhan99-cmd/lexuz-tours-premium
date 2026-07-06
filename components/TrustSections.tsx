@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, FileText, MapPin, ShieldCheck, UserRound } from "lucide-react";
+import { CheckCircle2, ChevronRight, FileText, MapPin, ShieldCheck } from "lucide-react";
 import { FounderImage } from "@/components/FounderImage";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import type { BreadcrumbItem } from "@/lib/seo-foundation/breadcrumbs";
@@ -18,21 +18,6 @@ export function PageBreadcrumbs({ items, tone = "light" }: { items: BreadcrumbIt
         </span>
       ))}
     </nav>
-  );
-}
-
-export function FounderPhotoPlaceholder({ name }: { name: string }) {
-  return (
-    <div className="grid aspect-[4/5] min-h-[360px] place-items-center rounded-dsLg border border-lexuzNeutral-line bg-brand-secondary p-8 text-center shadow-ds2">
-      <div>
-        <div className="mx-auto grid h-24 w-24 place-items-center rounded-full bg-white text-brand-primary shadow-ds1">
-          <UserRound size={42} strokeWidth={1.5} aria-hidden="true" />
-        </div>
-        <p className="mt-5 text-xl font-black text-brand-primary">{name}</p>
-        <p className="mt-2 text-sm font-bold text-lexuzNeutral-60">Founder photo placeholder</p>
-        <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-lexuzNeutral-60">Information will be updated when the final founder photo is provided.</p>
-      </div>
-    </div>
   );
 }
 

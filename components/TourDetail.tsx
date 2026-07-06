@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, MinusCircle, Mountain, ShieldCheck, Star, Users } from "lucide-react";
 import { reviews } from "@/data/reviews";
+import { tripPhotos } from "@/data/tripPhotos";
 import { hasJeepNotice, isJeepIncluded, lahorePrice, money, Tour, tours } from "@/data/tours";
 import { absoluteUrl } from "@/lib/seo";
 import { buildBreadcrumbJsonLd, buildFaqSchema } from "@/lib/seo-foundation";
@@ -49,6 +50,17 @@ function destinationLinkLabel(tour: Tour) {
 function priceText(tour: Tour) {
   const price = tour.prices[0];
   return price ? money(price.islamabadPrice) : "Price on request";
+}
+
+function galleryPhotoMeta(src: string, tour: Tour) {
+  const approvedPhoto = Object.values(tripPhotos).find((photo) => photo.src === src);
+  return approvedPhoto ?? {
+    src,
+    alt: `${tour.title} scenery with Lexuz Tours`,
+    caption: "",
+    width: 520,
+    height: 360
+  };
 }
 
 export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; initialCity?: "islamabad" | "lahore" }) {
@@ -173,7 +185,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
                 ["Clear trip details", "Included and not-included services are separated before booking."],
-                ["Track your booking", "Reference ID, payment proof and status tracking after submission."]
+                ["Track your booking", "Reference ID and team review after submission."]
               ].map(([title, copy]) => (
                 <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
                   <ShieldCheck className="text-brand-primary" size={24} />
@@ -345,7 +357,15 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
           <section className="mt-12">
             <SectionHeading eyebrow="Gallery" title="Tour gallery" />
             <div className="grid gap-4 md:grid-cols-3">
-              {tour.gallery.slice(0, 6).map((image) => <Image key={image} src={image} alt={`${tour.title} scenery with Lexuz Tours`} width={520} height={360} className="h-56 w-full rounded-2xl object-cover shadow-soft" />)}
+              {tour.gallery.slice(0, 6).map((image) => {
+                const photo = galleryPhotoMeta(image, tour);
+                return (
+                  <figure key={image} className="overflow-hidden rounded-2xl bg-white shadow-soft">
+                    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-56 w-full object-cover" />
+                    {photo.caption ? <figcaption className="px-4 py-3 text-xs font-black leading-5 text-forest-800">{photo.caption}</figcaption> : null}
+                  </figure>
+                );
+              })}
             </div>
             {tour.itineraryImage ? (
               <div className="mt-6 rounded-2xl border border-forest-900/10 bg-white p-4 shadow-soft">
@@ -365,7 +385,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-saffron-300">Ready to reserve?</p>
                 <h2 className="mt-2 text-3xl font-black">Book {tour.title} with Lexuz</h2>
-                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/75">Submit the booking form or message the team on WhatsApp. Your booking starts as Pending Verification until payment proof and details are reviewed.</p>
+                <p className="mt-3 max-w-2xl text-sm leading-7 text-white/75">Submit the booking form or message the team on WhatsApp. The Lexuz team reviews payment proof and trip details before final confirmation.</p>
               </div>
               <TourProductActions tour={tour} sourceSlot="footer" initialCity={initialCity} />
             </div>
