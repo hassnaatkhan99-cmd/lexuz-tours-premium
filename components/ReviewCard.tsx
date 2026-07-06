@@ -1,4 +1,4 @@
-import { MapPin, ShieldCheck, Star } from "lucide-react";
+import { MapPin, Star, Tag } from "lucide-react";
 import type { Review } from "@/data/reviews";
 
 const avatarStyles = [
@@ -44,7 +44,7 @@ export function ReviewCard({ review, index = 0 }: { review: Review; index?: numb
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-forest-900/10 pt-4">
         <p className="text-xs font-black uppercase tracking-wide text-forest-800">{review.tour}</p>
         <span className="inline-flex items-center gap-1 rounded-full border border-forest-900/10 bg-forest-50 px-3 py-1 text-xs font-black text-forest-800">
-          <ShieldCheck size={14} />
+          <Tag size={14} />
           {review.badge}
         </span>
       </div>

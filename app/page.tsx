@@ -11,6 +11,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { TourCard } from "@/components/TourCard";
 import { generalFaqs } from "@/data/faqs";
 import { reviews } from "@/data/reviews";
+import { tripPhotos } from "@/data/tripPhotos";
 import { multiDayTours, oneDayTours } from "@/data/tours";
 
 export default function Home() {
@@ -46,6 +47,20 @@ export default function Home() {
       <section className="bg-white py-16"><div className="container-page"><SectionHeading eyebrow="One Day Trips" title="Quick escapes from Islamabad" copy="Sunday day trips designed for travelers who want mountain air without a multi-day plan." /><div className="grid gap-6 md:grid-cols-3">{oneDayTours.map((tour) => <TourCard key={tour.slug} tour={tour} />)}</div></div></section>
       <section className="bg-brand-secondary py-16"><div className="container-page"><SectionHeading eyebrow="Destinations" title="Popular destination styles" /><div className="grid gap-6 md:grid-cols-3">{multiDayTours.slice(0, 3).map((tour) => <DestinationCard key={tour.slug} tour={tour} />)}</div></div></section>
       <section className="container-page py-16"><SectionHeading eyebrow="Why Choose Lexuz" title="Built for trust, comfort and clear planning" /><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">{whyChooseCards.map(([Icon, title, copy]) => <div key={String(title)} className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds1 transition hover:-translate-y-1 hover:shadow-ds2"><Icon className="text-brand-primary" size={30} aria-hidden="true" /><h3 className="mt-4 font-black text-lexuzNeutral-100">{String(title)}</h3><p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{String(copy)}</p></div>)}</div></section>
+      <section className="container-page grid gap-8 pb-16 lg:grid-cols-[1fr_0.82fr] lg:items-center">
+        <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds3">
+          <Image src={tripPhotos.groupMeadowBanner.src} alt={tripPhotos.groupMeadowBanner.alt} width={tripPhotos.groupMeadowBanner.width} height={tripPhotos.groupMeadowBanner.height} className="h-[360px] w-full object-cover" />
+          <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{tripPhotos.groupMeadowBanner.caption}</figcaption>
+        </figure>
+        <div>
+          <SectionHeading eyebrow="Real departures" title="Group tours with visible Lexuz coordination" copy="Lexuz keeps real trip and fleet visuals separate from scenic destination photography so customers can see the people and transport behind the travel experience." />
+          <div className="grid gap-3">
+            {["Public trips for families, students and friends.", "WhatsApp support before booking and during planning.", "Clear inclusions, exclusions and pickup guidance before departure."].map((item) => (
+              <div key={item} className="rounded-dsMd border border-lexuzNeutral-line bg-white p-4 text-sm font-bold text-lexuzNeutral-70 shadow-ds1">{item}</div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="bg-white py-16"><div className="container-page grid gap-8 lg:grid-cols-[1.1fr_.9fr]"><div><SectionHeading eyebrow="Our Fleet" title="Comfortable branded vehicles" copy="Fleet visibility is one of Lexuz's strongest trust signals: customers can see the vehicles behind the service before they book." /><div className="grid gap-4 md:grid-cols-2"><Image src="/images/fleet-founder-buses.jpeg" alt="Lexuz branded buses with tour lead" width={700} height={450} className="h-72 w-full rounded-dsLg object-cover shadow-ds2" /><Image src="/images/bus-yard-front.jpeg" alt="Lexuz branded bus front view" width={700} height={450} className="h-72 w-full rounded-dsLg object-cover shadow-ds2" /></div></div><Image src="/images/office-real.jpeg" alt="Lexuz Tours office in Rawalpindi" width={700} height={700} className="h-full max-h-[590px] w-full rounded-dsLg object-cover shadow-ds3" /></div></section>
       <section className="container-page -mt-6 grid gap-4 pb-16 md:grid-cols-2 lg:grid-cols-4">{["Executive Tourist Coasters", "Private Family Transport", "Corporate Transport", "Group Transport"].map((item) => <div key={item} className="rounded-dsLg border border-lexuzNeutral-line bg-white p-5 text-center font-black text-brand-primary shadow-ds1">{item}</div>)}</section>
       <section className="container-page grid gap-5 py-16 md:grid-cols-2 lg:grid-cols-4">{[["Corporate Tours", "/corporate-tours"], ["University Tours", "/university-tours"], ["Honeymoon Tours", "/honeymoon-tours"], ["Custom Tours", "/custom-tours"]].map(([title, href]) => <Link key={title} href={href} className="focus-ring rounded-dsLg border border-white/10 bg-brand-primary p-6 text-white shadow-ds2 transition hover:-translate-y-1 hover:shadow-ds3"><Heart className="text-brand-accent" /><h3 className="mt-4 text-2xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-white/75">Custom planning, premium coordination and WhatsApp support.</p></Link>)}</section>

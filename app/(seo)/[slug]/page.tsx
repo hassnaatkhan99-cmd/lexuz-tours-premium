@@ -96,7 +96,7 @@ export default async function SeoLandingPage({ params }: { params: Promise<{ slu
             <section>
               <h2 className="text-3xl font-black text-forest-950">Tour Highlights</h2>
               <div className="mt-5 grid gap-3 md:grid-cols-2">
-                {["Scenic road travel", "Managed hotel coordination", "Photography viewpoints", "Clear pickup planning", "WhatsApp support", "Transparent inclusions", "Family and group friendly", "Booking status tracking"].map((item) => <p key={item} className="rounded-md border border-forest-900/10 bg-white p-4 font-bold text-forest-900 shadow-soft">{item}</p>)}
+                {["Scenic road travel", "Managed hotel coordination", "Photography viewpoints", "Clear pickup planning", "WhatsApp support", "Transparent inclusions", "Family and group friendly", "Reference ID tracking"].map((item) => <p key={item} className="rounded-md border border-forest-900/10 bg-white p-4 font-bold text-forest-900 shadow-soft">{item}</p>)}
               </div>
             </section>
             <section>

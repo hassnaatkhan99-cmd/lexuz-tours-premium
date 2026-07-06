@@ -101,7 +101,7 @@ export function buildLandingSections(page: SeoLandingPage): LandingSection[] {
     {
       title: "Booking With Lexuz",
       paragraphs: [
-        `Booking a ${page.keyword} plan with Lexuz is straightforward. Open the tour page, review the itinerary, compare Islamabad and Lahore pricing where applicable, submit the booking form with traveler details, select a payment method and upload the payment screenshot. The booking enters pending verification, then the Lexuz team reviews it and confirms the next step.`,
+        `Booking a ${page.keyword} plan with Lexuz is straightforward. Open the tour page, review the itinerary, compare Islamabad and Lahore pricing where applicable, submit the booking form with traveler details, select a payment method and upload the payment screenshot. The Lexuz team then reviews the details and confirms the next step.`,
         `Customers can use the booking status page to track progress with their reference ID. For fast guidance, the WhatsApp button connects directly with Lexuz support. This gives travelers a cleaner path from research to confirmation while preserving the human support that matters when planning northern Pakistan travel.`
       ]
     }
@@ -124,6 +124,6 @@ export function landingFaqs(page: SeoLandingPage) {
     { question: "What should I pack?", answer: "Carry layered clothing, comfortable shoes, CNIC or passport, personal medicine, charger, power bank and a compact rain or wind layer." },
     { question: "When should I book?", answer: "Advance booking is recommended, especially for weekend departures, summer season, holidays, honeymoon travel and larger groups." },
     { question: "What is the cancellation policy?", answer: "Confirmed paid bookings are fully refundable when the customer cancels more than 7 days before departure. Cancellations less than 7 days before departure are non-refundable." },
-    { question: "Why choose Lexuz Tours?", answer: "Lexuz combines a Rawalpindi office, branded transport, clear pricing, organized public trips, Supabase-backed booking flow and responsive WhatsApp support." }
+    { question: "Why choose Lexuz Tours?", answer: "Lexuz combines a Rawalpindi office, branded transport, clear pricing, organized public trips and responsive WhatsApp support." }
   ];
 }

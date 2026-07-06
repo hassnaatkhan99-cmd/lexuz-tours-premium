@@ -1,4 +1,8 @@
-export function PaymentMethodCard({ method }: { method: { name: string; accountNumber: string; accountName: string } }) {
+import { paymentMethodsShareSameReceivingDetails, type PaymentMethod } from "@/data/payments";
+
+export function PaymentMethodCard({ method }: { method: PaymentMethod }) {
+  const sharedReceivingDetails = paymentMethodsShareSameReceivingDetails();
+
   return (
     <div className="rounded-dsLg border border-lexuzNeutral-line bg-brand-secondary p-5 shadow-ds1">
       <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-primary">Official receiving account</p>
@@ -7,7 +11,8 @@ export function PaymentMethodCard({ method }: { method: { name: string; accountN
         <p><strong>Account Number:</strong> {method.accountNumber}</p>
         <p><strong>Account Name:</strong> {method.accountName}</p>
       </div>
-      <p className="mt-4 text-xs leading-5 text-lexuzNeutral-60">After transfer, upload the screenshot so the Lexuz team can verify your payment and update your booking status.</p>
+      {sharedReceivingDetails ? <p className="mt-4 rounded-dsSm border border-brand-primary/10 bg-white px-3 py-2 text-xs font-bold leading-5 text-brand-primary">EasyPaisa and JS Bank are currently configured with the same official receiving details.</p> : null}
+      <p className="mt-4 text-xs leading-5 text-lexuzNeutral-60">After transfer, upload the screenshot so the Lexuz team can review your payment and confirm the booking.</p>
     </div>
   );
 }

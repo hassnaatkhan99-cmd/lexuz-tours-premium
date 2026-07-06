@@ -27,7 +27,7 @@ export function PolicyPage({ title, items, description, path = "#" }: { title: s
           <SectionHeading eyebrow="Plain language terms" title={title} />
           <div className="mt-2 flex gap-3 rounded-dsMd bg-brand-secondary p-4 text-sm leading-6 text-brand-primary">
             <DesignIcon icon={FileText} tone="primary" />
-            These public policy statements are based on confirmed Lexuz source facts. Missing owner-confirmed information is marked clearly instead of invented.
+            These terms are written in simple language so customers can understand key booking, payment and travel rules before reserving a trip.
           </div>
           <div className="mt-6">
             <PromiseList items={items} icon="file" />

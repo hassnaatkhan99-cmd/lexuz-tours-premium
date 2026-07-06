@@ -36,7 +36,7 @@ export default function PoliciesPage() {
           <PageBreadcrumbs items={breadcrumbItems} tone="dark" />
           <p className="mt-10 text-xs font-black uppercase tracking-[0.22em] text-brand-accent">Trust centre</p>
           <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-tight md:text-6xl">Lexuz booking and travel policies</h1>
-          <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">Plain-language information for customers before booking. Owner-confirmed information is shown clearly; missing policy details are marked as pending.</p>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-white/75">Plain-language information for customers before booking, including payment, cancellation, jeep charges, safety and complaints guidance.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             {policySections.map((section) => <a key={section.id} href={`#${section.id}`} className="focus-ring rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-white hover:bg-white/15">{section.title}</a>)}
           </div>
@@ -48,7 +48,7 @@ export default function PoliciesPage() {
           <DesignCard key={section.id} id={section.id} className="scroll-mt-28">
             <DesignIcon icon={section.icon} tone="primary" />
             <DesignCardTitle className="mt-4 text-2xl">{section.title}</DesignCardTitle>
-            <DesignCardText className="mt-2">Confirmed policy information from the Lexuz source facts document.</DesignCardText>
+            <DesignCardText className="mt-2">Read the key policy points before you submit a booking or transfer payment.</DesignCardText>
             <div className="mt-5">
               <PromiseList items={section.items} icon={section.id.includes("contact") ? "map" : "file"} />
             </div>

@@ -1,7 +1,7 @@
 export const generalFaqs = [
   {
     question: "How do I confirm my booking?",
-    answer: "Select a tour, complete the booking form, choose a payment method, upload your payment screenshot and submit. Your booking starts as Pending Verification."
+    answer: "Select a tour, complete the booking form, choose a payment method, upload your payment screenshot and submit. The Lexuz team reviews the details before final confirmation."
   },
   {
     question: "Can I book from Lahore?",

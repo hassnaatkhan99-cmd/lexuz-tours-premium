@@ -13,7 +13,7 @@ export const reviews: Review[] = [
     city: "Islamabad",
     tour: "Hunza Valley",
     rating: 5,
-    badge: "Verified Family Trip",
+    badge: "Family Trip",
     text: "The Hunza plan was realistic and easy for my family. Hotel check-in, stops and WhatsApp updates were handled clearly, which made the long road journey much more comfortable."
   },
   {
@@ -21,7 +21,7 @@ export const reviews: Review[] = [
     city: "Rawalpindi",
     tour: "Skardu",
     rating: 5,
-    badge: "Verified Trip",
+    badge: "Road Trip",
     text: "Good communication before departure and during the route. The team kept the itinerary practical instead of rushing every stop, and the transport coordination was better than expected."
   },
   {
@@ -37,7 +37,7 @@ export const reviews: Review[] = [
     city: "Wah Cantt",
     tour: "Kumrat Valley",
     rating: 5,
-    badge: "Verified Trip",
+    badge: "Group Trip",
     text: "Kumrat needs realistic planning because the roads can take time. The tour lead explained changes honestly and kept everyone informed, which helped the group stay relaxed."
   },
   {
@@ -61,7 +61,7 @@ export const reviews: Review[] = [
     city: "Lahore",
     tour: "Kashmir Arang Kel",
     rating: 5,
-    badge: "Verified Trip",
+    badge: "Kashmir Trip",
     text: "The best part was clear communication. Pickup timing, luggage guidance and route updates were shared properly, so our group knew what to expect throughout the Kashmir trip."
   },
   {
