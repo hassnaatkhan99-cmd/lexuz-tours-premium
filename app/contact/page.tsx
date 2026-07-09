@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ButtonLink, WhatsAppButton } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SocialContactLinks } from "@/components/SocialContactLinks";
 import { PageBreadcrumbs, PromiseList } from "@/components/TrustSections";
 import { company } from "@/data/company";
 import { sourceFacts } from "@/data/trust";
-import { DesignInput, DesignTextarea, FieldGroup, FieldLabel } from "@/components/ui";
 import { buildBreadcrumbJsonLd, buildOrganizationSchema } from "@/lib/seo-foundation";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact", description: "Contact Lexuz Tours & Adventures in Rawalpindi." };
+export const metadata: Metadata = {
+  title: "Contact Lexuz Tours",
+  description: "Call, WhatsApp or visit Lexuz Tours & Adventures in Rawalpindi for Pakistan tour bookings, public trips and custom travel planning.",
+  alternates: { canonical: canonical("/contact") },
+  openGraph: {
+    title: "Contact Lexuz Tours & Adventures",
+    description: "Speak directly with Lexuz Tours for Pakistan tour bookings, public trips and private travel planning.",
+    url: canonical("/contact"),
+    images: ["/images/trip/lexuz-fleet-three-coasters-night.webp"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/trip/lexuz-fleet-three-coasters-night.webp"]
+  }
+};
 
 export default function ContactPage() {
   const breadcrumbItems = [
@@ -38,13 +53,34 @@ export default function ContactPage() {
             </div>
             <div className="mt-8 flex flex-wrap gap-3"><WhatsAppButton /><ButtonLink href={company.maps} variant="outline">Open Map</ButtonLink></div>
           </div>
-          <form className="grid gap-4 rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds1">
-            <FieldGroup><FieldLabel htmlFor="contact-name">Full name</FieldLabel><DesignInput id="contact-name" placeholder="Full name" /></FieldGroup>
-            <FieldGroup><FieldLabel htmlFor="contact-phone">Phone number</FieldLabel><DesignInput id="contact-phone" placeholder="Phone number" /></FieldGroup>
-            <FieldGroup><FieldLabel htmlFor="contact-email">Email address</FieldLabel><DesignInput id="contact-email" type="email" placeholder="Email address" /></FieldGroup>
-            <FieldGroup><FieldLabel htmlFor="contact-plan">Your travel plan</FieldLabel><DesignTextarea id="contact-plan" placeholder="Tell us destination, dates and number of travelers" /></FieldGroup>
-            <button className="focus-ring rounded-dsMd bg-brand-primary px-5 py-3 font-black text-white shadow-ds1 hover:bg-brand-primaryHover">Send Inquiry</button>
-          </form>
+          <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds1 md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Fast booking guidance</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-lexuzNeutral-100">Talk to Lexuz before you book</h2>
+            <p className="mt-4 leading-8 text-lexuzNeutral-70">
+              For the quickest response, message the Lexuz team on WhatsApp with your destination, preferred date, departure city and number of travelers.
+              You can also call directly or email for company, university and private group planning.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <a href={company.callHref} className="focus-ring flex items-center gap-3 rounded-dsMd border border-lexuzNeutral-line bg-lexuzNeutral-canvas p-4 font-black text-brand-primary shadow-ds1 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-ds2" aria-label="Call Lexuz Tours">
+                <Phone size={20} />
+                Call Lexuz
+              </a>
+              <a href={company.whatsappHref} target="_blank" rel="noopener noreferrer" className="focus-ring flex items-center gap-3 rounded-dsMd border border-brand-whatsapp/20 bg-brand-whatsapp p-4 font-black text-white shadow-ds1 transition hover:-translate-y-0.5 hover:brightness-95 hover:shadow-ds2" aria-label="WhatsApp Lexuz Tours">
+                <MessageCircle size={20} />
+                WhatsApp Lexuz
+              </a>
+              <a href={`mailto:${company.email}`} className="focus-ring flex items-center gap-3 rounded-dsMd border border-lexuzNeutral-line bg-lexuzNeutral-canvas p-4 font-black text-brand-primary shadow-ds1 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-ds2">
+                <Mail size={20} />
+                Email Lexuz
+              </a>
+              <Link href="/booking" className="focus-ring flex items-center gap-3 rounded-dsMd border border-lexuzNeutral-line bg-brand-secondary p-4 font-black text-brand-primary shadow-ds1 transition hover:-translate-y-0.5 hover:bg-white hover:shadow-ds2">
+                Book online
+              </Link>
+            </div>
+            <div className="mt-6 rounded-dsMd border border-brand-accent/30 bg-[#fff8e6] p-4 text-sm leading-6 text-lexuzNeutral-70">
+              Share your destination, dates, pickup city and traveler count so the team can guide you with the right public trip or private plan.
+            </div>
+          </div>
         </div>
         <section className="mt-10 rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
           <SectionHeading eyebrow="Contact & complaints" title="Need help after booking?" copy="Use the official Lexuz contact channels below for booking questions, complaints, payment follow-up or travel support." />

@@ -154,7 +154,7 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
             </div>
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            <StatCard icon={Route} label="Available tour options" value={`${visibleTours.length}+`} />
+            <StatCard icon={Route} label="Available tour options" value={`${visibleTours.length}`} />
             <StatCard icon={CalendarDays} label="Departure schedule" value={hub.code === "lahore" ? "Multi-day" : "Weekly"} />
             <StatCard icon={ShieldCheck} label="Booking support" value="WhatsApp" />
           </div>

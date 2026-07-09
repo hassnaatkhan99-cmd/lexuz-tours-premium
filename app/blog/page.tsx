@@ -7,7 +7,20 @@ import { canonical } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Pakistan Travel Blog",
   description: "Pakistan travel guides, tour planning tips and northern areas destination advice by Lexuz Tours.",
-  alternates: { canonical: canonical("/blog") }
+  alternates: { canonical: canonical("/blog") },
+  openGraph: {
+    title: "Pakistan Travel Blog | Lexuz Tours",
+    description: "Travel guides for Hunza, Skardu, Swat, Kashmir, Naran Kaghan and northern Pakistan trips.",
+    url: canonical("/blog"),
+    images: ["/images/trip/lexuz-group-meadow-banner.webp"],
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pakistan Travel Blog | Lexuz Tours",
+    description: "Practical Pakistan travel guides and tour planning tips by Lexuz Tours.",
+    images: ["/images/trip/lexuz-group-meadow-banner.webp"]
+  }
 };
 
 export default function BlogPage() {

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { ReviewCard } from "@/components/ReviewCard";
 import { reviews } from "@/data/reviews";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Reviews",
   description: "Realistic traveler reviews for Lexuz Tours & Adventures public trips, family tours, university trips and corporate travel.",
+  alternates: { canonical: canonical("/reviews") },
   openGraph: {
     title: "Lexuz Tours Reviews",
     description: "Traveler feedback about timing, transport, hotels, communication and planning.",
+    url: canonical("/reviews"),
     images: ["/images/trip/lexuz-group-meadow-banner.webp"]
   },
   twitter: {

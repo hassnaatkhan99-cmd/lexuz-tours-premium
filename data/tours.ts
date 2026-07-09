@@ -90,7 +90,7 @@ const oneDayPickup = ["Islamabad / Rawalpindi"];
 const tourFaqs = [
   { question: "Can the itinerary change?", answer: "Yes. Weather, road conditions and hotel availability can affect the final sequence of visits." },
   { question: "Is Lahore departure available?", answer: "Yes for multi-day tours. Lahore pricing is shown separately on each tour page." },
-  { question: "How do I book?", answer: "Use Book Now for the website booking system or Book On WhatsApp for direct guidance." }
+  { question: "How do I book?", answer: "Use Book Now for the website booking system or Book on WhatsApp for direct guidance." }
 ];
 const oneDayFaqs = [
   { question: "Are one-day trips available from Lahore?", answer: "No. One-day trips currently operate from Islamabad / Rawalpindi only." },
