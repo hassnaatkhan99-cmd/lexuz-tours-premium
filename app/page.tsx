@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bus, Compass, Headphones, Heart, MapPin, ReceiptText, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { Bus, CalendarDays, Compass, Headphones, Heart, MapPin, ReceiptText, ShieldCheck, Sparkles, UserRoundCheck, Users } from "lucide-react";
 import { ButtonLink, WhatsAppButton } from "@/components/Button";
 import { CTASection } from "@/components/CTASection";
 import { DestinationCard } from "@/components/DestinationCard";
@@ -16,10 +16,17 @@ import { multiDayTours, oneDayTours } from "@/data/tours";
 
 export default function Home() {
   const premiumTrust = [
-    [Compass, "Planned routes, not random trips", "Tour pages explain the travel flow, pickup city options, inclusions and practical notes before you reserve."],
-    [Bus, "Real Lexuz fleet visibility", "Branded vehicle photography is used where it helps customers understand the transport experience."],
-    [ReceiptText, "Clear package boundaries", "Prices, included services and jeep-charge notes are presented separately so expectations stay clear."],
-    [Headphones, "Human support before departure", "Call or message Lexuz for booking guidance, pickup clarity and travel coordination."]
+    [Compass, "Planned Itineraries", "Professionally organised routes."],
+    [Bus, "Visible Fleet", "Real Lexuz transport imagery."],
+    [ReceiptText, "Clear Packages", "Pricing and inclusions upfront."],
+    [Headphones, "Direct Support", "Human help before departure."]
+  ];
+  const operationalFacts = [
+    [CalendarDays, "Weekly Departures"],
+    [UserRoundCheck, "Professional Tour Guides"],
+    [Bus, "Comfortable Transport"],
+    [MapPin, "Islamabad & Lahore Departures"],
+    [Headphones, "Dedicated Customer Support"]
   ];
   const whyChooseCards = [
     [ShieldCheck, "Clear booking steps", "Submit your details, upload payment proof and receive team review before final confirmation."],
@@ -31,12 +38,13 @@ export default function Home() {
   return (
     <>
       <section className="hero-premium min-h-[720px] text-white">
+        <div className="hero-light" aria-hidden="true" />
         <div className="hero-mist" aria-hidden="true" />
         <div className="container-page relative z-10 flex min-h-[720px] items-center py-24">
           <div className="max-w-3xl reveal-soft">
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-brand-accent backdrop-blur">Escape • Explore • Enjoy</p>
-            <h1 className="mt-5 text-5xl font-black leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">Adventure Begins With Lexuz</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">Premium public tours, private tours, honeymoon trips, university trips and corporate travel across Pakistan with clear planning and direct support.</p>
+            <h1 className="mt-5 text-5xl font-black uppercase leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">Explore Northern Pakistan With Lexuz</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/88">Premium guided tours from Islamabad and Lahore to Hunza, Skardu, Swat, Kashmir, Naran, Kumrat and Fairy Meadows, planned with clear pricing, real support and comfortable transport.</p>
             <div className="mt-9 flex flex-wrap gap-3"><WhatsAppButton /><ButtonLink href="/public-trips" variant="outline">Explore Tours</ButtonLink><ButtonLink href="/tours/islamabad" variant="dark">Upcoming Departures</ButtonLink></div>
             <div className="mt-10 grid max-w-2xl gap-3 text-xs font-black uppercase tracking-[0.12em] text-white/82 sm:grid-cols-3">
               {[
@@ -56,13 +64,21 @@ export default function Home() {
       <section className="container-page story-bridge -mt-16 rounded-[30px] border border-white/65 bg-white/78 p-4 shadow-[0_32px_100px_rgba(20,32,27,.18)] backdrop-blur-2xl">
         <div className="grid gap-3 md:grid-cols-4">
           {premiumTrust.map(([Icon, title, copy]) => (
-            <article key={String(title)} className="luxury-card rounded-[22px] border border-white/70 bg-white/70 p-5 shadow-ds1">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-brand-primary text-brand-accent shadow-ds1">
+            <article key={String(title)} className="luxury-card rounded-[24px] border border-white/70 bg-white/72 p-6 shadow-ds1">
+              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand-primary text-brand-accent shadow-ds1">
                 <Icon size={22} aria-hidden="true" />
               </div>
-              <h2 className="mt-4 text-base font-black text-brand-primary">{String(title)}</h2>
+              <h2 className="mt-5 text-lg font-black text-brand-primary">{String(title)}</h2>
               <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{String(copy)}</p>
             </article>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+          {operationalFacts.map(([Icon, label]) => (
+            <div key={String(label)} className="trust-fact rounded-2xl border border-white/70 px-4 py-3 text-sm font-black text-brand-primary shadow-ds1">
+              <Icon size={16} className="mr-2 inline text-brand-accent" aria-hidden="true" />
+              {String(label)}
+            </div>
           ))}
         </div>
       </section>

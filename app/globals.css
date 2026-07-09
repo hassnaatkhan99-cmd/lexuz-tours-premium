@@ -106,9 +106,9 @@ textarea {
 
 .hero-premium {
   background-image:
-    radial-gradient(circle at 17% 28%, rgba(217, 164, 65, .34), transparent 28rem),
-    radial-gradient(circle at 80% 26%, rgba(59, 111, 88, .24), transparent 26rem),
-    linear-gradient(90deg, rgba(7, 31, 8, .84), rgba(7, 31, 8, .46), rgba(7, 31, 8, .12)),
+    radial-gradient(circle at 17% 28%, rgba(217, 164, 65, .30), transparent 29rem),
+    radial-gradient(circle at 80% 26%, rgba(59, 111, 88, .20), transparent 27rem),
+    linear-gradient(90deg, rgba(7, 31, 8, .70), rgba(7, 31, 8, .34), rgba(7, 31, 8, .08)),
     url("/images/hero-lexuz-premium.png");
   background-position: center center;
   background-size: cover;
@@ -127,9 +127,9 @@ textarea {
 .hero-premium::before {
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255, 255, 255, .13), transparent 30%),
-    linear-gradient(115deg, rgba(255, 255, 255, .11), transparent 24%, rgba(217, 164, 65, .12) 46%, transparent 68%),
-    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, .28), transparent 24rem);
+    linear-gradient(to bottom, rgba(255, 255, 255, .16), transparent 28%),
+    linear-gradient(115deg, rgba(255, 255, 255, .13), transparent 24%, rgba(217, 164, 65, .10) 46%, transparent 68%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, .32), transparent 25rem);
   mix-blend-mode: screen;
 }
 
@@ -164,6 +164,7 @@ textarea {
     radial-gradient(circle at 68% 32%, rgba(255, 225, 150, .18), transparent 18rem),
     linear-gradient(102deg, transparent 0 54%, rgba(255, 255, 255, .08) 58%, transparent 72%);
   mix-blend-mode: screen;
+  animation: lightSweep 14s ease-in-out infinite alternate;
 }
 
 .interactive-chip {
@@ -175,6 +176,12 @@ textarea {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, .18);
   box-shadow: 0 20px 52px rgba(7, 18, 15, .24), inset 0 1px 0 rgba(255, 255, 255, .32);
+}
+
+.trust-fact {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .9), rgba(247, 249, 248, .72)),
+    radial-gradient(circle at 18% 0%, rgba(217, 164, 65, .12), transparent 9rem);
 }
 
 .shadow-soft,
@@ -195,10 +202,10 @@ table {
 }
 
 .luxury-glass {
-  border: 1px solid rgba(255, 255, 255, .36);
-  background: linear-gradient(135deg, rgba(255, 255, 255, .86), rgba(255, 255, 255, .58));
-  box-shadow: 0 24px 70px rgba(20, 32, 27, .14);
-  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, .44);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .88), rgba(255, 255, 255, .56));
+  box-shadow: 0 26px 76px rgba(20, 32, 27, .15);
+  backdrop-filter: blur(26px);
 }
 
 .luxury-card {
@@ -267,6 +274,18 @@ table {
 .premium-shine:active,
 .magnetic-hover:active {
   transform: translateY(0) scale(.985);
+}
+
+.luxury-link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 220ms ease, color 180ms ease;
+}
+
+.luxury-link-underline:hover {
+  background-size: 100% 1px;
 }
 
 .cinematic-band {
@@ -450,6 +469,17 @@ table {
   }
 }
 
+@keyframes lightSweep {
+  from {
+    opacity: .62;
+    transform: translate3d(-1%, 0, 0);
+  }
+  to {
+    opacity: .92;
+    transform: translate3d(1%, -2px, 0);
+  }
+}
+
 @layer utilities {
   .ds-section {
     padding-block: clamp(4rem, 7vw, 6rem);
@@ -508,7 +538,8 @@ table {
 
   .hero-premium::after,
   .float-soft,
-  .hero-mist {
+  .hero-mist,
+  .hero-light {
     animation: none !important;
   }
 }
