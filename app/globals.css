@@ -108,7 +108,7 @@ textarea {
   background-image:
     radial-gradient(circle at 17% 28%, rgba(217, 164, 65, .34), transparent 28rem),
     radial-gradient(circle at 80% 26%, rgba(59, 111, 88, .24), transparent 26rem),
-    linear-gradient(90deg, rgba(7, 31, 8, .95), rgba(7, 31, 8, .66), rgba(7, 31, 8, .20)),
+    linear-gradient(90deg, rgba(7, 31, 8, .84), rgba(7, 31, 8, .46), rgba(7, 31, 8, .12)),
     url("/images/hero-lexuz-premium.png");
   background-position: center center;
   background-size: cover;
@@ -127,9 +127,9 @@ textarea {
 .hero-premium::before {
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(255, 255, 255, .10), transparent 30%),
-    linear-gradient(115deg, rgba(255, 255, 255, .08), transparent 24%, rgba(217, 164, 65, .08) 46%, transparent 68%),
-    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, .22), transparent 22rem);
+    linear-gradient(to bottom, rgba(255, 255, 255, .13), transparent 30%),
+    linear-gradient(115deg, rgba(255, 255, 255, .11), transparent 24%, rgba(217, 164, 65, .12) 46%, transparent 68%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, .28), transparent 24rem);
   mix-blend-mode: screen;
 }
 
@@ -153,6 +153,28 @@ textarea {
     linear-gradient(to top, rgba(251, 252, 248, .92), rgba(251, 252, 248, .18), transparent);
   filter: blur(10px);
   transform: translate3d(0, 0, 0);
+  animation: mistDrift 12s ease-in-out infinite alternate;
+}
+
+.hero-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 68% 32%, rgba(255, 225, 150, .18), transparent 18rem),
+    linear-gradient(102deg, transparent 0 54%, rgba(255, 255, 255, .08) 58%, transparent 72%);
+  mix-blend-mode: screen;
+}
+
+.interactive-chip {
+  transform: translateY(0);
+  box-shadow: 0 12px 34px rgba(7, 18, 15, .16), inset 0 1px 0 rgba(255, 255, 255, .22);
+}
+
+.interactive-chip:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, .18);
+  box-shadow: 0 20px 52px rgba(7, 18, 15, .24), inset 0 1px 0 rgba(255, 255, 255, .32);
 }
 
 .shadow-soft,
@@ -242,6 +264,11 @@ table {
   left: 125%;
 }
 
+.premium-shine:active,
+.magnetic-hover:active {
+  transform: translateY(0) scale(.985);
+}
+
 .cinematic-band {
   position: relative;
   overflow: hidden;
@@ -288,6 +315,18 @@ table {
   height: 3.4rem;
   width: 1px;
   background: linear-gradient(to bottom, transparent, rgba(217, 164, 65, .7), transparent);
+}
+
+.timeline-card {
+  transition: grid-template-rows 260ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.timeline-card:hover {
+  transform: translateY(-2px);
+}
+
+.timeline-card p {
+  animation: revealSoft 260ms ease both;
 }
 
 .cinematic-band::before {
@@ -341,6 +380,22 @@ table {
   opacity: .32;
 }
 
+.night-sky > * {
+  position: relative;
+  z-index: 1;
+}
+
+.night-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0 32%, rgba(255, 255, 255, .06) 44%, transparent 56%),
+    radial-gradient(circle at 52% 100%, rgba(217, 164, 65, .13), transparent 22rem);
+  opacity: .8;
+}
+
 .mountain-silhouette::after {
   content: "";
   position: absolute;
@@ -381,6 +436,17 @@ table {
   50% {
     opacity: .92;
     transform: translateY(10px);
+  }
+}
+
+@keyframes mistDrift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1.02);
+    opacity: .72;
+  }
+  to {
+    transform: translate3d(1.5%, -4px, 0) scale(1.06);
+    opacity: .96;
   }
 }
 
@@ -441,7 +507,8 @@ table {
   }
 
   .hero-premium::after,
-  .float-soft {
+  .float-soft,
+  .hero-mist {
     animation: none !important;
   }
 }

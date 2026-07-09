@@ -1,5 +1,8 @@
+"use client";
+
 import { Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { company, whatsappUrl } from "@/data/company";
 
 const mobileLinks = [
@@ -10,13 +13,15 @@ const mobileLinks = [
 ] as const;
 
 export function WhatsAppFloating() {
+  const pathname = usePathname();
+  const onTourPage = pathname.startsWith("/tours/");
   return (
     <>
-      <Link href={whatsappUrl("Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.")} target="_blank" rel="noopener noreferrer" className="fixed bottom-5 right-5 z-50 hidden items-center gap-2 rounded-full bg-[#12a84f] px-5 py-3 text-sm font-black text-white shadow-premium sm:flex">
+      <Link href={whatsappUrl("Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.")} target="_blank" rel="noopener noreferrer" className="premium-shine fixed bottom-6 right-6 z-50 hidden items-center gap-2 rounded-full border border-white/20 bg-[#12a84f] px-5 py-3 text-sm font-black text-white shadow-[0_24px_70px_rgba(18,168,79,.32)] transition hover:-translate-y-1 hover:shadow-[0_30px_86px_rgba(18,168,79,.42)] sm:flex">
         <MessageCircle size={20} />
         <span>WhatsApp</span>
       </Link>
-      <div className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-4 overflow-hidden rounded-2xl border border-forest-900/10 bg-white shadow-premium sm:hidden">
+      <div className={`fixed inset-x-3 z-50 grid grid-cols-4 overflow-hidden rounded-2xl border border-forest-900/10 bg-white/94 shadow-premium backdrop-blur-xl transition-[bottom] duration-300 sm:hidden ${onTourPage ? "bottom-20" : "bottom-3"}`}>
         {mobileLinks.map((item) => {
           const Icon = item.icon;
           return (

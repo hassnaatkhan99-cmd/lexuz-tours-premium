@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bus, Compass, Headphones, Heart, ReceiptText, ShieldCheck, Sparkles } from "lucide-react";
+import { Bus, Compass, Headphones, Heart, MapPin, ReceiptText, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { ButtonLink, WhatsAppButton } from "@/components/Button";
 import { CTASection } from "@/components/CTASection";
 import { DestinationCard } from "@/components/DestinationCard";
@@ -37,11 +37,18 @@ export default function Home() {
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.28em] text-brand-accent backdrop-blur">Escape • Explore • Enjoy</p>
             <h1 className="mt-5 text-5xl font-black leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl">Adventure Begins With Lexuz</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">Premium public tours, private tours, honeymoon trips, university trips and corporate travel across Pakistan with clear planning and direct support.</p>
-            <div className="mt-9 flex flex-wrap gap-3"><WhatsAppButton /><ButtonLink href="/public-trips" variant="outline">Explore Tours</ButtonLink><ButtonLink href="/booking" variant="dark">Book Now</ButtonLink></div>
-            <div className="mt-10 flex flex-wrap gap-3 text-xs font-black uppercase tracking-[0.16em] text-white/70">
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur">Islamabad departures</span>
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur">Lahore departures</span>
-              <span className="rounded-full border border-white/15 bg-white/10 px-3 py-2 backdrop-blur">Private tours</span>
+            <div className="mt-9 flex flex-wrap gap-3"><WhatsAppButton /><ButtonLink href="/public-trips" variant="outline">Explore Tours</ButtonLink><ButtonLink href="/tours/islamabad" variant="dark">Upcoming Departures</ButtonLink></div>
+            <div className="mt-10 grid max-w-2xl gap-3 text-xs font-black uppercase tracking-[0.12em] text-white/82 sm:grid-cols-3">
+              {[
+                [MapPin, "Islamabad Departures", "/tours/islamabad"],
+                [MapPin, "Lahore Departures", "/tours/lahore"],
+                [Users, "Private Tours", "/custom-tours"]
+              ].map(([Icon, label, href]) => (
+                <Link key={String(label)} href={String(href)} className="interactive-chip focus-ring inline-flex items-center gap-2 rounded-2xl border border-white/18 bg-white/10 px-4 py-3 backdrop-blur-md transition duration-200">
+                  <Icon size={17} className="text-brand-accent" aria-hidden="true" />
+                  {String(label)}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

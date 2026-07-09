@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronDown, MessageCircle, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { company, whatsappUrl } from "@/data/company";
@@ -68,6 +69,7 @@ function IconAction({ action, mobile = false }: { action: (typeof contactActions
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const bookMessage = "Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.";
 
   useEffect(() => {
@@ -79,7 +81,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 px-3 py-3">
-      <div className={`mx-auto flex w-full max-w-[1280px] items-center justify-between gap-3 rounded-[24px] border border-white/55 bg-white/72 px-4 shadow-[0_22px_70px_rgba(7,31,8,.14)] backdrop-blur-2xl transition-all duration-300 supports-[backdrop-filter]:bg-white/64 sm:px-6 xl:px-7 ${scrolled ? "h-[62px] shadow-[0_20px_58px_rgba(7,31,8,.16)]" : "h-[72px]"}`}>
+      <div className={`mx-auto flex w-full max-w-[1280px] items-center justify-between gap-3 rounded-[24px] border border-white/60 bg-white/72 px-4 shadow-[0_24px_80px_rgba(7,31,8,.16)] backdrop-blur-[28px] transition-all duration-500 supports-[backdrop-filter]:bg-white/64 sm:px-6 xl:px-7 ${scrolled ? "h-[62px] rounded-[22px] shadow-[0_20px_62px_rgba(7,31,8,.18)]" : "h-[72px]"}`}>
         <Link href="/" className="focus-ring group flex min-w-0 shrink-0 items-center gap-2.5 rounded-dsMd pr-2" aria-label="Lexuz Tours home">
           <Image src="/logo-lexuz-white-20260627.png" alt="Lexuz Tours & Adventures logo" width={64} height={64} className={`rounded-full bg-white object-contain ring-1 ring-lexuzNeutral-line transition-all duration-300 group-hover:scale-[1.03] ${scrolled ? "h-11 w-11" : "h-12 w-12 sm:h-[52px] sm:w-[52px]"}`} priority />
           <div className="leading-[1.02]">
@@ -92,7 +94,7 @@ export function Header() {
           <div className="group relative">
             <Link
               href="/public-trips"
-              className="focus-ring relative inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 transition duration-150 hover:bg-white/70 hover:text-brand-primary after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:origin-center after:scale-x-0 after:bg-brand-accent after:transition-transform group-hover:after:scale-x-100"
+              className={`focus-ring relative inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 transition duration-200 hover:bg-white/70 hover:text-brand-primary after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:origin-center after:bg-brand-accent after:transition-transform group-hover:after:scale-x-100 ${pathname.startsWith("/tours") || pathname === "/public-trips" ? "bg-white/70 text-brand-primary after:scale-x-100" : "after:scale-x-0"}`}
               aria-haspopup="true"
             >
               Tours
@@ -100,7 +102,7 @@ export function Header() {
             </Link>
             <div className="luxury-glass invisible absolute left-1/2 top-full z-50 mt-3 w-60 -translate-x-1/2 rounded-dsLg p-2 opacity-0 shadow-ds3 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               {tourLinks.map(([label, href]) => (
-                <Link key={href} href={href} className="focus-ring block rounded-dsMd px-3 py-2.5 text-sm text-lexuzNeutral-70 transition hover:bg-white/70 hover:text-brand-primary">
+                <Link key={href} href={href} className={`focus-ring block rounded-dsMd px-3 py-2.5 text-sm transition hover:bg-white/70 hover:text-brand-primary ${pathname === href ? "bg-white/70 text-brand-primary" : "text-lexuzNeutral-70"}`}>
                   {label}
                 </Link>
               ))}
@@ -110,7 +112,7 @@ export function Header() {
             <Link
               key={href}
               href={href}
-              className="focus-ring relative whitespace-nowrap rounded-full px-2.5 py-2 transition duration-150 hover:bg-white/70 hover:text-brand-primary after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:origin-center after:scale-x-0 after:bg-brand-accent after:transition-transform hover:after:scale-x-100 xl:px-3"
+              className={`focus-ring relative whitespace-nowrap rounded-full px-2.5 py-2 transition duration-200 hover:bg-white/70 hover:text-brand-primary after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:origin-center after:bg-brand-accent after:transition-transform hover:after:scale-x-100 xl:px-3 ${pathname === href ? "bg-white/70 text-brand-primary after:scale-x-100" : "after:scale-x-0"}`}
             >
               {label}
             </Link>

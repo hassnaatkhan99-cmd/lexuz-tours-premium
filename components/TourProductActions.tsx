@@ -51,7 +51,7 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
   }
 
   return (
-    <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-5 shadow-ds3">
+    <div className="luxury-card rounded-[26px] border border-white/70 bg-white/88 p-5 shadow-[0_26px_80px_rgba(20,32,27,.18)] backdrop-blur">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Book this tour</p>
@@ -62,13 +62,13 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
       </div>
 
       {hasLahore ? (
-        <div className="mt-5 grid grid-cols-2 rounded-dsMd border border-lexuzNeutral-line bg-white p-1" aria-label="Departure city selector">
+        <div className="mt-5 grid grid-cols-2 rounded-2xl border border-lexuzNeutral-line bg-white/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.82)]" aria-label="Departure city selector">
           {(["islamabad", "lahore"] as City[]).map((option) => (
             <button
               key={option}
               type="button"
               onClick={() => setCity(option)}
-              className={`rounded-dsSm px-3 py-3 text-sm font-black ${city === option ? "bg-brand-primary text-white shadow-ds1" : "text-brand-primary hover:bg-brand-secondary"}`}
+              className={`rounded-xl px-3 py-3 text-sm font-black transition ${city === option ? "bg-brand-primary text-white shadow-ds1" : "text-brand-primary hover:bg-brand-secondary"}`}
             >
               {option === "lahore" ? "Lahore" : "Islamabad"}
             </button>
@@ -80,7 +80,7 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
         <Link
           href={`/booking?tour=${tour.slug}&departure=${city}`}
           onClick={() => trackBookNowClick(eventParams("booking-card"))}
-          className="focus-ring inline-flex items-center justify-center gap-2 rounded-dsMd border border-brand-primary bg-white px-5 py-3 text-sm font-black text-brand-primary shadow-ds1 hover:bg-brand-secondary"
+          className="focus-ring premium-shine inline-flex items-center justify-center gap-2 rounded-xl border border-brand-primary bg-white px-5 py-3 text-sm font-black text-brand-primary shadow-ds1 hover:-translate-y-0.5 hover:bg-brand-secondary hover:shadow-ds2"
         >
           <CalendarDays size={18} />
           Book Now
@@ -89,7 +89,7 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
           href={whatsappUrl(trackedMessage(tour, city, sourceSlot))}
           target="_blank"
           onClick={() => trackWhatsAppClick(eventParams(sourceSlot))}
-          className="focus-ring inline-flex items-center justify-center gap-2 rounded-dsMd bg-brand-whatsapp px-5 py-3 text-sm font-black text-white shadow-ds1 hover:brightness-95 hover:shadow-ds2"
+          className="focus-ring premium-shine inline-flex items-center justify-center gap-2 rounded-xl bg-brand-whatsapp px-5 py-3 text-sm font-black text-white shadow-ds1 hover:-translate-y-0.5 hover:brightness-95 hover:shadow-ds2"
         >
           <MessageCircle size={18} />
           Book / Ask on WhatsApp
@@ -97,7 +97,7 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
         <Link
           href={company.callHref}
           onClick={() => trackPhoneClick(eventParams("call"))}
-          className="focus-ring inline-flex items-center justify-center gap-2 rounded-dsMd border border-lexuzNeutral-line bg-white px-5 py-3 text-sm font-black text-brand-primary hover:bg-brand-secondary"
+          className="focus-ring inline-flex items-center justify-center gap-2 rounded-xl border border-lexuzNeutral-line bg-white/90 px-5 py-3 text-sm font-black text-brand-primary hover:-translate-y-0.5 hover:bg-brand-secondary hover:shadow-ds1"
         >
           <Phone size={18} />
           Call Lexuz Tours
