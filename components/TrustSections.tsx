@@ -25,7 +25,7 @@ export function FounderSection({ founder }: { founder: { name: string; position:
   return (
     <section className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
       <FounderImage src={founder.photo} name={founder.name} position={founder.position} />
-      <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
+      <div className="luxury-card rounded-[24px] border border-white/70 bg-white/88 p-6 shadow-[0_24px_70px_rgba(20,32,27,.12)] backdrop-blur md:p-8">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Founder</p>
         <h2 className="mt-2 text-3xl font-black tracking-tight text-lexuzNeutral-100 md:text-4xl">{founder.name}</h2>
         <p className="mt-2 text-sm font-black text-brand-accent">{founder.position}</p>
@@ -64,7 +64,7 @@ export function PromiseList({ items, icon = "check" }: { items: string[]; icon?:
   return (
     <div className="grid gap-3">
       {items.map((item) => (
-        <p key={item} className="flex gap-3 rounded-dsMd border border-lexuzNeutral-line bg-white p-4 text-sm font-bold leading-6 text-lexuzNeutral-70 shadow-ds1">
+        <p key={item} className="luxury-card flex gap-3 rounded-dsMd border border-lexuzNeutral-line bg-white/90 p-4 text-sm font-bold leading-6 text-lexuzNeutral-70 shadow-ds1">
           <Icon className="mt-0.5 shrink-0 text-brand-primary" size={18} aria-hidden="true" />
           {item}
         </p>

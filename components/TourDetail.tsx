@@ -81,6 +81,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
   const hasLahore = tour.category !== "one-day";
   const showJeepInfo = hasJeepNotice(tour);
   const jeepIncluded = isJeepIncluded(tour);
+  const notIncludedServices = ["Jeep Charges (where applicable)", "Personal Expenses"];
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Public Trips", path: "/public-trips" },
@@ -146,7 +147,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         <div className="absolute inset-0">
           <Image src={tour.heroImage} alt={`${tour.title} tour with Lexuz Tours`} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/75 to-forest-950/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(217,164,65,.31),transparent_26rem),radial-gradient(circle_at_82%_18%,rgba(255,255,255,.20),transparent_22rem),linear-gradient(115deg,rgba(255,255,255,.08),transparent_34%,rgba(217,164,65,.08)_48%,transparent_70%)]" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fbfcf8] to-transparent" />
+          <div className="hero-mist" aria-hidden="true" />
         </div>
         <div className="container-page relative z-10 py-8 md:py-12">
           <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/75">
@@ -172,10 +175,10 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   [MapPin, cityAvailability(tour), "Departure cities"],
                   [Mountain, difficulty(tour), "Adventure level"]
                 ].map(([Icon, value, label]) => (
-                  <div key={String(label)} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <div key={String(label)} className="luxury-glass rounded-xl p-4 text-forest-950">
                     <Icon className="text-brand-accent" size={22} />
-                    <p className="mt-3 text-xs font-black uppercase tracking-wide text-white/60">{String(label)}</p>
-                    <p className="mt-1 text-sm font-black text-white">{String(value)}</p>
+                    <p className="mt-3 text-xs font-black uppercase tracking-wide text-forest-950/55">{String(label)}</p>
+                    <p className="mt-1 text-sm font-black text-forest-950">{String(value)}</p>
                   </div>
                 ))}
               </div>
@@ -185,16 +188,16 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         </div>
       </section>
 
-      <section className="container-page grid gap-8 py-12 lg:grid-cols-[1fr_360px]">
+      <section className="cinematic-band py-12"><div className="container-page grid gap-8 lg:grid-cols-[1fr_360px]">
         <main className="min-w-0">
-          <section className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
+          <section className="luxury-card rounded-dsLg border border-white/70 bg-white/84 p-6 shadow-ds2 backdrop-blur md:p-8">
             <div className="grid gap-5 md:grid-cols-3">
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
                 ["Clear trip details", "Included and not-included services are separated before booking."],
                 ["Track your booking", "Reference ID and team review after submission."]
               ].map(([title, copy]) => (
-                <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
+                <div key={title} className="luxury-card rounded-xl border border-forest-900/10 bg-forest-50 p-5">
                   <ShieldCheck className="text-brand-primary" size={24} />
               <h2 className="mt-3 font-black text-lexuzNeutral-100">{title}</h2>
                   <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{copy}</p>
@@ -214,7 +217,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <SectionHeading eyebrow="Signature moments" title="Trip highlights" />
             <div className="grid gap-3 md:grid-cols-2">
               {tour.highlights.map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-soft">
+                <div key={item} className="luxury-card flex items-center gap-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-soft">
                   <CheckCircle2 className="shrink-0 text-forest-800" size={20} />
                   <span className="font-bold text-forest-950">{item}</span>
                 </div>
@@ -268,13 +271,13 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <SectionHeading eyebrow={tour.category === "one-day" ? "Journey plan" : "Day-by-day itinerary"} title={tour.category === "one-day" ? "How the day flows" : "Detailed travel plan"} />
             <div className="space-y-3">
               {itinerary.map((item, index) => (
-                <details key={item} open={index === 0} className="group rounded-2xl border border-forest-900/10 bg-white p-5 shadow-soft">
+                <details key={item} open={index === 0} className="timeline-card luxury-card group rounded-2xl border border-white/70 bg-white/90 p-5 shadow-soft backdrop-blur hover:border-brand-accent/35 hover:shadow-ds2">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                     <span>
                       <span className="text-xs font-black uppercase tracking-wide text-forest-700">{tour.category === "one-day" ? `Journey Part ${index + 1}` : `Day ${index + 1}`}</span>
                       <span className="mt-1 block text-lg font-black text-forest-950">{itinerarySummaryTitle(tour, index, itinerary.length)}</span>
                     </span>
-                    <span className="rounded-full bg-forest-50 px-3 py-1 text-xs font-black text-forest-800 group-open:bg-saffron-300/40">View</span>
+                    <span className="rounded-full border border-forest-900/10 bg-forest-50 px-3 py-1 text-xs font-black text-forest-800 shadow-[inset_0_1px_0_rgba(255,255,255,.8)] transition group-open:bg-saffron-300/40">View</span>
                   </summary>
                   <p className="mt-4 text-sm leading-7 text-neutral-700">{item}</p>
                   <div className="mt-4 flex flex-wrap gap-2 text-xs font-black text-forest-800">
@@ -291,16 +294,16 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
           </section>
 
           <section className="mt-12 grid gap-6 lg:grid-cols-2" id="included">
-            <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
-              <h2 className="text-2xl font-black text-forest-950">Included services</h2>
+            <div className="luxury-card rounded-2xl border border-forest-900/10 bg-white/92 p-6 shadow-soft backdrop-blur">
+              <h2 className="text-2xl font-black text-forest-950">Services Included</h2>
               <div className="mt-5 grid gap-3">
                 {tour.included.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><CheckCircle2 className="shrink-0 text-forest-700" size={18} />{item}</p>)}
               </div>
             </div>
-            <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
-              <h2 className="text-2xl font-black text-forest-950">Not included</h2>
+            <div className="luxury-card rounded-2xl border border-forest-900/10 bg-white/92 p-6 shadow-soft backdrop-blur">
+              <h2 className="text-2xl font-black text-forest-950">Services Not Included</h2>
               <div className="mt-5 grid gap-3">
-                {tour.excluded.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><MinusCircle className="shrink-0 text-lexuzNeutral-60" size={18} />{item}</p>)}
+                {notIncludedServices.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><MinusCircle className="shrink-0 text-lexuzNeutral-60" size={18} />{item}</p>)}
               </div>
             </div>
           </section>
@@ -365,8 +368,8 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
               {tour.gallery.slice(0, 6).map((image) => {
                 const photo = galleryPhotoMeta(image, tour);
                 return (
-                  <figure key={image} className="overflow-hidden rounded-2xl bg-white shadow-soft">
-                    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-56 w-full object-cover" />
+                  <figure key={image} className="group overflow-hidden rounded-2xl border border-white/70 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-ds2">
+                    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
                     {photo.caption ? <figcaption className="px-4 py-3 text-xs font-black leading-5 text-forest-800">{photo.caption}</figcaption> : null}
                   </figure>
                 );
@@ -385,7 +388,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <FAQ items={faqs} />
           </section>
 
-          <section className="mt-12 rounded-dsLg bg-brand-primary p-6 text-white shadow-ds3 md:p-8">
+          <section className="night-sky mt-12 rounded-[30px] border border-white/10 p-6 text-white shadow-[0_32px_96px_rgba(7,18,15,.28)] md:p-9">
             <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
               <div>
                 <p className="text-sm font-black uppercase tracking-[0.18em] text-saffron-300">Ready to reserve?</p>
@@ -398,7 +401,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         </main>
 
         <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-          <div className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2">
+          <div className="luxury-card rounded-[24px] border border-white/70 bg-white/88 p-6 shadow-ds2 backdrop-blur">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-forest-700">Tour summary</p>
             <h2 className="mt-2 text-2xl font-black text-forest-950">{tour.title}</h2>
             <div className="mt-5 grid gap-3 text-sm">
@@ -417,21 +420,21 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             </div>
           </div>
 
-          <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
+          <div className="luxury-card rounded-2xl border border-white/70 bg-white/88 p-6 shadow-soft backdrop-blur">
             <h2 className="font-black text-forest-950">Why choose this tour?</h2>
             <div className="mt-4 grid gap-3">
               {whyChoose.slice(0, 5).map((item) => <p key={item} className="flex gap-2 text-sm leading-6 text-neutral-700"><Award className="mt-0.5 shrink-0 text-saffron-500" size={16} />{item}</p>)}
             </div>
           </div>
 
-          <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
+          <div className="luxury-card rounded-2xl border border-white/70 bg-white/88 p-6 shadow-soft backdrop-blur">
             <h2 className="font-black text-forest-950">Related tours</h2>
             <div className="mt-4 grid gap-4">
               {related.map((item) => <TourCard key={item.slug} tour={item} />)}
             </div>
           </div>
 
-          <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
+          <div className="luxury-card rounded-2xl border border-white/70 bg-white/88 p-6 shadow-soft backdrop-blur">
             <h2 className="font-black text-forest-950">Related destination links</h2>
             <div className="mt-4 grid gap-3 text-sm font-bold">
               <Link href="/destinations" className="rounded-xl bg-forest-50 p-3 text-forest-900 hover:bg-saffron-300/30">{destinationLinkLabel(tour)}</Link>
@@ -440,7 +443,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             </div>
           </div>
         </aside>
-      </section>
+      </div></section>
 
       <StickyTourActions tour={tour} />
       <div className="h-20 lg:hidden" aria-hidden="true" />

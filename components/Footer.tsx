@@ -25,15 +25,15 @@ export function Footer() {
     ["Cancellation", "/cancellation-policy"]
   ];
   return (
-    <footer className="bg-brand-primary text-white">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.25fr]">
+    <footer className="night-sky mountain-silhouette text-white">
+      <div className="container-page relative z-10 grid gap-10 py-16 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.25fr]">
         <div>
           <div className="flex items-center gap-3">
             <Image src="/logo-lexuz-white-20260627.png" alt="Lexuz Tours & Adventures logo" width={72} height={72} className="h-16 w-16 rounded-full bg-white object-contain ring-1 ring-white/20" />
             <div><strong className="text-xl font-black uppercase leading-none">Lexuz Tours</strong><p className="text-sm font-bold text-white/75">& Adventures</p></div>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/75">{company.mission}</p>
-          <div className="mt-5 flex items-center gap-2 rounded-dsMd border border-white/10 bg-white/5 p-3 text-sm text-white/75">
+          <div className="luxury-glass mt-5 flex items-center gap-2 rounded-dsMd p-3 text-sm text-forest-950">
             <ShieldCheck size={18} className="text-brand-accent" />
             Transparent pricing, real support and published policies.
           </div>
@@ -63,7 +63,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="container-page border-t border-white/10 py-5">
+      <div className="container-page relative z-10 border-t border-white/10 py-5">
         <div className="flex flex-col gap-3 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Lexuz Tours & Adventures. All rights reserved.</p>
           <div className="flex flex-wrap gap-3">

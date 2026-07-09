@@ -21,7 +21,7 @@ function initials(name: string) {
 
 export function ReviewCard({ review, index = 0 }: { review: Review; index?: number }) {
   return (
-    <article className="flex h-full flex-col rounded-lg border border-forest-900/10 bg-white p-5 shadow-soft transition hover:-translate-y-1 hover:shadow-premium">
+    <article className="luxury-card flex h-full flex-col rounded-[22px] border border-white/70 bg-white/88 p-5 shadow-[0_18px_48px_rgba(20,32,27,.1)] backdrop-blur transition hover:-translate-y-1 hover:shadow-premium">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-full text-sm font-black ${avatarStyles[index % avatarStyles.length]}`}>
