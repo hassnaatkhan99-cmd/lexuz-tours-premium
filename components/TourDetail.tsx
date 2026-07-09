@@ -146,6 +146,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         <div className="absolute inset-0">
           <Image src={tour.heroImage} alt={`${tour.title} tour with Lexuz Tours`} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/75 to-forest-950/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(217,164,65,.24),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(255,255,255,.16),transparent_20rem)]" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fbfcf8] to-transparent" />
         </div>
         <div className="container-page relative z-10 py-8 md:py-12">
@@ -172,10 +173,10 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   [MapPin, cityAvailability(tour), "Departure cities"],
                   [Mountain, difficulty(tour), "Adventure level"]
                 ].map(([Icon, value, label]) => (
-                  <div key={String(label)} className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <div key={String(label)} className="luxury-glass rounded-xl p-4 text-forest-950">
                     <Icon className="text-brand-accent" size={22} />
-                    <p className="mt-3 text-xs font-black uppercase tracking-wide text-white/60">{String(label)}</p>
-                    <p className="mt-1 text-sm font-black text-white">{String(value)}</p>
+                    <p className="mt-3 text-xs font-black uppercase tracking-wide text-forest-950/55">{String(label)}</p>
+                    <p className="mt-1 text-sm font-black text-forest-950">{String(value)}</p>
                   </div>
                 ))}
               </div>
@@ -194,7 +195,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                 ["Clear trip details", "Included and not-included services are separated before booking."],
                 ["Track your booking", "Reference ID and team review after submission."]
               ].map(([title, copy]) => (
-                <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
+                <div key={title} className="luxury-card rounded-xl border border-forest-900/10 bg-forest-50 p-5">
                   <ShieldCheck className="text-brand-primary" size={24} />
               <h2 className="mt-3 font-black text-lexuzNeutral-100">{title}</h2>
                   <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{copy}</p>
@@ -214,7 +215,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <SectionHeading eyebrow="Signature moments" title="Trip highlights" />
             <div className="grid gap-3 md:grid-cols-2">
               {tour.highlights.map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-soft">
+                <div key={item} className="luxury-card flex items-center gap-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-soft">
                   <CheckCircle2 className="shrink-0 text-forest-800" size={20} />
                   <span className="font-bold text-forest-950">{item}</span>
                 </div>
@@ -268,7 +269,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             <SectionHeading eyebrow={tour.category === "one-day" ? "Journey plan" : "Day-by-day itinerary"} title={tour.category === "one-day" ? "How the day flows" : "Detailed travel plan"} />
             <div className="space-y-3">
               {itinerary.map((item, index) => (
-                <details key={item} open={index === 0} className="group rounded-2xl border border-forest-900/10 bg-white p-5 shadow-soft">
+                <details key={item} open={index === 0} className="luxury-card group rounded-2xl border border-forest-900/10 bg-white p-5 shadow-soft">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                     <span>
                       <span className="text-xs font-black uppercase tracking-wide text-forest-700">{tour.category === "one-day" ? `Journey Part ${index + 1}` : `Day ${index + 1}`}</span>

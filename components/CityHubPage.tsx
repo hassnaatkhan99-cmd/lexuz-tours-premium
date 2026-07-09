@@ -133,6 +133,7 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
       <section className="relative overflow-hidden bg-forest-950 text-white">
         <Image src={hub.heroImage} alt={hub.heroAlt} fill priority sizes="100vw" className="object-cover opacity-55" />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/80 to-forest-950/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_22%,rgba(217,164,65,.24),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(255,255,255,.14),transparent_20rem)]" />
         <div className="container-page relative py-14 sm:py-20 lg:py-24">
           <nav className="flex flex-wrap items-center gap-2 text-sm font-bold text-white/75" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white">Home</Link>
@@ -171,7 +172,8 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
         </div>
       </section>
 
-      <section className="container-page py-14">
+      <section className="cinematic-band py-14">
+        <div className="container-page">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <div>
             <SectionHeading eyebrow="City Hub" title={`Plan your trip from ${hub.name}`} copy={hub.description} />
@@ -196,9 +198,10 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
             </ul>
           </aside>
         </div>
+        </div>
       </section>
 
-      <section id="tours" className="bg-neutral-50 py-14">
+      <section id="tours" className="bg-neutral-50/70 py-14">
         <div className="container-page">
           <SectionHeading eyebrow="Available Tours" title={`Book tours from ${hub.name}`} copy="Every card links to the official tour product page with the correct city departure section highlighted." />
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

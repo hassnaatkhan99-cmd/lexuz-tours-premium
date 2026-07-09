@@ -36,7 +36,8 @@ export default function ContactPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd(breadcrumbItems)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationSchema()) }} />
-      <section className="container-page py-16">
+      <section className="cinematic-band py-16">
+        <div className="container-page">
         <PageBreadcrumbs items={breadcrumbItems} />
         <div className="mt-8">
           <SectionHeading eyebrow="Contact" title="Visit, call or message Lexuz" copy="Speak with the team about public departures, private trips, university tours, corporate travel or custom family planning." />
@@ -86,6 +87,7 @@ export default function ContactPage() {
           <SectionHeading eyebrow="Contact & complaints" title="Need help after booking?" copy="Use the official Lexuz contact channels below for booking questions, complaints, payment follow-up or travel support." />
           <PromiseList items={sourceFacts.contactComplaints} icon="map" />
         </section>
+        </div>
       </section>
     </>
   );

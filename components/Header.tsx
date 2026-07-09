@@ -70,7 +70,7 @@ export function Header() {
   const bookMessage = "Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-lexuzNeutral-line/80 bg-white/90 shadow-[0_10px_30px_rgba(7,31,8,.04)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/40 bg-white/72 shadow-[0_18px_48px_rgba(7,31,8,.08)] backdrop-blur-2xl supports-[backdrop-filter]:bg-white/68">
       <div className="mx-auto flex h-[68px] w-full max-w-[1280px] items-center justify-between gap-3 px-4 sm:px-6 xl:px-8">
         <Link href="/" className="focus-ring group flex min-w-0 shrink-0 items-center gap-2.5 rounded-dsMd pr-2" aria-label="Lexuz Tours home">
           <Image src="/logo-lexuz-white-20260627.png" alt="Lexuz Tours & Adventures logo" width={64} height={64} className="h-12 w-12 rounded-full bg-white object-contain ring-1 ring-lexuzNeutral-line transition-transform duration-150 group-hover:scale-[1.03] sm:h-[52px] sm:w-[52px]" priority />
@@ -90,7 +90,7 @@ export function Header() {
               Tours
               <DesignIcon icon={ChevronDown} size="sm" tone="muted" className="transition group-hover:rotate-180 group-hover:text-brand-primary" />
             </Link>
-            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-dsLg border border-lexuzNeutral-line bg-white p-2 opacity-0 shadow-ds3 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <div className="luxury-glass invisible absolute left-1/2 top-full z-50 mt-3 w-60 -translate-x-1/2 rounded-dsLg p-2 opacity-0 shadow-ds3 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
               {tourLinks.map(([label, href]) => (
                 <Link key={href} href={href} className="focus-ring block rounded-dsMd px-3 py-2.5 text-sm text-lexuzNeutral-70 transition hover:bg-brand-secondary hover:text-brand-primary">
                   {label}
@@ -120,7 +120,7 @@ export function Header() {
             rel="noopener noreferrer"
             variant="whatsapp"
             size="sm"
-            className="ml-1 min-h-0 rounded-xl px-5 py-3 shadow-ds1 hover:-translate-y-0.5"
+            className="premium-shine ml-1 min-h-0 rounded-xl px-5 py-3 shadow-ds1 hover:-translate-y-0.5"
           >
             <DesignIcon icon={MessageCircle} size="sm" className="text-white" />
             <span className="hidden xl:inline">Book on WhatsApp</span>
@@ -132,7 +132,7 @@ export function Header() {
           <IconAction action={contactActions[0]} mobile />
           <IconAction action={contactActions[1]} mobile />
           <button
-            className="focus-ring group relative grid h-10 w-10 place-items-center rounded-full border border-lexuzNeutral-line bg-white text-brand-primary shadow-ds1 transition hover:bg-brand-secondary"
+            className="focus-ring group relative grid h-10 w-10 place-items-center rounded-full border border-white/70 bg-white/85 text-brand-primary shadow-ds1 backdrop-blur transition hover:bg-brand-secondary"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
@@ -149,7 +149,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-lexuzNeutral-line bg-white px-4 py-4 text-sm font-semibold shadow-[0_20px_40px_rgba(7,31,8,.08)] lg:hidden">
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-white/60 bg-white/90 px-4 py-4 text-sm font-semibold shadow-[0_24px_54px_rgba(7,31,8,.12)] backdrop-blur-2xl lg:hidden">
           <div className="mx-auto grid max-w-[1280px] gap-1">
             {mobileNav.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)} className="focus-ring rounded-dsMd px-3 py-3 text-lexuzNeutral-70 transition hover:bg-brand-secondary hover:text-brand-primary">{label}</Link>)}
             <div className="mt-3 rounded-dsLg border border-lexuzNeutral-line bg-lexuzNeutral-5 p-3">

@@ -32,6 +32,9 @@
   --lexuz-motion-fast: 150ms ease-out;
   --lexuz-motion-base: 200ms ease-out;
   --lexuz-motion-slow: 300ms ease-out;
+  --lexuz-glow-gold: rgba(217, 164, 65, .28);
+  --lexuz-glow-forest: rgba(27, 77, 62, .22);
+  --lexuz-glass: rgba(255, 255, 255, .78);
 }
 
 * {
@@ -44,9 +47,39 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(217, 164, 65, .16), transparent 34rem),
+    radial-gradient(circle at 88% 12%, rgba(27, 77, 62, .18), transparent 36rem),
+    linear-gradient(180deg, #fbfcf8 0%, #f6f8f4 44%, #fbfcf8 100%);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 42%, rgba(217, 164, 65, .07) 42% 43%, transparent 43% 100%),
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .82), transparent 30rem);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: -1;
+  height: 42vh;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(27, 77, 62, .07), transparent),
+    repeating-linear-gradient(135deg, rgba(20, 32, 27, .025) 0 1px, transparent 1px 18px);
+  mask-image: linear-gradient(to top, black, transparent);
 }
 
 a,
@@ -68,10 +101,37 @@ textarea {
 
 .hero-premium {
   background-image:
-    linear-gradient(90deg, rgba(7, 31, 8, .92), rgba(7, 31, 8, .60), rgba(7, 31, 8, .28)),
+    radial-gradient(circle at 18% 28%, rgba(217, 164, 65, .26), transparent 26rem),
+    linear-gradient(90deg, rgba(7, 31, 8, .94), rgba(7, 31, 8, .64), rgba(7, 31, 8, .24)),
     url("/images/hero-lexuz-premium.png");
   background-position: center center;
   background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-premium::before,
+.hero-premium::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero-premium::before {
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, .05), transparent 32%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, .18), transparent 20rem);
+  mix-blend-mode: screen;
+}
+
+.hero-premium::after {
+  left: 50%;
+  bottom: 24px;
+  width: 1px;
+  height: 74px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .82), transparent);
+  animation: scrollPulse 2.4s ease-in-out infinite;
 }
 
 .shadow-soft,
@@ -89,6 +149,145 @@ table {
 
 .focus-ring {
   @apply focus:outline-none focus:ring-4 focus:ring-saffron-300/50;
+}
+
+.luxury-glass {
+  border: 1px solid rgba(255, 255, 255, .36);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .86), rgba(255, 255, 255, .58));
+  box-shadow: 0 24px 70px rgba(20, 32, 27, .14);
+  backdrop-filter: blur(22px);
+}
+
+.luxury-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.luxury-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(217, 164, 65, .18), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(247, 249, 248, .72));
+  transition: opacity 260ms ease;
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+.premium-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-shine::after {
+  content: "";
+  position: absolute;
+  inset: -120% auto -120% -70%;
+  width: 48%;
+  transform: rotate(18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transition: left 650ms ease;
+}
+
+.premium-shine:hover::after {
+  left: 125%;
+}
+
+.cinematic-band {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(217, 164, 65, .13), transparent 24rem),
+    radial-gradient(circle at 84% 8%, rgba(27, 77, 62, .14), transparent 28rem),
+    linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(246, 248, 244, .76));
+}
+
+.cinematic-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(20, 32, 27, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(20, 32, 27, .026) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+.cinematic-band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.reveal-soft {
+  animation: revealSoft 680ms ease both;
+}
+
+.float-soft {
+  animation: floatSoft 7s ease-in-out infinite;
+}
+
+.magnetic-hover {
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.magnetic-hover:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.night-sky {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 24% 16%, rgba(217, 164, 65, .22), transparent 22rem),
+    radial-gradient(circle at 78% 12%, rgba(255, 255, 255, .08), transparent 18rem),
+    linear-gradient(180deg, #0a1c16 0%, #07120f 100%);
+}
+
+.night-sky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .42) 0 1px, transparent 1.5px) 12px 18px / 96px 96px,
+    radial-gradient(circle, rgba(217, 164, 65, .38) 0 1px, transparent 1.5px) 42px 62px / 138px 138px;
+  opacity: .32;
+}
+
+@keyframes revealSoft {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: .34;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: .92;
+    transform: translateY(10px);
+  }
 }
 
 @layer utilities {
@@ -129,6 +328,14 @@ table {
   }
 }
 
+@supports (animation-timeline: view()) {
+  .reveal-on-scroll {
+    animation: revealSoft linear both;
+    animation-timeline: view();
+    animation-range: entry 8% cover 28%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -137,5 +344,10 @@ table {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
+  }
+
+  .hero-premium::after,
+  .float-soft {
+    animation: none !important;
   }
 }

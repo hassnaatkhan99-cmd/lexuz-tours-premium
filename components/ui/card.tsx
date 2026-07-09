@@ -4,10 +4,10 @@ import { clsx } from "clsx";
 type CardVariant = "tour" | "info" | "testimonial" | "interactive";
 
 const cardVariants: Record<CardVariant, string> = {
-  tour: "overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds1 ds-card-transition hover:-translate-y-1 hover:shadow-ds2",
-  info: "rounded-dsLg border border-lexuzNeutral-line bg-white p-5 shadow-ds1 md:p-6",
-  testimonial: "rounded-dsLg border border-lexuzNeutral-line bg-white p-5 shadow-ds1 ds-card-transition hover:shadow-ds2",
-  interactive: "rounded-dsLg border border-lexuzNeutral-line bg-white p-5 shadow-ds1 ds-card-transition hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-ds2 md:p-6"
+  tour: "luxury-card overflow-hidden rounded-[22px] border border-white/70 bg-white/88 shadow-ds1 backdrop-blur ds-card-transition hover:-translate-y-1 hover:shadow-ds2",
+  info: "luxury-card rounded-[22px] border border-white/70 bg-white/88 p-5 shadow-ds1 backdrop-blur md:p-6",
+  testimonial: "luxury-card rounded-[22px] border border-white/70 bg-white/88 p-5 shadow-ds1 backdrop-blur ds-card-transition hover:shadow-ds2",
+  interactive: "luxury-card rounded-[22px] border border-white/70 bg-white/88 p-5 shadow-ds1 backdrop-blur ds-card-transition hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-ds2 md:p-6"
 };
 
 type DesignCardProps = ComponentPropsWithoutRef<"article"> & {

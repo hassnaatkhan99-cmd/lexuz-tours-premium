@@ -11,13 +11,13 @@ export function TourCard({ tour }: { tour: Tour }) {
     <article>
       <Link
         href={`/tours/${tour.slug}`}
-        className="focus-ring group block h-full cursor-pointer overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds1 transition duration-200 ease-out hover:-translate-y-1 hover:border-brand-primary/30 hover:shadow-ds3"
+        className="focus-ring luxury-card group block h-full cursor-pointer overflow-hidden rounded-[22px] border border-white/70 bg-white/86 shadow-[0_18px_48px_rgba(20,32,27,.10)] backdrop-blur transition duration-300 ease-out hover:-translate-y-2 hover:border-brand-accent/45 hover:shadow-[0_30px_80px_rgba(20,32,27,.18)]"
         aria-label={`View details for ${tour.title}`}
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image src={tour.heroImage} alt={`${tour.title} tour`} fill sizes="(min-width:1024px) 25vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-80" />
-          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-black text-brand-primary shadow-ds1 backdrop-blur">{tour.duration}</span>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-90" />
+          <span className="absolute left-3 top-3 rounded-full border border-white/35 bg-white/90 px-3 py-1 text-xs font-black text-brand-primary shadow-ds1 backdrop-blur">{tour.duration}</span>
         </div>
         <div className="flex min-h-[230px] flex-col p-5">
           <h3 className="line-clamp-2 text-lg font-bold leading-snug text-lexuzNeutral-100 transition group-hover:text-brand-primary">{tour.title}</h3>
@@ -34,7 +34,7 @@ export function TourCard({ tour }: { tour: Tour }) {
               <p className="text-xs font-bold uppercase tracking-[0.06em] text-lexuzNeutral-60">From Islamabad</p>
               <DesignPrice amount={money(price.islamabadPrice)} qualifier={price.unit} />
             </div>
-            <span className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-lexuzNeutral-line bg-white px-3 text-xs font-black text-brand-primary shadow-ds1 transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white" aria-hidden="true">
+            <span className="premium-shine inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-brand-primary/10 bg-white px-3 text-xs font-black text-brand-primary shadow-ds1 transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white" aria-hidden="true">
               View Details
               <ChevronRight size={18} />
             </span>
