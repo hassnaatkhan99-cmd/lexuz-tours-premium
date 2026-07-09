@@ -34,7 +34,8 @@ export function TourCard({ tour }: { tour: Tour }) {
               <p className="text-xs font-bold uppercase tracking-[0.06em] text-lexuzNeutral-60">From Islamabad</p>
               <DesignPrice amount={money(price.islamabadPrice)} qualifier={price.unit} />
             </div>
-            <span className="grid h-10 w-10 place-items-center rounded-full border border-lexuzNeutral-line bg-white text-brand-primary shadow-ds1 transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white" aria-hidden="true">
+            <span className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-lexuzNeutral-line bg-white px-3 text-xs font-black text-brand-primary shadow-ds1 transition group-hover:border-brand-primary group-hover:bg-brand-primary group-hover:text-white" aria-hidden="true">
+              View Details
               <ChevronRight size={18} />
             </span>
           </div>

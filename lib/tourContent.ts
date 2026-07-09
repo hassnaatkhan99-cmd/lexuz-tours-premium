@@ -60,7 +60,7 @@ export function expandedFaqs(tour: Tour) {
     { question: "Can the sightseeing order change?", answer: "Yes. Weather, traffic, hotel timing and road conditions can change the final order while keeping the main experience intact." },
     { question: "Is this tour suitable for families?", answer: `${tour.title} is suitable for families who are comfortable with ${tour.category === "one-day" ? "same-day road travel" : "multi-day mountain travel and hotel stays"}.` },
     { question: "How do I confirm my booking?", answer: "Submit the booking form, select payment method, upload your payment screenshot and wait for the Lexuz team to review the details." },
-    { question: "Can I book on WhatsApp?", answer: "Yes. Use the Book On WhatsApp button for direct guidance from Lexuz Tours & Adventures." },
+    { question: "Can I book on WhatsApp?", answer: "Yes. Use the Book on WhatsApp button for direct guidance from Lexuz Tours & Adventures." },
     { question: "What should I pack?", answer: "Carry warm layers, comfortable shoes, CNIC/passport, personal medicine, charger, power bank and a compact day bag." },
     { question: "What is the refund policy?", answer: "Confirmed paid bookings are fully refundable if the customer cancels more than 7 days before departure. Cancellations less than 7 days before departure are non-refundable." }
   ];

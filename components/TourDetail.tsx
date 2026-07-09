@@ -47,9 +47,16 @@ function destinationLinkLabel(tour: Tour) {
   return "Destination travel guidance";
 }
 
-function priceText(tour: Tour) {
-  const price = tour.prices[0];
-  return price ? money(price.islamabadPrice) : "Price on request";
+function itinerarySummaryTitle(tour: Tour, index: number, total: number) {
+  if (tour.category === "one-day") {
+    if (index === 0) return "Departure and route start";
+    if (index === total - 1) return "Return to Islamabad";
+    return index <= Math.ceil(total / 2) ? "Scenic journey and first stops" : "Main sightseeing and dinner stop";
+  }
+  if (index === 0) return "Departure and first overnight stay";
+  if (index === total - 1) return "Return journey and arrival";
+  if (index === 1) return "Full-day sightseeing and local exploration";
+  return "Route highlights, photography and overnight stay";
 }
 
 function galleryPhotoMeta(src: string, tour: Tour) {
@@ -153,7 +160,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
 
           <div className="grid gap-8 lg:grid-cols-[1fr_390px] lg:items-end">
             <div className="max-w-4xl">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-accent">Official Lexuz tour product</p>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-brand-accent">Guided Pakistan Tour</p>
               <h1 className="mt-3 text-4xl font-black leading-tight tracking-tight md:text-6xl">
                 {tour.title} Tour — {tour.duration} {hasLahore ? "from Islamabad & Lahore" : "from Islamabad"}
               </h1>
@@ -189,7 +196,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
               ].map(([title, copy]) => (
                 <div key={title} className="rounded-xl border border-forest-900/10 bg-forest-50 p-5">
                   <ShieldCheck className="text-brand-primary" size={24} />
-                  <h2 className="mt-3 font-black text-lexuzNeutral-100">{title}</h2>
+              <h2 className="mt-3 font-black text-lexuzNeutral-100">{title}</h2>
                   <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{copy}</p>
                 </div>
               ))}
@@ -265,7 +272,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                     <span>
                       <span className="text-xs font-black uppercase tracking-wide text-forest-700">{tour.category === "one-day" ? `Journey Part ${index + 1}` : `Day ${index + 1}`}</span>
-                      <span className="mt-1 block text-lg font-black text-forest-950">{tour.category === "one-day" ? "Journey and sightseeing" : index === 0 ? "Departure and first travel leg" : index === itinerary.length - 1 ? "Return journey" : "Sightseeing and overnight stay"}</span>
+                      <span className="mt-1 block text-lg font-black text-forest-950">{itinerarySummaryTitle(tour, index, itinerary.length)}</span>
                     </span>
                     <span className="rounded-full bg-forest-50 px-3 py-1 text-xs font-black text-forest-800 group-open:bg-saffron-300/40">View</span>
                   </summary>
@@ -336,10 +343,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
           </section>
 
           <section className="mt-12" id="reviews">
-            <SectionHeading eyebrow="Reviews" title="Traveler feedback" copy={featuredReviews.length ? "A few customer notes connected with this route or travel style." : "Tour-specific review matching is being improved. Public customer feedback is available on the reviews page."} />
-            {featuredReviews.length ? (
-              <div className="grid gap-4 md:grid-cols-3">
-                {featuredReviews.map((review) => (
+            <SectionHeading eyebrow="Reviews" title="Traveler feedback" copy={featuredReviews.length ? "A few customer notes connected with this route or travel style." : "Customer feedback from recent Lexuz public and private trips."} />
+            <div className="grid gap-4 md:grid-cols-3">
+                {(featuredReviews.length ? featuredReviews : reviews.slice(0, 3)).map((review) => (
                   <article key={`${review.name}-${review.tour}`} className="rounded-2xl border border-forest-900/10 bg-white p-5 shadow-soft">
                     <div className="flex text-saffron-500" aria-label={`${review.rating} star review`}>
                       {Array.from({ length: 5 }).map((_, index) => <Star key={index} size={15} fill={index < review.rating ? "currentColor" : "none"} />)}
@@ -350,7 +356,6 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                   </article>
                 ))}
               </div>
-            ) : null}
             <Link href="/reviews" className="mt-5 inline-flex font-black text-forest-800 hover:text-forest-950">Read all reviews</Link>
           </section>
 

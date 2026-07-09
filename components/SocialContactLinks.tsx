@@ -58,7 +58,7 @@ export function SocialContactLinks({ variant = "header", showLabels = false }: S
             aria-label={item.label}
             title={item.label}
             target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noreferrer" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
             className={`focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-full border px-3 text-sm font-black shadow-ds1 transition hover:-translate-y-0.5 hover:shadow-ds2 ${iconStyles}`}
           >
             <Icon size={17} />

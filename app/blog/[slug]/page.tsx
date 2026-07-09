@@ -6,6 +6,14 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { blogPosts, buildBlogSections, getBlogPost } from "@/data/blogPosts";
 import { absoluteUrl, canonical } from "@/lib/seo";
 
+function blogOgImage(slug: string) {
+  if (slug.includes("swat")) return "/images/trip/lexuz-malam-jabba-winter-group.webp";
+  if (slug.includes("university")) return "/images/trip/lexuz-student-group-coaster.webp";
+  if (slug.includes("corporate")) return "/images/trip/lexuz-fleet-three-coasters-night.webp";
+  if (slug.includes("family") || slug.includes("road")) return "/images/trip/lexuz-group-departure-summer.webp";
+  return "/images/trip/lexuz-group-meadow-banner.webp";
+}
+
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
@@ -14,12 +22,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
+  const image = blogOgImage(post.slug);
   return {
     title: post.title,
     description: post.description,
     alternates: { canonical: canonical(`/blog/${post.slug}`) },
-    openGraph: { title: post.title, description: post.description, url: canonical(`/blog/${post.slug}`), type: "article" },
-    twitter: { card: "summary_large_image", title: post.title, description: post.description }
+    openGraph: { title: post.title, description: post.description, url: canonical(`/blog/${post.slug}`), images: [image], type: "article" },
+    twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] }
   };
 }
 

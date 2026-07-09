@@ -145,7 +145,7 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
         </div>
         <div className="mt-5 flex gap-3 rounded-dsMd bg-brand-secondary p-4 text-sm leading-6 text-brand-primary">
           <ShieldCheck className="mt-1 shrink-0" size={18} />
-          Your payment screenshot is reviewed before confirmation. Booking values are stored with your booking record.
+          Your payment screenshot is reviewed by the Lexuz team before confirmation. Keep your booking reference safe for follow-up.
         </div>
       </aside>
     </div>

@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloating } from "@/components/WhatsAppFloating";
 import { company } from "@/data/company";
-import { reviews } from "@/data/reviews";
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.website),
@@ -49,7 +48,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const averageRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -94,20 +92,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "University trips",
           "Honeymoon tours"
         ],
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: averageRating.toFixed(1),
-          reviewCount: reviews.length,
-          bestRating: 5,
-          worstRating: 1
-        },
-        review: reviews.map((review) => ({
-          "@type": "Review",
-          author: { "@type": "Person", name: review.name },
-          reviewRating: { "@type": "Rating", ratingValue: review.rating, bestRating: 5 },
-          reviewBody: review.text,
-          itemReviewed: { "@id": `${company.website}/#travelagency` }
-        })),
         sameAs: [company.facebook, company.instagram]
       }
     ]

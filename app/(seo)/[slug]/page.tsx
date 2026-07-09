@@ -111,7 +111,7 @@ export default async function SeoLandingPage({ params }: { params: Promise<{ slu
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-lg border border-forest-900/10 bg-white p-6 shadow-premium">
               <h2 className="text-xl font-black">Related Tours</h2>
-              {relatedTours.map((tour) => tour ? <Link key={tour.slug} href={`/tours/${tour.slug}`} className="focus-ring mt-4 block cursor-pointer rounded-md border border-forest-900/10 bg-forest-50 p-4 transition hover:-translate-y-0.5 hover:border-forest-800/30 hover:bg-white hover:shadow-soft" aria-label={`View details for ${tour.title}`}><strong>{tour.title}</strong><span className="mt-1 block text-sm text-neutral-600">{tour.duration} • From {money(tour.prices[0].islamabadPrice)}</span></Link> : null)}
+              {relatedTours.map((tour) => tour ? <Link key={tour.slug} href={`/tours/${tour.slug}`} className="focus-ring group mt-4 block cursor-pointer rounded-md border border-forest-900/10 bg-forest-50 p-4 transition hover:-translate-y-0.5 hover:border-forest-800/30 hover:bg-white hover:shadow-soft" aria-label={`View details for ${tour.title}`}><strong>{tour.title}</strong><span className="mt-1 block text-sm text-neutral-600">{tour.duration} • From {money(tour.prices[0].islamabadPrice)}</span><span className="mt-3 inline-flex rounded-full bg-white px-3 py-1 text-xs font-black text-forest-800 shadow-soft transition group-hover:bg-forest-800 group-hover:text-white">View Details</span></Link> : null)}
             </div>
             <div className="rounded-lg border border-forest-900/10 bg-forest-900 p-6 text-white shadow-premium">
               <h2 className="text-2xl font-black">Ready To Book?</h2>

@@ -8,6 +8,8 @@ import { SocialContactLinks } from "./SocialContactLinks";
 export function Footer() {
   const exploreLinks = [
     ["Public Trips", "/public-trips"],
+    ["Islamabad Departures", "/tours/islamabad"],
+    ["Lahore Departures", "/tours/lahore"],
     ["Destinations", "/destinations"],
     ["Price List", "/price-list"],
     ["Reviews", "/reviews"],
@@ -57,7 +59,7 @@ export function Footer() {
             <a href={company.callHref} className="flex gap-2 hover:text-white"><Phone size={18} className="text-brand-accent" />{company.callPhone}</a>
             <a href={`mailto:${company.email}`} className="flex gap-2 hover:text-white"><Mail size={18} className="text-brand-accent" />{company.email}</a>
             <p className="flex gap-2 leading-6"><MapPin size={18} className="mt-0.5 shrink-0 text-brand-accent" />{company.address}</p>
-            <Link href={company.maps} target="_blank" className="mt-2 w-fit rounded-dsMd bg-white px-4 py-2 font-black text-brand-primary shadow-ds1 hover:bg-brand-secondary">Open Google Maps</Link>
+            <Link href={company.maps} target="_blank" rel="noopener noreferrer" className="mt-2 w-fit rounded-dsMd bg-white px-4 py-2 font-black text-brand-primary shadow-ds1 hover:bg-brand-secondary">Open Google Maps</Link>
           </div>
         </div>
       </div>

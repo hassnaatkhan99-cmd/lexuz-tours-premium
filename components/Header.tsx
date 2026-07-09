@@ -10,6 +10,8 @@ import { DesignLinkButton } from "@/components/ui/button";
 
 const tourLinks = [
   ["Public Trips", "/public-trips"],
+  ["Islamabad Departures", "/tours/islamabad"],
+  ["Lahore Departures", "/tours/lahore"],
   ["Corporate", "/corporate-tours"],
   ["University", "/university-tours"],
   ["Honeymoon", "/honeymoon-tours"],
@@ -55,7 +57,7 @@ function IconAction({ action, mobile = false }: { action: (typeof contactActions
       aria-label={action.label}
       title={action.label}
       target={external ? "_blank" : undefined}
-      rel={external ? "noreferrer" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className={`focus-ring group grid shrink-0 place-items-center rounded-full border border-lexuzNeutral-line bg-white shadow-ds1 transition duration-150 ease-out hover:-translate-y-0.5 hover:shadow-ds2 ${mobile ? "h-10 w-10" : "h-11 w-11"} ${action.className}`}
     >
       <DesignIcon icon={action.icon} size={mobile ? "sm" : "md"} tone={action.tone} className="transition-transform duration-150 group-hover:scale-105 group-hover:[&>svg]:stroke-[1.8]" />
@@ -115,7 +117,7 @@ export function Header() {
           <DesignLinkButton
             href={whatsappUrl(bookMessage)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             variant="whatsapp"
             size="sm"
             className="ml-1 min-h-0 rounded-xl px-5 py-3 shadow-ds1 hover:-translate-y-0.5"
@@ -127,6 +129,7 @@ export function Header() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          <IconAction action={contactActions[0]} mobile />
           <IconAction action={contactActions[1]} mobile />
           <button
             className="focus-ring group relative grid h-10 w-10 place-items-center rounded-full border border-lexuzNeutral-line bg-white text-brand-primary shadow-ds1 transition hover:bg-brand-secondary"
@@ -156,7 +159,7 @@ export function Header() {
                 <DesignLinkButton
                   href={whatsappUrl(bookMessage)}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   variant="whatsapp"
                   size="sm"
                   className="ml-auto rounded-xl px-4 py-3"
