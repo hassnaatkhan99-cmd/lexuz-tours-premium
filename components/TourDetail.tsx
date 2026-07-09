@@ -81,6 +81,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
   const hasLahore = tour.category !== "one-day";
   const showJeepInfo = hasJeepNotice(tour);
   const jeepIncluded = isJeepIncluded(tour);
+  const notIncludedServices = ["Jeep Charges (where applicable)", "Personal Expenses"];
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Public Trips", path: "/public-trips" },
@@ -146,8 +147,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         <div className="absolute inset-0">
           <Image src={tour.heroImage} alt={`${tour.title} tour with Lexuz Tours`} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-forest-950 via-forest-950/75 to-forest-950/20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(217,164,65,.24),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(255,255,255,.16),transparent_20rem)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(217,164,65,.31),transparent_26rem),radial-gradient(circle_at_82%_18%,rgba(255,255,255,.20),transparent_22rem),linear-gradient(115deg,rgba(255,255,255,.08),transparent_34%,rgba(217,164,65,.08)_48%,transparent_70%)]" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fbfcf8] to-transparent" />
+          <div className="hero-mist" aria-hidden="true" />
         </div>
         <div className="container-page relative z-10 py-8 md:py-12">
           <nav aria-label="Breadcrumb" className="mb-10 flex flex-wrap items-center gap-2 text-sm font-bold text-white/75">
@@ -186,9 +188,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         </div>
       </section>
 
-      <section className="container-page grid gap-8 py-12 lg:grid-cols-[1fr_360px]">
+      <section className="cinematic-band py-12"><div className="container-page grid gap-8 lg:grid-cols-[1fr_360px]">
         <main className="min-w-0">
-          <section className="rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:p-8">
+          <section className="luxury-card rounded-dsLg border border-white/70 bg-white/84 p-6 shadow-ds2 backdrop-blur md:p-8">
             <div className="grid gap-5 md:grid-cols-3">
               {[
                 ["Trusted operator", "Rawalpindi office, branded fleet and visible support."],
@@ -292,16 +294,16 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
           </section>
 
           <section className="mt-12 grid gap-6 lg:grid-cols-2" id="included">
-            <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
-              <h2 className="text-2xl font-black text-forest-950">Included services</h2>
+            <div className="luxury-card rounded-2xl border border-forest-900/10 bg-white/92 p-6 shadow-soft backdrop-blur">
+              <h2 className="text-2xl font-black text-forest-950">Services Included</h2>
               <div className="mt-5 grid gap-3">
                 {tour.included.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><CheckCircle2 className="shrink-0 text-forest-700" size={18} />{item}</p>)}
               </div>
             </div>
-            <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-soft">
-              <h2 className="text-2xl font-black text-forest-950">Not included</h2>
+            <div className="luxury-card rounded-2xl border border-forest-900/10 bg-white/92 p-6 shadow-soft backdrop-blur">
+              <h2 className="text-2xl font-black text-forest-950">Services Not Included</h2>
               <div className="mt-5 grid gap-3">
-                {tour.excluded.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><MinusCircle className="shrink-0 text-lexuzNeutral-60" size={18} />{item}</p>)}
+                {notIncludedServices.map((item) => <p key={item} className="flex gap-3 text-sm font-bold text-neutral-700"><MinusCircle className="shrink-0 text-lexuzNeutral-60" size={18} />{item}</p>)}
               </div>
             </div>
           </section>
@@ -441,7 +443,7 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             </div>
           </div>
         </aside>
-      </section>
+      </div></section>
 
       <StickyTourActions tour={tour} />
       <div className="h-20 lg:hidden" aria-hidden="true" />

@@ -25,7 +25,7 @@ export function Footer() {
     ["Cancellation", "/cancellation-policy"]
   ];
   return (
-    <footer className="night-sky text-white">
+    <footer className="night-sky mountain-silhouette text-white">
       <div className="container-page relative z-10 grid gap-10 py-16 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.25fr]">
         <div>
           <div className="flex items-center gap-3">
