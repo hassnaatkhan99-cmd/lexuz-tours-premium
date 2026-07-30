@@ -29,7 +29,10 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
   },
   verification: {
-    google: "b-8Z_3m32ZPgYpeQnvjOgOfQk1QmORNYK2iBVjnP8W0"
+    google: "b-8Z_3m32ZPgYpeQnvjOgOfQk1QmORNYK2iBVjnP8W0",
+    other: {
+      "facebook-domain-verification": "k0srnh62oggwhxncg0zyb75usylqtd"
+    }
   },
   openGraph: {
     title: "Lexuz Tours & Adventures",
