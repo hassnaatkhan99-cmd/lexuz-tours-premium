@@ -87,6 +87,30 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
     { name: "Public Trips", path: "/public-trips" },
     { name: tour.title, path: `/tours/${tour.slug}` }
   ];
+  const tourOffers = tour.prices.flatMap((tier) => {
+    const offers = [{
+      "@type": "Offer",
+      priceCurrency: "PKR",
+      price: tier.islamabadPrice,
+      availability: "https://schema.org/InStock",
+      url: absoluteUrl(`/tours/${tour.slug}#from-islamabad`),
+      category: `${tier.label} from Islamabad / Rawalpindi`,
+      seller: { "@id": "https://www.lexuztours.com/#organization" }
+    }];
+    const lhr = lahorePrice(tour, tier);
+    if (lhr) {
+      offers.push({
+        "@type": "Offer",
+        priceCurrency: "PKR",
+        price: lhr,
+        availability: "https://schema.org/InStock",
+        url: absoluteUrl(`/tours/${tour.slug}#from-lahore`),
+        category: `${tier.label} from Lahore`,
+        seller: { "@id": "https://www.lexuztours.com/#organization" }
+      });
+    }
+    return offers;
+  });
   const touristTripSchema = {
     "@context": "https://schema.org",
     "@type": "TouristTrip",
@@ -103,37 +127,8 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
         name: tour.category === "one-day" ? `Journey Part ${index + 1}` : `Day ${index + 1}`,
         description: item
       }))
-    }
-  };
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${tour.title} Tour`,
-    description: tour.overview,
-    image: absoluteUrl(tour.heroImage),
-    brand: { "@id": "https://www.lexuztours.com/#organization" },
-    offers: tour.prices.flatMap((tier) => {
-      const offers = [{
-        "@type": "Offer",
-        priceCurrency: "PKR",
-        price: tier.islamabadPrice,
-        availability: "https://schema.org/InStock",
-        url: absoluteUrl(`/tours/${tour.slug}#from-islamabad`),
-        category: `${tier.label} from Islamabad / Rawalpindi`
-      }];
-      const lhr = lahorePrice(tour, tier);
-      if (lhr) {
-        offers.push({
-          "@type": "Offer",
-          priceCurrency: "PKR",
-          price: lhr,
-          availability: "https://schema.org/InStock",
-          url: absoluteUrl(`/tours/${tour.slug}#from-lahore`),
-          category: `${tier.label} from Lahore`
-        });
-      }
-      return offers;
-    })
+    },
+    offers: tourOffers
   };
 
   return (
@@ -141,7 +136,6 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd(breadcrumbItems)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildFaqSchema(faqs)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristTripSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
 
       <section className="relative overflow-hidden bg-forest-950 text-white">
         <div className="absolute inset-0">
