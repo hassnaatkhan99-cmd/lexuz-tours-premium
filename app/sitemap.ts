@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "@/data/blogPosts";
 import { cityHubs } from "@/data/cityHubs";
 import { company } from "@/data/company";
+import { seoLandingPages } from "@/data/seoLandingPages";
 import { tours } from "@/data/tours";
 
 type SitemapRoute = {
@@ -49,5 +51,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9
     })),
+    ...seoLandingPages.map((page) => ({
+      url: url(`/${page.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.8
+    })),
+    ...blogPosts.map((post) => ({
+      url: url(`/blog/${post.slug}`),
+      changeFrequency: "monthly" as const,
+      priority: 0.7
+    }))
   ];
 }

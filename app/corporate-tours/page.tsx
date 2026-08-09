@@ -17,7 +17,8 @@ export default function CorporateToursPage() {
       overview={[
         "Corporate travel needs a different level of organisation from a normal public trip.",
         "Lexuz plans corporate tours for teams that need reliable transport, coordinated pickup, hotel support and a clear route plan. The goal is to keep the experience enjoyable for staff while reducing the planning pressure on company representatives.",
-        "Whether the trip is a team retreat, annual staff tour, executive mountain escape or a private company movement, the team can shape the route, duration and comfort level around your group."
+        "Whether the trip is a team retreat, annual staff tour, executive mountain escape or a private company movement, the team can shape the route, duration and comfort level around your group.",
+        "Before requesting a quotation, define the trip purpose and provide the group size, departure city, date range, room-sharing expectations, meal needs and any accessibility requirements. Nominate one authorised company coordinator, and have any special request confirmed in the final proposal."
       ]}
       audienceTitle="Designed for teams and organisations"
       audiences={["Companies", "Team building groups", "Annual retreats", "Executive travel", "Conferences", "Staff trips"]}
@@ -41,7 +42,8 @@ export default function CorporateToursPage() {
         { question: "Can Lexuz arrange hotels for our staff?", answer: "Yes. Hotel arrangements can be included based on the comfort level and budget agreed before confirmation." },
         { question: "Can a company trip start from Lahore?", answer: "Yes. Multi-day private and corporate tours can be planned from Islamabad / Rawalpindi or Lahore." },
         { question: "Can meals be upgraded for a corporate group?", answer: "Meal expectations can be discussed before quotation so the final plan matches your group requirements." },
-        { question: "How many people can travel?", answer: "Group size depends on transport availability and route plan. Share your expected number and the team will guide you." }
+        { question: "How many people can travel?", answer: "Group size depends on transport availability and route plan. Share your expected number and the team will guide you." },
+        { question: "Is vehicle branding included in every corporate tour?", answer: "No. Any branding or other special arrangement must be requested and confirmed in the quotation." }
       ]}
       ctaTitle="Let’s plan your company trip"
       ctaCopy="Send your destination, travel dates and staff count. The Lexuz team will prepare a customised itinerary and quotation."

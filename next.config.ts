@@ -12,6 +12,13 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+  async redirects() {
+    return [
+      { source: "/honeymoon-tours-pakistan", destination: "/honeymoon-tours", permanent: true },
+      { source: "/corporate-tours-pakistan", destination: "/corporate-tours", permanent: true },
+      { source: "/university-tours-pakistan", destination: "/university-tours", permanent: true }
+    ];
+  },
   async headers() {
     const contentSecurityPolicy = [
       "default-src 'self'",

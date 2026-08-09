@@ -1,104 +1,127 @@
+export type BlogSection = { title: string; paragraphs: string[] };
 export type BlogPost = {
   slug: string;
   title: string;
   description: string;
   category: string;
+  searchIntent: string;
   relatedLinks: { label: string; href: string }[];
+  sections: BlogSection[];
 };
 
-export type BlogSection = {
-  title: string;
-  paragraphs: string[];
-};
-
-const baseLinks = [
-  { label: "Public Trips", href: "/public-trips" },
-  { label: "Price List", href: "/price-list" },
+const links = (items: [string, string][]) => [
+  ...items.map(([label, href]) => ({ label, href })),
+  { label: "Current public trips", href: "/public-trips" },
   { label: "Contact Lexuz", href: "/contact" }
 ];
 
+const post = (slug: string, title: string, description: string, searchIntent: string, related: [string, string][], sections: BlogSection[]): BlogPost => ({
+  slug, title, description, searchIntent, category: "Lexuz Travel Guide", relatedLinks: links(related), sections
+});
+
 export const blogPosts: BlogPost[] = [
-  ["best-time-to-visit-hunza-valley", "Best Time to Visit Hunza Valley", "A seasonal guide to Hunza weather, road access, blossom, autumn colors and public trip planning."],
-  ["complete-skardu-travel-guide", "Complete Skardu Travel Guide", "Plan Skardu with route notes, lake highlights, desert sightseeing, travel time and booking tips."],
-  ["swat-kalam-travel-guide", "Swat Kalam Travel Guide", "A practical guide for Kalam, Ushu Forest, Mahodand Lake and short Swat public trips."],
-  ["kumrat-valley-travel-guide", "Kumrat Valley Travel Guide", "Understand Kumrat routes, forest stays, river scenery, access conditions and adventure expectations."],
-  ["top-places-to-visit-in-northern-pakistan", "Top Places to Visit in Northern Pakistan", "Compare Hunza, Skardu, Swat, Kashmir, Naran Kaghan, Fairy Meadows and Kumrat."],
-  ["hunza-vs-skardu", "Hunza vs Skardu", "A simple comparison for travelers choosing between Hunza Valley and Skardu packages."],
-  ["fairy-meadows-travel-guide", "Fairy Meadows Travel Guide", "Nanga Parbat views, meadow stays, access conditions and what to expect on the journey."],
-  ["naran-kaghan-travel-guide", "Naran Kaghan Travel Guide", "Route guidance, weather notes and sightseeing expectations for Naran Kaghan tours."],
-  ["kashmir-travel-guide", "Kashmir Travel Guide", "Plan Neelum Valley, Arang Kel, Ganga Choti and Azad Kashmir mountain escapes."],
-  ["family-tours-in-pakistan", "Family Tours in Pakistan", "How to compare road comfort, trip pacing and practical family travel needs across northern Pakistan."],
-  ["honeymoon-destinations-in-pakistan", "Honeymoon Destinations in Pakistan", "Romantic destinations, private planning tips and couple-friendly travel ideas."],
-  ["corporate-retreat-destinations", "Corporate Retreat Destinations", "Plan company retreats with transport, hotels, group coordination and productive downtime."],
-  ["university-trip-planning-guide", "University Trip Planning Guide", "Student trip planning essentials for safety, approvals, budgets and group movement."],
-  ["budget-travel-guide-pakistan", "Budget Travel Guide Pakistan", "How to plan Pakistan tours with transparent pricing and smart travel choices."],
-  ["road-trip-guide-northern-areas", "Road Trip Guide Northern Areas", "Road travel expectations, packing, long drives and route comfort for northern Pakistan."],
-  ["babusar-pass-travel-guide", "Babusar Pass Travel Guide", "Seasonal access, scenery and route planning notes for Babusar Pass travelers."],
-  ["attabad-lake-travel-guide", "Attabad Lake Travel Guide", "What to expect at Attabad Lake, boating options, photography and Hunza route planning."],
-  ["deosai-plains-travel-guide", "Deosai Plains Travel Guide", "A high-altitude guide to Deosai planning, weather windows and Skardu add-ons."],
-  ["shogran-siri-paye-travel-guide", "Shogran Siri Paye Travel Guide", "One-day and short-trip guidance for Shogran, Siri Paye and Kiwai route travel."],
-  ["ganga-choti-travel-guide", "Ganga Choti Travel Guide", "A practical guide to Ganga Choti, Kashmir views and same-day travel from Islamabad."]
-].map(([slug, title, description]) => ({ slug, title, description, category: "Lexuz Travel Guide", relatedLinks: baseLinks }));
+  post("best-time-to-visit-hunza-valley", "Best Time to Visit Hunza Valley", "Compare Hunza’s travel seasons by scenery, temperature expectations and road-access risk before choosing dates.", "Choose when to visit Hunza based on scenery and travel tolerance", [["Hunza package options", "/hunza-tour-packages"], ["Hunza public tour", "/tours/hunza-valley"]], [
+    { title: "Choose the season by the experience", paragraphs: ["There is no single best month for every Hunza visitor. Spring appeals to people seeking blossom scenery, summer generally offers the broadest sightseeing window, autumn is chosen for changing foliage, and winter suits visitors prepared for cold conditions and fewer accessible side routes. Treat these as planning patterns, not a live road or weather report.", "Your tolerance for long drives and changing mountain conditions matters as much as the calendar. Confirm the latest route position shortly before departure, especially when a plan depends on a high pass or upper-valley road."] },
+    { title: "Match the season to your priorities", paragraphs: ["Families and first-time visitors often value easier movement and longer daylight over a specific colour season. Photographers may accept colder mornings for blossom or autumn scenes. Travellers seeking snow should expect a more limited plan rather than assuming every summer attraction remains reachable.", "Karimabad, the fort surroundings and Attabad Lake offer different experiences, so decide which stops are essential before choosing dates."] },
+    { title: "What to confirm before booking", paragraphs: ["Check the current itinerary, departure city, trip duration, included services and any route-dependent stops on the official tour page. Ask about recent access rather than relying on an old social post. Optional activities and local transport should be budgeted separately where the package says they are excluded."] }
+  ]),
+  post("complete-skardu-travel-guide", "Skardu Travel Guide: How to Plan the Route", "Plan a Skardu journey around travel time, contrasting landscapes, seasonal access and realistic sightseeing priorities.", "Plan a first Skardu trip and choose realistic sightseeing priorities", [["Skardu package options", "/skardu-tour-packages"], ["Skardu public tour", "/tours/skardu"]], [
+    { title: "Why Skardu needs a considered itinerary", paragraphs: ["Skardu combines lakes, cultivated valleys, dry mountain scenery and desert landscapes across a wide area. A useful plan groups nearby stops instead of treating every attraction as a quick city visit. Road travel is a major part of the experience, so leave room for comfort breaks and changing conditions.", "Lower Kachura, Upper Kachura, the Shangrila area and the Cold Desert each offer a different setting. Decide whether your priority is relaxed sightseeing, photography or adding a seasonal excursion before filling the schedule."] },
+    { title: "Road journey or flight", paragraphs: ["A road itinerary shows more of the northern route but requires more time and patience. A flight can shorten the main transfer, yet mountain weather can affect schedules. Keep a flexible buffer whichever mode you choose and do not build a tightly timed onward commitment around an uncertain arrival."] },
+    { title: "Practical preparation", paragraphs: ["Carry layers, sun protection, personal medicine and a small day bag. Ask which attractions are part of the confirmed itinerary and which are optional or access-dependent. Lexuz-specific durations, departures, prices and inclusions should be checked only on the current Skardu tour page."] }
+  ]),
+  post("swat-kalam-travel-guide", "Swat and Kalam Travel Guide", "Understand the Swat-to-Kalam journey, local-access attractions and the trade-offs of a short mountain break.", "Plan a short Swat and Kalam trip", [["Swat Kalam tour options", "/swat-kalam-tours"], ["Swat Kalam public tour", "/tours/swat-kalam-mahodand"]], [
+    { title: "How the destination is structured", paragraphs: ["Swat is a broad region; Kalam is a mountain base farther up the valley, not a quick stop beside the main motorway. A short tour therefore balances drive time with time in Kalam. Bahrain and riverside scenery can form part of the route, while Ushu Forest and Mahodand Lake depend on local conditions and access."] },
+    { title: "Set the right expectations", paragraphs: ["This route can suit first-time northern travellers who want a shorter break, but local excursions may be rougher than the main highway journey. Families should ask about walking, local transfers and the planned pace. A weather-dependent attraction should be treated as conditional rather than guaranteed."] },
+    { title: "Before departure", paragraphs: ["Pack a warm layer even when the cities are hot, keep motion-sickness medicine accessible if needed, and use footwear suitable for uneven ground. Review the live tour record for departure days, current price and package inclusions instead of relying on this general guide."] }
+  ]),
+  post("kumrat-valley-travel-guide", "Kumrat Valley Travel Guide", "Prepare for Kumrat’s forest-and-river setting, local road transfers and a more rustic travel style.", "Understand Kumrat access and whether its rustic travel style is suitable", [["Kumrat tour options", "/kumrat-valley-tours"], ["Kumrat Valley public tour", "/tours/kumrat-valley"]], [
+    { title: "Kumrat is an outdoor-first destination", paragraphs: ["Kumrat is valued for forest, river and meadow scenery rather than polished resort infrastructure. The journey reaches the Upper Dir region before local road conditions shape the final approach. Visitors should be comfortable with a less predictable pace and simpler facilities than they might expect in a developed hill station."] },
+    { title: "Kumrat and Jahaz Banda are different plans", paragraphs: ["A valley-focused Kumrat visit prioritises forest and riverside time. Jahaz Banda and Katora Lake make a more active highland itinerary and demand a separate assessment of terrain, walking and local access. Do not assume both experiences fit comfortably into the same short trip."] },
+    { title: "Who should reconsider", paragraphs: ["Travellers with mobility limitations, very young children or a strong preference for smooth roads should discuss the route in detail before booking. Confirm accommodation style, local transfers, excluded jeep costs and the physical expectations of any lake excursion on the relevant tour page."] }
+  ]),
+  post("top-places-to-visit-in-northern-pakistan", "Where to Go in Northern Pakistan: A Practical Comparison", "Compare major northern destinations by trip length, scenery, road intensity and traveller fit—not by a generic ranking.", "Compare northern Pakistan destinations before choosing one", [["Browse destinations", "/destinations"], ["Compare official prices", "/price-list"]], [
+    { title: "Choose by travel style, not a top-ten list", paragraphs: ["Hunza offers heritage stops and Karakoram scenery; Skardu combines lakes, valleys and dry mountain landscapes; Swat and Naran Kaghan can work for shorter first visits; Kashmir emphasises green river valleys; Kumrat and Fairy Meadows suit travellers accepting more demanding access. None is universally ‘best’."] },
+    { title: "Use time honestly", paragraphs: ["Long-distance destinations lose their value when squeezed into too few days. Count the outward and return journeys, not only nights at the destination. A short break is often better spent on a closer route, while Hunza, Skardu and Fairy Meadows reward a larger time allowance."] },
+    { title: "A simple decision checklist", paragraphs: ["Compare total road time, local-transfer requirements, walking level, seasonal risk, room expectations and the interests of the least-mobile group member. Then use current tour pages to compare real departures, inclusions and prices. This guide provides orientation; those product records are the source for Lexuz offers."] }
+  ]),
+  post("hunza-vs-skardu", "Hunza vs Skardu: Which Trip Fits You?", "Compare Hunza and Skardu by landscape, sightseeing style, road journey and the amount of time available.", "Choose between Hunza and Skardu", [["Hunza packages", "/hunza-tour-packages"], ["Skardu packages", "/skardu-tour-packages"]], [
+    { title: "The core difference", paragraphs: ["Hunza’s appeal centres on the Karakoram Highway corridor, Karimabad’s heritage setting, Attabad Lake and upper-valley views. Skardu spreads its highlights across lakes, cultivated pockets, desert scenery and side valleys. Hunza can feel more linear; Skardu rewards grouping dispersed attractions."] },
+    { title: "Choose by pace and interests", paragraphs: ["Choose Hunza if heritage stops and a scenic road corridor are central to your plan. Choose Skardu if contrasting landscapes and a broader sightseeing base matter more. Both involve substantial northern travel, cool evenings and access that can change with conditions."] },
+    { title: "Compare the actual offers", paragraphs: ["Do not decide from destination names alone. Compare the current Lexuz itinerary, duration, departure city and included services on each tour page. If the group has limited days, the more realistic schedule is usually the better choice."] }
+  ]),
+  post("fairy-meadows-travel-guide", "Fairy Meadows Travel Guide", "Assess the local jeep approach, trek, simple stays and changing mountain conditions before planning Fairy Meadows.", "Understand Fairy Meadows access and physical demands", [["Fairy Meadows packages", "/fairy-meadows-tours"], ["Fairy Meadows public tour", "/tours/fairy-meadows"]], [
+    { title: "The view comes after a demanding approach", paragraphs: ["Fairy Meadows is known for views toward Nanga Parbat, but it is not a drive-up viewpoint. The journey typically involves reaching the Raikot area, a local jeep section and onward walking. Conditions and operating arrangements can change, so confirm the current access sequence before departure."] },
+    { title: "Check your suitability", paragraphs: ["Uneven ground, altitude, simple accommodation and limited luggage capacity are important parts of the decision. Travellers with mobility, breathing or medical concerns should seek appropriate professional advice and discuss the route with the organiser. Good city fitness does not remove the need for a steady pace."] },
+    { title: "Pack for the access, not just photographs", paragraphs: ["Use secure walking shoes, layers and a compact bag; keep water, personal medicine and rain protection accessible. Budget local jeep charges separately where excluded. Treat optional viewpoint walks as optional, not as a test the whole group must complete."] }
+  ]),
+  post("naran-kaghan-travel-guide", "Naran and Kaghan Travel Guide", "Plan a Naran Kaghan visit around the valley route, seasonal road access and local excursions.", "Plan a first Naran Kaghan trip", [["Naran Kaghan options", "/naran-kaghan-tours"], ["Naran Kaghan public tour", "/tours/naran-kaghan"]], [
+    { title: "Understand the valley route", paragraphs: ["The Kaghan Valley route follows the Kunhar River through a sequence of towns and mountain scenery, with Naran serving as a busy visitor base when accessible. Saif-ul-Malook and high-pass plans involve separate local or seasonal access considerations; they should not be assumed from the words ‘Naran tour’ alone."] },
+    { title: "When a shorter plan works", paragraphs: ["Naran Kaghan can suit families and first-time visitors when the main valley is open and the itinerary leaves enough time for the drive. Crowded periods can change journey times and the feel of central Naran. Travellers seeking quiet scenery may prefer stops outside the busiest bazaar hours."] },
+    { title: "Confirm the variable parts", paragraphs: ["Ask which local excursions are included, which require separate transport, and what happens if access changes. Review the current tour page for Lexuz dates and inclusions. Carry layers and avoid committing to a high pass without a recent access check."] }
+  ]),
+  post("kashmir-travel-guide", "Azad Kashmir Travel Guide", "Choose between Neelum Valley and Ganga Choti routes by journey style, local access and available time.", "Plan an Azad Kashmir trip and distinguish its main routes", [["Kashmir package options", "/kashmir-tour-packages"], ["Kashmir Arang Kel tour", "/tours/kashmir-arang-kel"]], [
+    { title: "Two different Kashmir experiences", paragraphs: ["Neelum Valley is a long river-valley journey with places such as Keran and Sharda leading toward Arang Kel access. Ganga Choti belongs to a different route and can suit a shorter mountain outing. Combining the names without allowing for geography creates an unrealistic itinerary."] },
+    { title: "Plan around road movement", paragraphs: ["Valley roads, traffic and local transfers can make map estimates unreliable. Arang Kel access may involve local transport and walking depending on arrangements and conditions. Ask about the physical level and do not treat a named attraction as guaranteed when weather or access can intervene."] },
+    { title: "Travel respectfully", paragraphs: ["Dress and photograph respectfully in villages, keep litter with you and allow time for local service. Use the specific Lexuz tour record to verify what is offered; this guide does not replace current departures, prices or route notices."] }
+  ]),
+  post("family-tours-in-pakistan", "How to Choose a Family Tour in Pakistan", "Evaluate road time, room arrangements, food, mobility and contingency planning before booking a family trip.", "Choose a northern Pakistan trip suitable for a family", [["Family tours", "/family-tours"], ["Compare destinations", "/destinations"]], [
+    { title: "Plan for the least flexible traveller", paragraphs: ["A family plan should be built around the youngest child, oldest adult or anyone with mobility or medical needs—not the most adventurous person. Ask about continuous driving time, stairs, walking surfaces, room sharing and access to personal medicines before choosing a destination."] },
+    { title: "Questions that prevent surprises", paragraphs: ["Confirm room occupancy, meal inclusions, luggage space, local transfers and what happens when weather changes the itinerary. Carry familiar snacks for children and keep essential medicine in a day bag. Never assume a remote stop will have the products your family uses."] },
+    { title: "Public or private", paragraphs: ["Public trips can offer a clear shared schedule and published price. Private arrangements can give a family more control over pauses and pace. Lexuz-specific options should be discussed through the family-tour page or direct contact; no family suitability is guaranteed by this general guide."] }
+  ]),
+  post("honeymoon-destinations-in-pakistan", "How to Choose a Honeymoon Destination in Pakistan", "Compare scenery, privacy, road intensity and seasonal uncertainty before selecting a northern honeymoon route.", "Compare honeymoon destinations and choose a travel style", [["Honeymoon planning", "/honeymoon-tours"]], [
+    { title: "Start with the experience you both want", paragraphs: ["Hunza can combine heritage and lake scenery, Skardu offers contrasting landscapes, and Naran Kaghan can suit a shorter seasonal break. The right choice depends on available days and comfort with long road travel—not on which destination photographs best."] },
+    { title: "Privacy requires specific questions", paragraphs: ["Ask whether the arrangement is private or part of a public group, how rooms are allocated, and how much free time the itinerary allows. Do not infer a room category, decoration or special service unless it appears in the confirmed proposal."] },
+    { title: "Protect the trip from overplanning", paragraphs: ["Leave space for rest after long transfers and keep weather-dependent activities flexible. Discuss the budget and must-see places before booking. The primary Lexuz honeymoon page is the correct place to request a tailored arrangement."] }
+  ]),
+  post("corporate-retreat-destinations", "How to Choose a Corporate Retreat Destination", "Select a company-trip destination using travel time, group purpose, communication and operational fit.", "Choose a destination and format for a company retreat", [["Corporate tour service", "/corporate-tours"]], [
+    { title: "Define the retreat outcome first", paragraphs: ["A reward trip, leadership workshop and large staff outing need different schedules. Decide whether the priority is rest, team interaction, a formal session or sightseeing. Only then compare destinations; a dramatic long-distance route can undermine a short working retreat."] },
+    { title: "Operational questions", paragraphs: ["Provide group size, departure city, preferred dates, room-sharing expectations, meal needs and any meeting-space requirement. Nominate one company coordinator and agree how last-minute updates will reach everyone. Branding or special arrangements must be confirmed, not assumed."] },
+    { title: "Choose a realistic radius", paragraphs: ["Closer destinations can protect working time and reduce fatigue; longer routes suit groups with more leave. Use the corporate service page for a scoped proposal. This article offers a decision framework, not a promise of facilities at any destination."] }
+  ]),
+  post("university-trip-planning-guide", "University Trip Planning Guide", "A practical checklist for approvals, participant records, supervision, budgets and group communication.", "Plan and approve a university or college trip", [["University tour service", "/university-tours"]], [
+    { title: "Build the approval pack", paragraphs: ["Record the purpose, proposed dates, route, participant count, supervisors, emergency contacts, consent process and total cost assumptions. The institution should decide its own approval, safeguarding and supervision requirements; a tour operator cannot replace those responsibilities."] },
+    { title: "Control the participant list", paragraphs: ["Use one authorised coordinator, a final attendance list and a clear deadline for changes. Record dietary or mobility needs through an appropriate private process. Avoid circulating identity documents in open chat groups."] },
+    { title: "Set group rules before departure", paragraphs: ["Publish reporting times, luggage limits, room allocation, behaviour expectations and an escalation contact. Confirm transport, meals, accommodation and exclusions in writing. Ask Lexuz for a scoped student-group proposal through the primary university-tour page."] }
+  ]),
+  post("budget-travel-guide-pakistan", "Budgeting for a Northern Pakistan Tour", "Build a realistic trip budget that separates the advertised package from local transport, activities and personal spending.", "Estimate the full cost of a northern Pakistan trip", [["Official Lexuz price list", "/price-list"], ["Booking guide", "/how-to-book"]], [
+    { title: "Start with the current package record", paragraphs: ["Use the current tour page—not a screenshot or old post—for the Lexuz price, departure city and inclusions. Prices vary by route and departure option. This guide deliberately does not quote figures because the official data is maintained elsewhere."] },
+    { title: "Add the costs outside the package", paragraphs: ["Allow for excluded jeep or local transport, entry tickets, optional activities, extra meals, personal shopping and travel to the pickup area. Keep an emergency reserve rather than spending the full budget before departure."] },
+    { title: "Cheap and good value are not identical", paragraphs: ["A shorter realistic trip may provide more usable sightseeing than an underfunded long route. Compare total days, road time and included services alongside price. Confirm the cancellation terms before paying and retain your booking reference."] }
+  ]),
+  post("road-trip-guide-northern-areas", "Northern Pakistan Road Trip Guide", "Prepare for long mountain drives, route variability, comfort stops and responsible roadside travel.", "Prepare for a road journey through northern Pakistan", [["Browse public road tours", "/public-trips"], ["Travel policies", "/policies"]], [
+    { title: "Mountain travel is not motorway travel", paragraphs: ["Distance alone does not predict arrival time. Traffic, roadwork, weather, meal breaks and narrow sections all matter. Keep the first and last travel days realistic and avoid making fixed commitments immediately after the expected return."] },
+    { title: "Pack a useful day bag", paragraphs: ["Keep identification, personal medicine, water, a warm layer, charging cable and power bank with you. Store larger luggage separately. People prone to motion sickness should prepare before winding road sections and choose a suitable seat where arrangements allow."] },
+    { title: "Be a responsible passenger", paragraphs: ["Return to the vehicle on time, follow stop instructions and never request unsafe roadside photography. Take rubbish with you and respect local communities. The operator’s current itinerary remains subject to actual access and conditions."] }
+  ]),
+  post("babusar-pass-travel-guide", "Babusar Pass Travel Planning Guide", "Understand why Babusar Pass is seasonal and how to plan a route that remains useful if access changes.", "Assess Babusar Pass access and contingency planning", [["Naran Kaghan guide", "/naran-kaghan-tours"], ["Hunza tour route", "/tours/hunza-valley"]], [
+    { title: "Treat the pass as conditional", paragraphs: ["Babusar Pass links the Kaghan side with the northern highway corridor when the road is open. Snow, weather and official access decisions make it seasonal. Never use an old opening date as proof of current access; check reliable current information close to travel."] },
+    { title: "Do not build a brittle itinerary", paragraphs: ["A responsible plan has an alternative route or accepts that the pass may be removed from sightseeing. Allow extra time for traffic and stops. High elevation can feel cold and uncomfortable even when lower valleys are warm."] },
+    { title: "Prepare for a brief high stop", paragraphs: ["Carry layers and avoid overexertion. Follow official and tour-manager instructions, particularly around parking and road edges. Confirm whether the pass is a transit route, a proposed stop or outside the package entirely."] }
+  ]),
+  post("attabad-lake-travel-guide", "Attabad Lake Travel Guide", "Plan an Attabad Lake stop as part of a wider Hunza itinerary, with optional activities and road safety in mind.", "Plan an Attabad Lake visit within a Hunza trip", [["Hunza destination guide", "/hunza-tour-packages"], ["Hunza public tour", "/tours/hunza-valley"]], [
+    { title: "Where Attabad fits", paragraphs: ["Attabad Lake lies on the upper Hunza route and is normally planned alongside a broader Hunza journey rather than as a stand-alone trip from Islamabad. The approach itself forms part of the Karakoram landscape, so allow time beyond a quick photograph."] },
+    { title: "Activities are not automatic inclusions", paragraphs: ["Boating and other local activities may be available, but availability, price and operating conditions can change. Check locally and confirm what the tour package includes before paying. Use approved operators and follow life-jacket instructions."] },
+    { title: "Photography and comfort", paragraphs: ["Light and wind can change quickly near the water. Keep a warm layer and secure loose belongings. Stay within designated viewing areas and combine the stop with nearby places only when the day’s road schedule permits."] }
+  ]),
+  post("deosai-plains-travel-guide", "Deosai Plains Travel Planning Guide", "Prepare for a seasonal high-altitude excursion from the Skardu region, including rough access and limited facilities.", "Decide whether to add Deosai to a Skardu trip", [["Skardu destination guide", "/skardu-tour-packages"], ["Skardu public tour", "/tours/skardu"]], [
+    { title: "Deosai is an excursion, not central Skardu", paragraphs: ["Deosai is a high plateau reached from the wider Skardu region when seasonal access permits. The journey can involve rough road travel and long stretches with limited facilities. It needs a dedicated time allowance rather than being added casually to a crowded sightseeing day."] },
+    { title: "Consider altitude and exposure", paragraphs: ["Cold, wind and strong sun can occur in the same outing. Carry layers, sun protection, water and personal medicine. Anyone concerned about altitude or health suitability should obtain appropriate professional advice before travel."] },
+    { title: "Protect the landscape", paragraphs: ["Follow park and local instructions, keep distance from wildlife and remove all litter. Confirm current access, transport requirements and whether the excursion is included; a standard Skardu package does not automatically promise Deosai."] }
+  ]),
+  post("shogran-siri-paye-travel-guide", "Shogran and Siri Paye Travel Guide", "Plan the Kiwai, Shogran and Siri Paye sequence with local transport and weather-dependent access in mind.", "Plan a short Shogran and Siri Paye trip", [["Naran Kaghan options", "/naran-kaghan-tours"], ["Shogran Siri Paye tour", "/tours/shogran-siri-paye"]], [
+    { title: "Know the route sequence", paragraphs: ["Kiwai is the lower access point, Shogran is the hill-station base and Siri Paye is the higher meadow excursion. Reaching the valley does not mean every vehicle continues to each level. Local transport and road conditions affect the upper journey."] },
+    { title: "Good fit for a short break", paragraphs: ["This route can suit travellers with limited time who want green mountain scenery without committing to Hunza or Skardu distances. The upper excursion can still be bumpy and weather-dependent, so families should ask about access and walking before booking."] },
+    { title: "Pack and confirm", paragraphs: ["Carry a warm or rain layer and shoes for uneven ground. Confirm excluded jeep charges, the exact sightseeing plan and the fallback if the upper route is unavailable. Use the official tour page for current Lexuz pricing and departure information."] }
+  ]),
+  post("ganga-choti-travel-guide", "Ganga Choti Travel Guide", "Assess Ganga Choti’s approach, local access and walking expectations before choosing a short Kashmir trip.", "Plan a Ganga Choti outing and understand its physical demands", [["Kashmir package options", "/kashmir-tour-packages"], ["Ganga Choti public tour", "/tours/ganga-choti"]], [
+    { title: "A distinct Kashmir route", paragraphs: ["Ganga Choti is approached through the Bagh side of Azad Kashmir and should not be confused with a Neelum Valley itinerary. It can work as a shorter mountain trip, but local road conditions and the final approach determine how much walking is involved."] },
+    { title: "Decide by ability, not only views", paragraphs: ["Ask where the group leaves the main vehicle, whether local transport is planned and what terrain remains on foot. Weather can alter the final viewpoint plan. Travellers with mobility or health concerns should discuss suitability before committing."] },
+    { title: "Travel with a fallback", paragraphs: ["Carry layers, water, sun protection and walking shoes. Avoid exposed edges and return at the agreed time. The specific tour page is the authority for Lexuz inclusions, price and departure; this article provides general planning context only."] }
+  ])
+];
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
-export function buildBlogSections(post: BlogPost): BlogSection[] {
-  const focus = post.title.toLowerCase();
-  return [
-    {
-      title: "Travel Guide Overview",
-      paragraphs: [
-        `${post.title} is written for travelers who want practical, clear and booking-ready guidance before choosing a Pakistan tour package. Lexuz Tours & Adventures plans trips with a focus on comfort, safety, route awareness and honest expectations. Instead of only listing attractive places, this guide explains how the destination or travel style feels, what kind of traveler it suits, how road conditions can affect plans and what you should confirm before booking.`,
-        `The best travel decisions come from matching expectations with the right route. Some places are ideal for families because the road is smoother and hotel access is easier. Some destinations are better for adventure travelers because they involve longer road sections, local transfers, walking, altitude or changing weather. Corporate and university groups need a different planning style: pickup discipline, group communication, reliable transport and simple meal coordination matter as much as sightseeing.`
-      ]
-    },
-    {
-      title: "Who This Trip Suits",
-      paragraphs: [
-        `If you are comparing northern Pakistan tours, use this guide to think beyond the headline destination. Families should look for manageable road timing, clean hotel access and a balanced pace. Honeymoon travelers usually prefer scenic rooms, quieter viewpoints and private arrangements. Students and office groups need group-friendly routes where transport, meals and return timing can be controlled.`,
-        `For ${focus.includes("corporate") ? "corporate retreats" : focus.includes("university") ? "student groups" : focus.includes("honeymoon") ? "couple travel" : "public and private tours"}, Lexuz recommends discussing the travel profile before finalizing. Age group, comfort level, available leave days, season and pickup city all affect the best package. A route that feels perfect for young adventure travelers may not suit a family with small children, while a relaxed family plan may feel too slow for photographers or trekking-minded guests.`
-      ]
-    },
-    {
-      title: "Season, Weather And Road Planning",
-      paragraphs: [
-        `Weather is one of the most important parts of Pakistan travel planning. Mountain areas can move from sunshine to cold wind quickly, especially near lakes, passes, forests and higher valleys. Summer is popular for easier family travel, autumn is excellent for photography, spring can offer soft colors and winter is best for travelers who specifically want snow and understand seasonal limitations.`,
-        `Road timing should be treated realistically. Google Maps can be useful for orientation, but mountain routes depend on traffic, roadwork, weather, daylight, local access and meal stops. Lexuz plans public trips with practical margins so travelers are not promised impossible timings. This helps reduce stress during long drives and creates more confidence before departure.`
-      ]
-    },
-    {
-      title: "What To Pack",
-      paragraphs: [
-        `A smart packing list keeps the journey comfortable without making luggage difficult to manage. Carry CNIC or passport, layered clothing, comfortable shoes, personal medicine, power bank, phone charger, sunscreen, sunglasses and a small day bag. In winter or high-altitude routes, add gloves, cap, thermal layer and an extra pair of socks.`,
-        `Avoid carrying oversized luggage on public trips because space is shared. Keep essentials such as medicines, documents, snacks and charging cables in a small bag that stays with you. Families should pack children’s essentials separately, and photographers should bring backup batteries because cold weather drains devices faster than expected.`
-      ]
-    },
-    {
-      title: "Inclusions And Exclusions To Check",
-      paragraphs: [
-        `When planning with Lexuz, always check the departure city, duration, inclusions, exclusions and seasonal access. Multi-day tours include luxury transport, fuel charges, driver expenses, hotel accommodation, breakfast, dinner, bonfire, BBQ night, tour management and basic first aid support according to the selected package. One-day trips include luxury transport, fuel charges, driver expenses, toll taxes and dinner.`,
-        `Jeep charges are not included. Entry tickets, personal expenses and extra meals remain separate where applicable. This separation keeps pricing transparent and helps travelers compare Pakistan tour packages honestly before booking. If a route involves local access, Lexuz explains the practical expectation before confirmation.`
-      ]
-    },
-    {
-      title: "Photography And Travel Experience",
-      paragraphs: [
-        `Northern Pakistan rewards patience. Early morning light, lakeside reflections, forests, snow peaks, roadside viewpoints and local bazaars can become the strongest memories of the trip. Keep your phone charged, carry a power bank and avoid packing so heavily that short scenic stops become difficult. The best photos often come during the travel flow, not only at the famous final viewpoint.`,
-        `Responsible travel matters. Ask before photographing local people, avoid unsafe road edges, do not litter and listen to the tour manager at busy viewpoints. A disciplined group enjoys more stops because the route remains on time and the team can protect the day’s main sightseeing windows.`
-      ]
-    },
-    {
-      title: "Booking With Lexuz",
-      paragraphs: [
-        `The easiest way to book is to open the relevant tour page, review the itinerary and price, then submit the booking form with payment proof. Lexuz also supports WhatsApp booking for travelers who want quick guidance. After submission, the booking enters pending verification and can be tracked with a reference ID on the booking status page.`,
-        `This booking path is useful for travelers comparing travel agency Rawalpindi, travel agency Islamabad, northern Pakistan tours or Pakistan tour packages because it combines clear public information with a real booking process. Customers can review prices, departure days, pickup city options and tour details before committing.`
-      ]
-    }
-  ];
-}
-
-export function buildBlogContent(post: BlogPost) {
-  return buildBlogSections(post).flatMap((section) => section.paragraphs);
-}
+export function getBlogPost(slug: string) { return blogPosts.find((item) => item.slug === slug); }
+export function buildBlogSections(item: BlogPost) { return item.sections; }
+export function buildBlogContent(item: BlogPost) { return item.sections.flatMap((section) => section.paragraphs); }

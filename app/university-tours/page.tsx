@@ -30,7 +30,8 @@ export default function UniversityToursPage() {
       overview={[
         "Student trips need strong coordination because groups move together, timing matters and communication must stay simple.",
         "Lexuz plans university and college tours for class representatives, student societies and departments that want a managed travel experience. The team helps shape the route, transport plan, pickup points, meals, accommodation and sightseeing flow.",
-        "The focus is practical: keep the group comfortable, keep the schedule realistic and keep expectations clear before departure."
+        "The focus is practical: keep the group comfortable, keep the schedule realistic and keep expectations clear before departure.",
+        "The institution remains responsible for its own approvals, consent, safeguarding and supervision requirements. One authorised coordinator should manage the final participant count and communicate dietary, mobility and room-allocation needs through an appropriate private process."
       ]}
       audienceTitle="Built for student groups"
       audiences={["University classes", "College students", "Educational departments", "Student societies", "Graduation trips", "Freshers trips"]}
@@ -54,7 +55,8 @@ export default function UniversityToursPage() {
         { question: "Can female student groups book a private tour?", answer: "Yes. Private group planning can be discussed for female groups, departments and societies." },
         { question: "Can the trip start from Lahore?", answer: "Yes. Multi-day student tours can be planned from Lahore or Islamabad / Rawalpindi." },
         { question: "Can meals be upgraded?", answer: "Meal preferences can be discussed before quotation and included where practical." },
-        { question: "How many students can travel?", answer: "Capacity depends on vehicle availability and route plan. Share your expected group size for guidance." }
+        { question: "How many students can travel?", answer: "Capacity depends on vehicle availability and route plan. Share your expected group size for guidance." },
+        { question: "Does Lexuz replace university approval or supervision?", answer: "No. The institution remains responsible for its own approvals, consent, safeguarding and supervision requirements." }
       ]}
       ctaTitle="Plan a student trip with Lexuz"
       ctaCopy="Share your university name, destination, dates and estimated group size. The team will prepare a practical quotation."

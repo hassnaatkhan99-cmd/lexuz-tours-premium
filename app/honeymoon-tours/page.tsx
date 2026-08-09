@@ -16,7 +16,8 @@ export default function HoneymoonToursPage() {
       overview={[
         "A honeymoon tour should feel private, calm and thoughtfully paced.",
         "Lexuz helps couples plan scenic routes, comfortable transport, accommodation preferences and sightseeing stops without turning the trip into a rushed checklist. The plan can be shaped around privacy, photography, rest time and the destinations you want to experience.",
-        "Whether you want a short romantic escape or a longer northern areas trip, the team can prepare a route and quotation based on your dates and comfort expectations."
+        "Whether you want a short romantic escape or a longer northern areas trip, the team can prepare a route and quotation based on your dates and comfort expectations.",
+        "When requesting a plan, share your departure city, preferred dates, trip length and privacy expectations. Confirm the transport format, room arrangement, meals and activities in the written proposal; decoration, named hotels and special services should not be assumed unless they are explicitly included."
       ]}
       audienceTitle="Designed for private couple travel"
       audiences={["Newly married couples", "Anniversary trips", "Private romantic getaways", "Luxury couple experiences", "Relaxed scenic holidays", "Photography-focused trips"]}
@@ -40,7 +41,8 @@ export default function HoneymoonToursPage() {
         { question: "Can we choose our hotel?", answer: "Hotel preferences can be discussed before quotation so the plan matches your comfort level." },
         { question: "Can a honeymoon tour start from Lahore?", answer: "Yes. Private multi-day tours can be planned from Lahore or Islamabad / Rawalpindi." },
         { question: "Can we add photography stops?", answer: "Yes. Scenic and photography stops can be included where the route and timing allow." },
-        { question: "Is the tour private for the couple?", answer: "Private honeymoon plans are arranged separately from public group departures." }
+        { question: "Is the tour private for the couple?", answer: "Private honeymoon plans are arranged separately from public group departures and should be confirmed in the written proposal." },
+        { question: "Is room decoration included?", answer: "Do not assume decoration or another special service is included. Request it during planning and rely on the final written proposal." }
       ]}
       ctaTitle="Request your honeymoon quote"
       ctaCopy="Tell us your destination, dates and comfort preference. Lexuz will prepare a private couple-focused itinerary and quotation."

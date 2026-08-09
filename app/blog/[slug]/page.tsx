@@ -28,7 +28,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.description,
-    robots: { index: false, follow: true },
     alternates: { canonical: canonical(`/blog/${post.slug}`) },
     openGraph: { title: post.title, description: post.description, url: canonical(`/blog/${post.slug}`), images: [image], type: "article" },
     twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] }
