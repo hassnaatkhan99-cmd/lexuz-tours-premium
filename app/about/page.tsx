@@ -67,7 +67,7 @@ export default function AboutPage() {
       </section>
 
       <section className="container-page grid gap-8 pb-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <Image src={companyImages.office} alt="Lexuz Tours office in Rawalpindi" width={900} height={700} className="h-full max-h-[620px] w-full rounded-dsLg object-cover shadow-ds3" />
+        <Image src={companyImages.office} alt="Lexuz Tours office in Rawalpindi" width={900} height={700} sizes="(min-width: 1024px) 46vw, 100vw" className="h-full max-h-[620px] w-full rounded-dsLg object-cover shadow-ds3" />
         <div>
           <SectionHeading eyebrow="Company story" title="From hand-printed posters to weekly departures" />
           <div className="grid gap-4 text-base leading-8 text-lexuzNeutral-70">
@@ -89,7 +89,7 @@ export default function AboutPage() {
             { src: companyImages.office, alt: "Lexuz Tours office in Rawalpindi", caption: "Lexuz Tours office in Rawalpindi", width: 720, height: 520 }
           ].map((photo) => (
             <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds2">
-              <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-64 w-full object-cover" />
+              <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 33vw, 100vw" className="h-64 w-full object-cover" />
               <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{photo.caption}</figcaption>
             </figure>
           ))}
@@ -124,7 +124,7 @@ export default function AboutPage() {
 
       <section className="container-page grid gap-8 pb-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
         <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds3">
-          <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} className="h-[360px] w-full object-cover" />
+          <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[360px] w-full object-cover" />
           <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{tripPhotos.fleetThreeCoastersNight.caption}</figcaption>
         </figure>
         <div>

@@ -30,7 +30,7 @@ export function Footer() {
       <div className="container-page relative z-10 grid gap-10 py-16 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.25fr]">
         <div>
           <div className="flex items-center gap-3">
-            <Image src="/logo-lexuz-white-20260627.png" alt="Lexuz Tours & Adventures logo" width={72} height={72} className="h-16 w-16 rounded-full bg-white object-contain ring-1 ring-white/20" />
+            <Image src="/logo-lexuz-display.webp" alt="Lexuz Tours & Adventures logo" width={72} height={72} sizes="64px" className="h-16 w-16 rounded-full bg-white object-contain ring-1 ring-white/20" />
             <div><strong className="text-xl font-black uppercase leading-none">Lexuz Tours</strong><p className="text-sm font-bold text-white/75">& Adventures</p></div>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/75">{company.mission}</p>

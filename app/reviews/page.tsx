@@ -34,7 +34,7 @@ export default function ReviewsPage() {
       </section>
       <section className="cinematic-band py-16">
         <div className="container-page grid gap-6 md:grid-cols-2">
-          {photos.map((photo) => <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-white/70 bg-white shadow-ds2"><Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-80 w-full object-cover" /><figcaption className="p-5 text-sm font-black text-brand-primary">{photo.caption}</figcaption></figure>)}
+          {photos.map((photo) => <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-white/70 bg-white shadow-ds2"><Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 33vw, 100vw" className="h-80 w-full object-cover" /><figcaption className="p-5 text-sm font-black text-brand-primary">{photo.caption}</figcaption></figure>)}
         </div>
       </section>
     </>

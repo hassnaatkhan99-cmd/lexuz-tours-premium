@@ -105,7 +105,7 @@ export function BookingForm({ tour, departure }: { tour: Tour; departure: string
           <div className="mt-4">
             <div className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
               <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds1">
-                <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} className="h-56 w-full object-cover" />
+                <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} sizes="(min-width: 1024px) 40vw, 100vw" className="h-56 w-full object-cover" />
                 <figcaption className="px-4 py-3 text-xs font-black leading-5 text-brand-primary">{tripPhotos.fleetThreeCoastersNight.caption}</figcaption>
               </figure>
               {paymentMethods.filter((method) => method.id === paymentMethod).map((method) => <PaymentMethodCard key={method.id} method={method} />)}

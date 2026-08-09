@@ -92,7 +92,7 @@ export function Header() {
     <header className="sticky top-0 z-50 px-3 py-3">
       <div className={`mx-auto flex w-full max-w-[1280px] items-center justify-between gap-4 rounded-[26px] border border-white/65 bg-white/74 px-4 shadow-[0_26px_86px_rgba(7,31,8,.17)] backdrop-blur-[30px] transition-all duration-500 supports-[backdrop-filter]:bg-white/66 sm:px-6 xl:px-8 ${scrolled ? "h-[62px] rounded-[22px] shadow-[0_20px_64px_rgba(7,31,8,.18)]" : "h-[74px]"}`}>
         <Link href="/" className="focus-ring group flex min-w-0 shrink-0 items-center gap-3 rounded-2xl py-1 pl-1 pr-3 transition hover:bg-white/55" aria-label="Lexuz Tours home">
-          <Image src="/logo-lexuz-white-20260627.png" alt="Lexuz Tours & Adventures logo" width={64} height={64} className={`rounded-full bg-white object-contain ring-1 ring-lexuzNeutral-line transition-all duration-300 group-hover:scale-[1.03] ${scrolled ? "h-11 w-11" : "h-12 w-12 sm:h-[52px] sm:w-[52px]"}`} priority />
+          <Image src="/logo-lexuz-display.webp" alt="Lexuz Tours & Adventures logo" width={64} height={64} sizes="64px" className={`rounded-full bg-white object-contain ring-1 ring-lexuzNeutral-line transition-all duration-300 group-hover:scale-[1.03] ${scrolled ? "h-11 w-11" : "h-12 w-12 sm:h-[52px] sm:w-[52px]"}`} priority />
           <div className="leading-[1.02]">
             <strong className="block whitespace-nowrap text-[14px] font-black uppercase tracking-[.02em] text-brand-primary sm:text-[15px]">Lexuz Tours</strong>
             <span className="block whitespace-nowrap text-[10px] font-black uppercase tracking-[.08em] text-lexuzNeutral-60 sm:text-[11px]">& Adventures</span>

@@ -338,7 +338,7 @@ export function TourDetail({ tour }: { tour: Tour }) {
                 const photo = galleryPhotoMeta(image, tour);
                 return (
                   <figure key={image} className="group overflow-hidden rounded-2xl border border-white/70 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-ds2">
-                    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+                    <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 100vw" className="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
                     {photo.caption ? <figcaption className="px-4 py-3 text-xs font-black leading-5 text-forest-800">{photo.caption}</figcaption> : null}
                   </figure>
                 );
@@ -347,7 +347,7 @@ export function TourDetail({ tour }: { tour: Tour }) {
             {tour.itineraryImage ? (
               <div className="mt-6 rounded-2xl border border-forest-900/10 bg-white p-4 shadow-soft">
                 <h3 className="mb-4 font-black uppercase text-forest-950">Official one-day trip poster</h3>
-                <Image src={tour.itineraryImage} alt={`${tour.title} official itinerary poster`} width={1024} height={1536} className="mx-auto max-h-[860px] w-full rounded-xl object-contain" />
+                <Image src={tour.itineraryImage} alt={`${tour.title} official itinerary poster`} width={1024} height={1536} sizes="(min-width: 1024px) 760px, 100vw" className="mx-auto max-h-[860px] w-full rounded-xl object-contain" />
               </div>
             ) : null}
           </section>

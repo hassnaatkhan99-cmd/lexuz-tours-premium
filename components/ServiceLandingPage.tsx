@@ -113,7 +113,7 @@ export function ServiceLandingPage({
             </div>
           </div>
           <figure className="luxury-card overflow-hidden rounded-[30px] border border-white/70 bg-white/88 shadow-[0_28px_80px_rgba(20,32,27,.16)] backdrop-blur">
-            <Image src={(supportImage ?? heroImage).src} alt={(supportImage ?? heroImage).alt} width={(supportImage ?? heroImage).width} height={(supportImage ?? heroImage).height} className="h-[390px] w-full object-cover transition duration-500 hover:scale-[1.02]" />
+            <Image src={(supportImage ?? heroImage).src} alt={(supportImage ?? heroImage).alt} width={(supportImage ?? heroImage).width} height={(supportImage ?? heroImage).height} sizes="(min-width: 1024px) 46vw, 100vw" className="h-[390px] w-full object-cover transition duration-500 hover:scale-[1.02]" />
             {(supportImage ?? heroImage).caption ? <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{(supportImage ?? heroImage).caption}</figcaption> : null}
           </figure>
         </div>
