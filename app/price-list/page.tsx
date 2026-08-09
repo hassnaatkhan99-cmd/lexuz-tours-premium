@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PriceList } from "@/components/PriceList";
 import { SectionHeading } from "@/components/SectionHeading";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Price List", description: "Official Lexuz Tours price list for Islamabad and Lahore departures." };
+export const metadata: Metadata = { title: "Price List", description: "Official Lexuz Tours price list for Islamabad and Lahore departures.", alternates: { canonical: canonical("/price-list") } };
 
 export default function PriceListPage() {
   return (

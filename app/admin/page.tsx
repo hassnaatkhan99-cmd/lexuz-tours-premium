@@ -19,8 +19,8 @@ export default async function AdminPage() {
   if (configured) {
     try {
       bookings = await listBookings();
-    } catch (error) {
-      supabaseError = error instanceof Error ? error.message : "Could not load bookings from Supabase.";
+    } catch {
+      supabaseError = "Bookings could not be loaded. Please try again.";
     }
   }
 
@@ -33,7 +33,7 @@ export default async function AdminPage() {
         </form>
       </div>
       {!configured ? <div className="mb-8 rounded-lg border border-saffron-500/40 bg-saffron-100 p-5 text-sm font-bold text-forest-950">Supabase environment variables are missing. Add them to enable live bookings.</div> : null}
-      {supabaseError ? <div className="mb-8 rounded-lg border border-red-200 bg-red-50 p-5 text-sm font-bold text-red-800">Supabase is configured, but bookings could not be loaded locally: {supabaseError}</div> : null}
+      {supabaseError ? <div className="mb-8 rounded-lg border border-red-200 bg-red-50 p-5 text-sm font-bold text-red-800">{supabaseError}</div> : null}
       <AdminDashboardCards bookings={bookings} />
       <Link href="/admin/bookings" className="mt-8 inline-flex rounded-md bg-forest-800 px-5 py-3 font-black text-white">View Bookings</Link>
     </section>

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { CalendarCheck, Headphones, Hotel, Route, ShieldCheck, Users } from "lucide-react";
 import { ServiceLandingPage } from "@/components/ServiceLandingPage";
 import { tripPhotos } from "@/data/tripPhotos";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Corporate Tours", description: "Premium corporate retreats and business tours by Lexuz." };
+export const metadata: Metadata = { title: "Corporate Tours", description: "Premium corporate retreats and business tours by Lexuz.", alternates: { canonical: canonical("/corporate-tours") } };
 
 export default function CorporateToursPage() {
   return (

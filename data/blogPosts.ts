@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
   ["fairy-meadows-travel-guide", "Fairy Meadows Travel Guide", "Nanga Parbat views, meadow stays, access conditions and what to expect on the journey."],
   ["naran-kaghan-travel-guide", "Naran Kaghan Travel Guide", "Route guidance, weather notes and sightseeing expectations for Naran Kaghan tours."],
   ["kashmir-travel-guide", "Kashmir Travel Guide", "Plan Neelum Valley, Arang Kel, Ganga Choti and Azad Kashmir mountain escapes."],
-  ["family-tours-in-pakistan", "Family Tours in Pakistan", "How to choose safe, comfortable family-friendly tours across northern Pakistan."],
+  ["family-tours-in-pakistan", "Family Tours in Pakistan", "How to compare road comfort, trip pacing and practical family travel needs across northern Pakistan."],
   ["honeymoon-destinations-in-pakistan", "Honeymoon Destinations in Pakistan", "Romantic destinations, private planning tips and couple-friendly travel ideas."],
   ["corporate-retreat-destinations", "Corporate Retreat Destinations", "Plan company retreats with transport, hotels, group coordination and productive downtime."],
   ["university-trip-planning-guide", "University Trip Planning Guide", "Student trip planning essentials for safety, approvals, budgets and group movement."],

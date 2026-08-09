@@ -6,13 +6,14 @@ import { CTASection } from "@/components/CTASection";
 import { DestinationCard } from "@/components/DestinationCard";
 import { FAQ } from "@/components/FAQ";
 import { PriceList } from "@/components/PriceList";
-import { ReviewCard } from "@/components/ReviewCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TourCard } from "@/components/TourCard";
 import { generalFaqs } from "@/data/faqs";
-import { reviews } from "@/data/reviews";
 import { tripPhotos } from "@/data/tripPhotos";
 import { multiDayTours, oneDayTours } from "@/data/tours";
+import { canonical } from "@/lib/seo";
+
+export const metadata: Metadata = { alternates: { canonical: canonical("/") } };
 
 export default function Home() {
   const premiumTrust = [
@@ -100,7 +101,7 @@ export default function Home() {
           </div>
         </div>
       </div></section>
-      <section className="cinematic-band py-16"><div className="container-page grid gap-8 lg:grid-cols-[1.1fr_.9fr]"><div><SectionHeading eyebrow="Our Fleet" title="Comfortable branded vehicles" copy="Fleet visibility is one of Lexuz's strongest trust signals: customers can see the vehicles behind the service before they book." /><div className="grid gap-4 md:grid-cols-2"><Image src="/images/fleet-founder-buses.jpeg" alt="Lexuz branded buses with tour lead" width={700} height={450} className="h-72 w-full rounded-[22px] object-cover shadow-ds2" /><Image src="/images/bus-yard-front.jpeg" alt="Lexuz branded bus front view" width={700} height={450} className="h-72 w-full rounded-[22px] object-cover shadow-ds2" /></div></div><Image src="/images/office-real.jpeg" alt="Lexuz Tours office in Rawalpindi" width={700} height={700} className="h-full max-h-[590px] w-full rounded-[26px] object-cover shadow-ds3" /></div></section>
+      <section className="cinematic-band py-16"><div className="container-page grid gap-8 lg:grid-cols-[1.1fr_.9fr]"><div><SectionHeading eyebrow="Our Fleet" title="Comfortable branded vehicles" copy="Fleet visibility is one of Lexuz's strongest trust signals: customers can see the vehicles behind the service before they book." /><div className="grid gap-4 md:grid-cols-2"><Image src="/images/fleet-founder-buses.webp" alt="Lexuz branded buses with tour lead" width={700} height={450} className="h-72 w-full rounded-[22px] object-cover shadow-ds2" /><Image src="/images/bus-yard-front.jpeg" alt="Lexuz branded bus front view" width={700} height={450} className="h-72 w-full rounded-[22px] object-cover shadow-ds2" /></div></div><Image src="/images/office-real.jpeg" alt="Lexuz Tours office in Rawalpindi" width={700} height={700} className="h-full max-h-[590px] w-full rounded-[26px] object-cover shadow-ds3" /></div></section>
       <section className="container-page -mt-6 grid gap-4 pb-16 md:grid-cols-2 lg:grid-cols-4">{["Executive Tourist Coasters", "Private Family Transport", "Corporate Transport", "Group Transport"].map((item) => <div key={item} className="rounded-dsLg border border-lexuzNeutral-line bg-white p-5 text-center font-black text-brand-primary shadow-ds1">{item}</div>)}</section>
       <section className="container-page grid gap-5 py-16 md:grid-cols-2 lg:grid-cols-4">
         {[
@@ -110,10 +111,11 @@ export default function Home() {
           ["Custom Tours", "/custom-tours", "Flexible family, friends and private group plans shaped around your dates and travel style."]
         ].map(([title, href, copy]) => <Link key={title} href={href} className="focus-ring rounded-dsLg border border-white/10 bg-brand-primary p-6 text-white shadow-ds2 transition hover:-translate-y-1 hover:shadow-ds3"><Heart className="text-brand-accent" /><h3 className="mt-4 text-2xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-white/75">{copy}</p></Link>)}
       </section>
-      <section className="stone-band py-16"><div className="container-page"><SectionHeading eyebrow="Reviews" title="Traveler trust" /><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">{reviews.slice(0, 4).map((review, index) => <ReviewCard key={review.name} review={review} index={index} />)}</div></div></section>
+      <section className="stone-band py-16"><div className="container-page grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center"><div><SectionHeading eyebrow="Trip evidence" title="Real people, fleet and departures" copy="Our published trip evidence uses Lexuz’s own group and fleet photography. Named customer testimonials will only return when their provenance and publication permission can be verified." /><ButtonLink href="/reviews" variant="outline">View trip evidence</ButtonLink></div><Image src={tripPhotos.groupDepartureSummer.src} alt={tripPhotos.groupDepartureSummer.alt} width={tripPhotos.groupDepartureSummer.width} height={tripPhotos.groupDepartureSummer.height} className="h-80 w-full rounded-dsLg object-cover shadow-ds2" /></div></section>
       <section className="container-page py-16"><SectionHeading eyebrow="Price List" title="Transparent Pricing Preview" /><PriceList /></section>
       <section className="container-page py-16"><SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" /><FAQ items={generalFaqs} /></section>
       <CTASection />
     </>
   );
 }
+import type { Metadata } from "next";

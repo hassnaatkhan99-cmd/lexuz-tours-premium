@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { BedDouble, CalendarCheck, Camera, Heart, Hotel, MapPin, Route, ShieldCheck } from "lucide-react";
 import { ServiceLandingPage } from "@/components/ServiceLandingPage";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Honeymoon Tours", description: "Private honeymoon tour packages across Pakistan by Lexuz." };
+export const metadata: Metadata = { title: "Honeymoon Tours", description: "Private honeymoon tour packages across Pakistan by Lexuz.", alternates: { canonical: canonical("/honeymoon-tours") } };
 
 export default function HoneymoonToursPage() {
   return (

@@ -1,16 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, CheckCircle2, MapPin, MessageCircle, Route, ShieldCheck, Sparkles, Star, Users } from "lucide-react";
+import { CalendarDays, CheckCircle2, MapPin, MessageCircle, Route, ShieldCheck, Sparkles, Users } from "lucide-react";
 import { company } from "@/data/company";
 import type { CityHub } from "@/data/cityHubs";
-import { reviews } from "@/data/reviews";
 import { lahorePrice, money, multiDayTours, oneDayTours, tours, type Tour } from "@/data/tours";
 import { buildBreadcrumbJsonLd } from "@/lib/seo-foundation/breadcrumbs";
 import { buildFaqSchema } from "@/lib/seo-foundation/schema";
 import { absoluteUrl } from "@/lib/seo";
 import { CityHubCallButton, CityHubMobileBar, CityHubTourCta, CityHubWhatsAppButton } from "@/components/CityHubActions";
 import { FAQ } from "@/components/FAQ";
-import { ReviewCard } from "@/components/ReviewCard";
 import { SectionHeading } from "@/components/SectionHeading";
 
 function cityTourHref(tour: Tour, hub: CityHub) {
@@ -120,8 +118,6 @@ function itemListSchema(hub: CityHub, visibleTours: Tour[]) {
 
 export function CityHubPage({ hub }: { hub: CityHub }) {
   const visibleTours = hub.code === "lahore" ? multiDayTours : tours;
-  const cityReviews = reviews.filter((review) => review.city.toLowerCase().includes(hub.code === "islamabad" ? "islamabad" : "lahore"));
-  const shownReviews = cityReviews.length >= 2 ? cityReviews : reviews.slice(0, 3);
   const breadcrumb = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Tours", path: "/public-trips" },
@@ -164,7 +160,7 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
 
       <section className="border-b border-forest-900/10 bg-white">
         <div className="container-page flex gap-3 overflow-x-auto py-4 text-sm font-black text-forest-900">
-          {["tours", hub.code === "islamabad" ? "day-trips" : "travel-format", "pickup", "why-lexuz", "reviews", "faqs"].map((item) => (
+          {["tours", hub.code === "islamabad" ? "day-trips" : "travel-format", "pickup", "why-lexuz", "faqs"].map((item) => (
             <Link key={item} href={`#${item}`} className="shrink-0 rounded-full border border-forest-900/10 px-4 py-2 transition hover:border-forest-800/30 hover:bg-forest-50">
               {item.replace("-", " ")}
             </Link>
@@ -283,15 +279,6 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section id="reviews" className="container-page py-14">
-        <SectionHeading eyebrow="Traveler Feedback" title={`Reviews from ${hub.name} travelers`} copy="Realistic trip feedback focused on transport coordination, communication and route planning." />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {shownReviews.slice(0, 3).map((review, index) => (
-            <ReviewCard key={`${review.name}-${review.tour}`} review={review} index={index} />
-          ))}
         </div>
       </section>
 

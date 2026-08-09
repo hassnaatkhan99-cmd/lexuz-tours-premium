@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { CalendarCheck, Camera, Headphones, MapPin, Route, ShieldCheck, Users } from "lucide-react";
 import { ServiceLandingPage } from "@/components/ServiceLandingPage";
 import { tripPhotos } from "@/data/tripPhotos";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Custom Tours", description: "Custom private tours across Pakistan by Lexuz Tours." };
+export const metadata: Metadata = { title: "Custom Tours", description: "Custom private tours across Pakistan by Lexuz Tours.", alternates: { canonical: canonical("/custom-tours") } };
 
 export default function CustomToursPage() {
   return (

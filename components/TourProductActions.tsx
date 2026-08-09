@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { CalendarDays, MessageCircle, Phone } from "lucide-react";
 import { company, whatsappUrl } from "@/data/company";
@@ -62,11 +63,12 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
       </div>
 
       {hasLahore ? (
-        <div className="mt-5 grid grid-cols-2 rounded-2xl border border-lexuzNeutral-line bg-white/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.82)]" aria-label="Departure city selector">
+        <div className="mt-5 grid grid-cols-2 rounded-2xl border border-lexuzNeutral-line bg-white/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,.82)]" role="group" aria-label="Departure city selector">
           {(["islamabad", "lahore"] as City[]).map((option) => (
             <button
               key={option}
               type="button"
+              aria-pressed={city === option}
               onClick={() => setCity(option)}
               className={`rounded-xl px-3 py-3 text-sm font-black transition ${city === option ? "bg-brand-primary text-white shadow-ds1" : "text-brand-primary hover:bg-brand-secondary"}`}
             >
@@ -109,6 +111,12 @@ export function TourProductActions({ tour, sourceSlot = "hero", initialCity = "i
       </p>
     </div>
   );
+}
+
+export function QueryAwareTourProductActions({ tour, sourceSlot = "hero" }: { tour: Tour; sourceSlot?: string }) {
+  const searchParams = useSearchParams();
+  const initialCity = searchParams.get("from") === "lahore" && tour.category !== "one-day" ? "lahore" : "islamabad";
+  return <TourProductActions key={initialCity} tour={tour} sourceSlot={sourceSlot} initialCity={initialCity} />;
 }
 
 export function StickyTourActions({ tour }: { tour: Tour }) {

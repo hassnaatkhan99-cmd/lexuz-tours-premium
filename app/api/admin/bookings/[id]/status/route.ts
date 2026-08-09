@@ -4,8 +4,16 @@ import { notifyBookingStatus } from "@/lib/email/notifications";
 import { getBookingById } from "@/lib/supabase/bookings";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import type { BookingStatus } from "@/lib/supabase/types";
+import { consumeRateLimit, rateLimitHeaders } from "@/lib/security/rateLimit";
 
 const allowedStatuses: BookingStatus[] = ["Approved", "Confirmed", "Rejected", "Cancelled"];
+const allowedTransitions: Record<BookingStatus, BookingStatus[]> = {
+  "Pending Verification": ["Approved", "Rejected", "Cancelled"],
+  Approved: ["Confirmed", "Rejected", "Cancelled"],
+  Confirmed: ["Cancelled"],
+  Rejected: [],
+  Cancelled: []
+};
 
 function optionalAmount(value: unknown) {
   if (value === "" || value === null || typeof value === "undefined") return null;
@@ -19,8 +27,16 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
   }
 
+  const rateLimit = await consumeRateLimit(request, { namespace: "admin-booking-mutation", limit: 60, windowSeconds: 10 * 60 });
+  if (!rateLimit.allowed) return NextResponse.json({ error: "Too many update attempts. Please try again later." }, { status: 429, headers: rateLimitHeaders(rateLimit) });
+
   const { id } = await params;
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+  }
   const status = body.status as BookingStatus;
 
   if (!allowedStatuses.includes(status)) {
@@ -28,6 +44,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   }
 
   const supabase = getSupabaseAdmin();
+  const currentBooking = await getBookingById(id);
+  if (!currentBooking) return NextResponse.json({ error: "Booking not found." }, { status: 404 });
+  if (!allowedTransitions[currentBooking.status].includes(status)) return NextResponse.json({ error: "This status change is not allowed." }, { status: 409 });
   const bookingUpdate: {
     status: BookingStatus;
     total_amount?: number | null;
@@ -49,15 +68,16 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     bookingUpdate.remaining_amount = remainingAmount;
   }
 
-  const { error } = await supabase.from("bookings").update(bookingUpdate).eq("id", id);
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  if (status === "Confirmed") {
-    await supabase.from("payments").update({ status: "Confirmed" }).eq("booking_id", id);
-  }
-
-  if (status === "Rejected") {
-    await supabase.from("payments").update({ status: "Rejected" }).eq("booking_id", id);
+  const { data: updated, error } = await supabase.rpc("update_booking_status_transaction", {
+    p_booking_id: id,
+    p_status: status,
+    p_total_amount: bookingUpdate.total_amount ?? null,
+    p_advance_paid: bookingUpdate.advance_paid ?? null,
+    p_remaining_amount: bookingUpdate.remaining_amount ?? null
+  });
+  if (error || !updated) {
+    console.error("[Admin] Booking status transaction failed.", { code: error?.code, status });
+    return NextResponse.json({ error: "The booking could not be updated. Please try again." }, { status: 500 });
   }
 
   const booking = await getBookingById(id);

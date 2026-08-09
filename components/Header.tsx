@@ -79,6 +79,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return (
     <header className="sticky top-0 z-50 px-3 py-3">
       <div className={`mx-auto flex w-full max-w-[1280px] items-center justify-between gap-4 rounded-[26px] border border-white/65 bg-white/74 px-4 shadow-[0_26px_86px_rgba(7,31,8,.17)] backdrop-blur-[30px] transition-all duration-500 supports-[backdrop-filter]:bg-white/66 sm:px-6 xl:px-8 ${scrolled ? "h-[62px] rounded-[22px] shadow-[0_20px_64px_rgba(7,31,8,.18)]" : "h-[74px]"}`}>

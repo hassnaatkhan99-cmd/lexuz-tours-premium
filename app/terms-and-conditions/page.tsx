@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/PolicyPage";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Terms & Conditions" };
+export const metadata: Metadata = { title: "Terms & Conditions", alternates: { canonical: canonical("/terms-and-conditions") } };
 
 export default function TermsPage() {
   return <PolicyPage title="Terms & Conditions" path="/terms-and-conditions" description="The core booking terms that apply when customers reserve a Lexuz Tours departure." items={[

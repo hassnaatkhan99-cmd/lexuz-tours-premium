@@ -109,7 +109,8 @@ function emailShell(title: string, preview: string, body: string) {
                   <div style="margin-top:28px;padding-top:18px;border-top:1px solid #e5e7eb;color:#56615a;font-size:13px;line-height:1.7;">
                     <strong style="color:#103b1b;">${company.name}</strong><br />
                     Website: <a href="${company.website}" style="color:#103b1b;">${company.website}</a><br />
-                    Phone: ${company.phone}<br />
+                    Phone: ${company.callPhone}<br />
+                    WhatsApp: ${company.phone}<br />
                     Email: <a href="mailto:${company.email}" style="color:#103b1b;">${company.email}</a>
                   </div>
                 </td>
@@ -197,7 +198,7 @@ function approvedBookingHtml(details: BookingEmailDetails & { status: BookingSta
 
       <p style="margin:0 0 12px;color:#344034;font-size:14px;line-height:1.7;">If you have any questions, feel free to contact us anytime.</p>
       <p style="margin:0;color:#103b1b;font-size:14px;line-height:1.8;font-weight:800;">
-        Phone: ${escapeHtml(company.phone)}<br />
+        Phone: ${escapeHtml(company.callPhone)}<br />
         WhatsApp: ${escapeHtml(company.phone)}
       </p>
 

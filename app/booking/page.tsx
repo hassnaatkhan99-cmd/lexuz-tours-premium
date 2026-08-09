@@ -6,6 +6,7 @@ import { getTour, tours } from "@/data/tours";
 export const metadata: Metadata = {
   title: "Booking",
   description: "Book a Lexuz tour online with payment screenshot upload.",
+  robots: { index: false, follow: false },
   openGraph: {
     title: "Book With Lexuz Tours",
     description: "Submit traveler details, select payment method and upload payment proof for team review.",
@@ -21,5 +22,5 @@ export default async function BookingPage({ searchParams }: { searchParams: Prom
   const params = await searchParams;
   const tour = getTour(params.tour ?? "") ?? tours[0];
   const departure = params.departure === "lahore" && tour.category !== "one-day" ? "lahore" : "islamabad";
-  return <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="Online booking" title="Book Your Adventure" copy="Fill the form, select payment method, upload your payment screenshot and submit your request for team review." /><BookingForm tour={tour} departure={departure} /></div></section>;
+  return <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="Online booking" title="Book Your Adventure" copy="Fill the form, select payment method, upload your payment screenshot and submit your request for team review." level="h1" /><BookingForm tour={tour} departure={departure} /></div></section>;
 }

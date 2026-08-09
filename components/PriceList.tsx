@@ -8,8 +8,8 @@ export function PriceList() {
   const rows = tours.map((tour) => ({ tour, price: tour.prices.find((price) => price.label === tab) })).filter((row) => row.price);
   return (
     <div className="luxury-card rounded-[24px] border border-white/70 bg-white/88 p-5 shadow-[0_24px_70px_rgba(20,32,27,.12)] backdrop-blur">
-      <div className="mb-5 grid gap-2 rounded-dsMd border border-lexuzNeutral-line bg-white/90 p-1 shadow-ds1 sm:inline-grid sm:grid-cols-2">
-        {(["Solo Traveler", "Married Couple"] as const).map((label) => <button key={label} onClick={() => setTab(label)} className={`rounded-dsSm px-4 py-3 text-sm font-black ${tab === label ? "bg-brand-primary text-white shadow-ds1" : "text-brand-primary hover:bg-brand-secondary"}`}>{label}</button>)}
+      <div className="mb-5 grid gap-2 rounded-dsMd border border-lexuzNeutral-line bg-white/90 p-1 shadow-ds1 sm:inline-grid sm:grid-cols-2" role="group" aria-label="Traveler price type">
+        {(["Solo Traveler", "Married Couple"] as const).map((label) => <button key={label} type="button" aria-pressed={tab === label} onClick={() => setTab(label)} className={`focus-ring rounded-dsSm px-4 py-3 text-sm font-black ${tab === label ? "bg-brand-primary text-white shadow-ds1" : "text-brand-primary hover:bg-brand-secondary"}`}>{label}</button>)}
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[760px] overflow-hidden rounded-dsMd text-left text-sm">

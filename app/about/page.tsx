@@ -10,10 +10,12 @@ import { companyImages } from "@/data/tours";
 import { tripPhotos } from "@/data/tripPhotos";
 import { sourceFacts, trustFaqs } from "@/data/trust";
 import { buildBreadcrumbJsonLd, buildFaqSchema, buildOrganizationSchema } from "@/lib/seo-foundation";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About Lexuz Tours & Adventures",
   description: "Learn the story, founder details, office information, customer promise and travel policies behind Lexuz Tours & Adventures.",
+  alternates: { canonical: canonical("/about") },
   openGraph: {
     title: "About Lexuz Tours & Adventures",
     description: "Real office, fleet and trip proof from Lexuz Tours & Adventures.",

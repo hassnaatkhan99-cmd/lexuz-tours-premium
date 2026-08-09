@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
-import { adminCookieName } from "@/lib/adminAuth";
+import { adminCookieName, createAdminSession, isValidAdminPassword } from "@/lib/adminAuth";
+import { consumeRateLimit, rateLimitHeaders } from "@/lib/security/rateLimit";
 
 export async function POST(request: Request) {
+  const rateLimit = await consumeRateLimit(request, { namespace: "admin-login", limit: 5, windowSeconds: 15 * 60 });
+  if (!rateLimit.allowed) {
+    return NextResponse.json({ error: "Too many login attempts. Please try again later." }, { status: 429, headers: rateLimitHeaders(rateLimit) });
+  }
+
   const formData = await request.formData();
   const password = formData.get("password");
   const adminPassword = process.env.ADMIN_PASSWORD;
@@ -11,17 +17,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Admin login is not configured." }, { status: 500 });
   }
 
-  if (password !== adminPassword) {
-    return NextResponse.json({ error: "Invalid password." }, { status: 401 });
+  if (!isValidAdminPassword(password)) {
+    return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
   }
 
+  const session = createAdminSession();
   const response = NextResponse.redirect(new URL("/admin", request.url));
-  response.cookies.set(adminCookieName, sessionSecret, {
+  response.cookies.set(adminCookieName, session.token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    maxAge: 60 * 60 * 8
+    maxAge: session.maxAge
   });
   return response;
 }

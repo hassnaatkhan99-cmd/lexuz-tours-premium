@@ -39,24 +39,24 @@ export const futureArchitectureRegistry: ArchitecturePage[] = [
     pageClass: "local",
     intent: "City hub for Islamabad / Rawalpindi departures and local search intent.",
     blueprintSource: "City Hub Specification v1 and Master Blueprint v2 Part 3.2",
-    implementationStatus: "planned",
-    notes: "Only page that should target generic Islamabad-modified tour queries."
+    implementationStatus: "existing",
+    notes: "Implemented city hub and the only page that should target generic Islamabad-modified tour queries."
   },
   {
     pathPattern: "/tours/lahore/",
     pageClass: "local",
     intent: "City hub for Lahore departures and overnight travel format guidance.",
     blueprintSource: "City Hub Specification v1 and Master Blueprint v2 Part 3.2",
-    implementationStatus: "planned",
-    notes: "Only page that should target generic Lahore-modified tour queries."
+    implementationStatus: "existing",
+    notes: "Implemented city hub and the only page that should target generic Lahore-modified tour queries."
   },
   {
     pathPattern: "/tours/[slug]/",
     pageClass: "transactional",
     intent: "One URL per bookable tour product with city selector and departure data.",
     blueprintSource: "Tour Product Page Specification v1",
-    implementationStatus: "needs-rebuild",
-    notes: "Current pages exist, but they need the full product template, source tokens, breadcrumbs, and departure data model."
+    implementationStatus: "existing",
+    notes: "Implemented shared product template with city selection, source tokens, breadcrumbs, and current departure data."
   },
   {
     pathPattern: "/destinations/[place]/",
@@ -95,8 +95,8 @@ export const futureArchitectureRegistry: ArchitecturePage[] = [
     pageClass: "trust",
     intent: "Plain-language booking, payment, cancellation, and refund policy hub.",
     blueprintSource: "Master Blueprint v2 Part 3.6",
-    implementationStatus: "planned",
-    notes: "Do not remove existing policy pages until redirects and content consolidation are approved."
+    implementationStatus: "existing",
+    notes: "Implemented policy hub. Do not remove existing policy pages until redirects and content consolidation are approved."
   },
   {
     pathPattern: "/about/team/",

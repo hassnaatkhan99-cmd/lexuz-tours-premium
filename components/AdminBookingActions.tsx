@@ -7,8 +7,17 @@ import type { BookingStatus } from "@/lib/supabase/types";
 const actions: { label: string; status: BookingStatus; className: string }[] = [
   { label: "Approve", status: "Approved", className: "bg-forest-800 text-white" },
   { label: "Reject", status: "Rejected", className: "bg-red-700 text-white" },
-  { label: "Confirm Payment", status: "Confirmed", className: "bg-saffron-400 text-forest-950" }
+  { label: "Confirm Payment", status: "Confirmed", className: "bg-saffron-400 text-forest-950" },
+  { label: "Cancel", status: "Cancelled", className: "border border-forest-900/20 bg-white text-forest-950" }
 ];
+
+const allowedActions: Record<BookingStatus, BookingStatus[]> = {
+  "Pending Verification": ["Approved", "Rejected", "Cancelled"],
+  Approved: ["Confirmed", "Rejected", "Cancelled"],
+  Confirmed: ["Cancelled"],
+  Rejected: [],
+  Cancelled: []
+};
 
 type AdminBookingActionsProps = {
   bookingId: string;
@@ -68,7 +77,7 @@ export function AdminBookingActions({
         body: JSON.stringify(body)
       });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error || "Could not update booking.");
+      if (!response.ok) throw new Error(typeof result.error === "string" ? result.error : "Could not update booking.");
       router.refresh();
     } catch (updateError) {
       setError(updateError instanceof Error ? updateError.message : "Could not update booking.");
@@ -122,7 +131,7 @@ export function AdminBookingActions({
         </div>
       ) : null}
       <div className="flex flex-wrap gap-2">
-        {actions.filter((action) => allowApproval || action.status !== "Approved").map((action) => (
+        {actions.filter((action) => allowedActions[currentStatus].includes(action.status) && (allowApproval || action.status !== "Approved")).map((action) => (
           <button
             key={action.status}
             type="button"

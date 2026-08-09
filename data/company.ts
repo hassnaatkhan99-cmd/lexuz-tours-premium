@@ -1,7 +1,7 @@
 export const company = {
   name: "Lexuz Tours & Adventures",
   shortName: "Lexuz Tours",
-  mission: "Premium, safe and memorable travel experiences across Pakistan.",
+  mission: "Premium, carefully planned and memorable travel experiences across Pakistan.",
   phone: "0309 9318249",
   callPhone: "+923183395090",
   callHref: "tel:+923183395090",

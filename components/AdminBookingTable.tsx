@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import type { Booking } from "@/lib/supabase/types";
 import { AdminBookingActions } from "./AdminBookingActions";
 
@@ -13,6 +16,17 @@ function paymentDisplay(value: number | null | undefined) {
 }
 
 export function AdminBookingTable({ bookings }: { bookings: Booking[] }) {
+  const [query, setQuery] = useState("");
+  const [status, setStatus] = useState("all");
+  const filteredBookings = useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    return bookings.filter((booking) => {
+      const matchesStatus = status === "all" || booking.status === status;
+      const matchesQuery = !normalized || [booking.reference_id, booking.tour_name, booking.customers?.full_name || ""].some((value) => value.toLowerCase().includes(normalized));
+      return matchesStatus && matchesQuery;
+    });
+  }, [bookings, query, status]);
+
   if (!bookings.length) {
     return (
       <div className="rounded-lg border border-forest-900/10 bg-white p-8 text-center shadow-premium">
@@ -23,7 +37,12 @@ export function AdminBookingTable({ bookings }: { bookings: Booking[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-forest-900/10 bg-white shadow-premium">
+    <div>
+      <div className="mb-4 grid gap-3 rounded-lg border border-forest-900/10 bg-white p-4 shadow-soft sm:grid-cols-[1fr_240px]">
+        <label className="grid gap-1 text-sm font-bold text-forest-950">Search bookings<input value={query} onChange={(event) => setQuery(event.target.value)} className="focus-ring rounded-md border border-neutral-200 px-4 py-3 font-normal" placeholder="Reference, customer or tour" /></label>
+        <label className="grid gap-1 text-sm font-bold text-forest-950">Status<select value={status} onChange={(event) => setStatus(event.target.value)} className="focus-ring rounded-md border border-neutral-200 bg-white px-4 py-3 font-normal"><option value="all">All statuses</option>{["Pending Verification", "Approved", "Confirmed", "Rejected", "Cancelled"].map((value) => <option key={value} value={value}>{value}</option>)}</select></label>
+      </div>
+      {!filteredBookings.length ? <p className="rounded-lg border border-forest-900/10 bg-white p-6 text-center font-bold text-neutral-600">No bookings match these filters.</p> : <div className="overflow-x-auto rounded-lg border border-forest-900/10 bg-white shadow-premium">
       <table className="w-full min-w-[1420px] text-left text-sm">
         <thead className="bg-forest-900 text-white">
           <tr>
@@ -31,7 +50,7 @@ export function AdminBookingTable({ bookings }: { bookings: Booking[] }) {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking) => (
+          {filteredBookings.map((booking) => (
             <tr key={booking.id} className="border-b border-forest-900/10">
               <td className="p-4 font-black text-forest-900">{booking.reference_id}</td>
               <td className="p-4 font-bold">{booking.customers?.full_name || "Unknown"}</td>
@@ -55,6 +74,7 @@ export function AdminBookingTable({ bookings }: { bookings: Booking[] }) {
           ))}
         </tbody>
       </table>
+      </div>}
     </div>
   );
 }

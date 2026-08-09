@@ -59,7 +59,7 @@ export const cityHubs: Record<CityHubCode, CityHub> = {
     ],
     pickupPoints: [
       "Islamabad / Rawalpindi pickup guidance is shared before departure after booking verification.",
-      "Common meeting areas may include Faizabad, motorway access points and approved pickup points on the active route.",
+      "Meeting areas are selected for the active route and confirmed directly with booked travelers.",
       "Wah Cantt / Taxila route assistance is available where the tour route supports it.",
       "Final pickup timing depends on traffic, route conditions and the confirmed trip plan."
     ],

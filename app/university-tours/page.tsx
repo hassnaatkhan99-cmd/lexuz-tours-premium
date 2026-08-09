@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { CalendarCheck, GraduationCap, Headphones, Route, ShieldCheck, Users } from "lucide-react";
 import { ServiceLandingPage } from "@/components/ServiceLandingPage";
 import { tripPhotos } from "@/data/tripPhotos";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "University Tours",
   description: "Organized university and student trips by Lexuz.",
+  alternates: { canonical: canonical("/university-tours") },
   openGraph: {
     title: "Lexuz University Tours",
     description: "Student group trips with transport, hotels, coordination and custom routes.",

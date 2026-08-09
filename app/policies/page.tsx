@@ -5,10 +5,12 @@ import { PageBreadcrumbs, PromiseList } from "@/components/TrustSections";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import { sourceFacts, trustFaqs } from "@/data/trust";
 import { buildBreadcrumbJsonLd, buildFaqSchema, buildOrganizationSchema } from "@/lib/seo-foundation";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Policies",
-  description: "Plain-language Lexuz Tours policies for booking, payment, cancellation, jeep charges, safety and complaints."
+  description: "Plain-language Lexuz Tours policies for booking, payment, cancellation, jeep charges, safety and complaints.",
+  alternates: { canonical: canonical("/policies") }
 };
 
 export default function PoliciesPage() {

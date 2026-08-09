@@ -6,6 +6,7 @@ import { seoLandingPages } from "@/data/seoLandingPages";
 import { SocialContactLinks } from "./SocialContactLinks";
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
   const exploreLinks = [
     ["Public Trips", "/public-trips"],
     ["Islamabad Departures", "/tours/islamabad"],
@@ -65,7 +66,7 @@ export function Footer() {
       </div>
       <div className="container-page relative z-10 border-t border-white/10 py-5">
         <div className="flex flex-col gap-3 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Lexuz Tours. Operated by LEXUZ TOURS (SMC-PRIVATE) LIMITED.</p>
+          <p>© {currentYear} Lexuz Tours. Operated by LEXUZ TOURS (SMC-PRIVATE) LIMITED.</p>
           <div className="flex flex-wrap gap-3">
             {seoLandingPages.slice(0, 4).map((page) => <Link key={page.slug} href={`/${page.slug}`} className="hover:text-white">{page.h1}</Link>)}
           </div>

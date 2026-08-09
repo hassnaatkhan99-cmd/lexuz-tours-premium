@@ -14,14 +14,15 @@ const mobileLinks = [
 
 export function WhatsAppFloating() {
   const pathname = usePathname();
-  const onTourPage = pathname.startsWith("/tours/");
+  const tourPath = pathname.split("/").filter(Boolean);
+  const onIndividualTourPage = tourPath.length === 2 && tourPath[0] === "tours" && !["islamabad", "lahore"].includes(tourPath[1]);
   return (
     <>
       <Link href={whatsappUrl("Hello Lexuz Tours,\nI want to book a tour.\nPlease guide me.")} target="_blank" rel="noopener noreferrer" className="premium-shine fixed bottom-6 right-6 z-50 hidden h-12 w-auto max-w-[210px] items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/20 bg-[#12a84f] px-5 text-sm font-black text-white shadow-[0_24px_70px_rgba(18,168,79,.32)] transition hover:-translate-y-1 hover:shadow-[0_30px_86px_rgba(18,168,79,.42)] sm:inline-flex">
         <MessageCircle size={20} />
         <span>WhatsApp</span>
       </Link>
-      <div className={`fixed left-1/2 z-50 grid w-[min(calc(100vw-24px),380px)] -translate-x-1/2 grid-cols-4 overflow-hidden rounded-2xl border border-forest-900/10 bg-white/94 shadow-premium backdrop-blur-xl transition-[bottom,transform] duration-300 sm:hidden ${onTourPage ? "bottom-20" : "bottom-3"}`}>
+      {!onIndividualTourPage ? <div className="fixed bottom-3 left-1/2 z-50 grid w-[min(calc(100vw-24px),380px)] -translate-x-1/2 grid-cols-4 overflow-hidden rounded-2xl border border-forest-900/10 bg-white/94 shadow-premium backdrop-blur-xl sm:hidden">
         {mobileLinks.map((item) => {
           const Icon = item.icon;
           return (
@@ -38,7 +39,7 @@ export function WhatsAppFloating() {
             </a>
           );
         })}
-      </div>
+      </div> : null}
     </>
   );
 }

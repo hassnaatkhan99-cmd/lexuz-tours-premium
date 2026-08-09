@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TourCard } from "@/components/TourCard";
 import { tours } from "@/data/tours";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Public Trips",
   description: "Book Lexuz public trips with Islamabad and Lahore pricing.",
+  alternates: { canonical: canonical("/public-trips") },
   openGraph: {
     title: "Lexuz Public Trips",
     description: "Browse Lexuz public departures with clear pricing, schedules and booking links.",

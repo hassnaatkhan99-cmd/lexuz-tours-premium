@@ -6,6 +6,8 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { blogPosts, buildBlogSections, getBlogPost } from "@/data/blogPosts";
 import { absoluteUrl, canonical } from "@/lib/seo";
 
+export const dynamicParams = false;
+
 function blogOgImage(slug: string) {
   if (slug.includes("swat")) return "/images/trip/lexuz-malam-jabba-winter-group.webp";
   if (slug.includes("university")) return "/images/trip/lexuz-student-group-coaster.webp";
@@ -26,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.title,
     description: post.description,
+    robots: { index: false, follow: true },
     alternates: { canonical: canonical(`/blog/${post.slug}`) },
     openGraph: { title: post.title, description: post.description, url: canonical(`/blog/${post.slug}`), images: [image], type: "article" },
     twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] }
@@ -68,7 +71,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <span className="mx-2">/</span>
           <span>{post.title}</span>
         </nav>
-        <SectionHeading eyebrow={post.category} title={post.title} copy={post.description} />
+        <SectionHeading eyebrow={post.category} title={post.title} copy={post.description} level="h1" />
         <div className="grid gap-10 lg:grid-cols-[1fr_340px]">
           <div className="space-y-6">
             {sections.map((section) => (

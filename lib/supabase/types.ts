@@ -13,8 +13,11 @@ export type Customer = {
 export type Booking = {
   id: string;
   reference_id: string;
+  submission_id?: string | null;
   customer_id: string;
   tour_name: string;
+  tour_slug?: string | null;
+  price_tier?: string | null;
   departure: string;
   departure_city: string | null;
   pickup_city: string;

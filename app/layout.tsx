@@ -103,6 +103,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <a href="#main-content" className="focus-ring fixed left-4 top-4 z-[100] -translate-y-24 rounded-dsMd bg-brand-primary px-4 py-3 font-black text-white shadow-ds3 transition focus:translate-y-0">
+          Skip to main content
+        </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-SC66P828CX" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -114,7 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
         <Header />
-        <main>{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
         <WhatsAppFloating />
       </body>

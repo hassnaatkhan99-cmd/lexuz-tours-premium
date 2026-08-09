@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { PolicyPage } from "@/components/PolicyPage";
+import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Cancellation Policy" };
+export const metadata: Metadata = { title: "Cancellation Policy", alternates: { canonical: canonical("/cancellation-policy") } };
 
 export default function CancellationPage() {
   return <PolicyPage title="Cancellation Policy" path="/cancellation-policy" description="Refund and cancellation rules for confirmed paid bookings." items={[

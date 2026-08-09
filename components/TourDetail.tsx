@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, MinusCircle, Mountain, ShieldCheck, Star, Users } from "lucide-react";
-import { reviews } from "@/data/reviews";
+import { Suspense } from "react";
+import { Award, CalendarDays, CheckCircle2, ChevronRight, Clock, Compass, Hotel, Info, MapPin, MinusCircle, Mountain, ShieldCheck, Users } from "lucide-react";
 import { tripPhotos } from "@/data/tripPhotos";
 import { hasJeepNotice, isJeepIncluded, lahorePrice, money, Tour, tours } from "@/data/tours";
 import { absoluteUrl } from "@/lib/seo";
@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, buildFaqSchema } from "@/lib/seo-foundation";
 import { detailedOverview, expandedFaqs, expandedItinerary, travelInformation, whyChooseTour } from "@/lib/tourContent";
 import { FAQ } from "./FAQ";
 import { SectionHeading } from "./SectionHeading";
-import { StickyTourActions, TourProductActions } from "./TourProductActions";
+import { QueryAwareTourProductActions, StickyTourActions, TourProductActions } from "./TourProductActions";
 import { TourCard } from "./TourCard";
 
 function cityAvailability(tour: Tour) {
@@ -25,15 +25,6 @@ function difficulty(tour: Tour) {
 
 function relatedTours(tour: Tour) {
   return tours.filter((item) => item.slug !== tour.slug && (item.category === tour.category || item.durationDays === tour.durationDays)).slice(0, 3);
-}
-
-function matchingReviews(tour: Tour) {
-  const title = tour.title.toLowerCase();
-  const firstWord = title.split(" ")[0];
-  return reviews.filter((review) => {
-    const reviewTour = review.tour.toLowerCase();
-    return reviewTour.includes(firstWord) || title.includes(reviewTour.split(" ")[0]);
-  }).slice(0, 3);
 }
 
 function destinationLinkLabel(tour: Tour) {
@@ -70,14 +61,13 @@ function galleryPhotoMeta(src: string, tour: Tour) {
   };
 }
 
-export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; initialCity?: "islamabad" | "lahore" }) {
+export function TourDetail({ tour }: { tour: Tour }) {
   const overview = detailedOverview(tour);
   const itinerary = expandedItinerary(tour);
   const whyChoose = whyChooseTour(tour);
   const travelInfo = travelInformation(tour);
   const faqs = expandedFaqs(tour).slice(0, 6);
   const related = relatedTours(tour);
-  const featuredReviews = matchingReviews(tour);
   const hasLahore = tour.category !== "one-day";
   const showJeepInfo = hasJeepNotice(tour);
   const jeepIncluded = isJeepIncluded(tour);
@@ -177,7 +167,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                 ))}
               </div>
             </div>
-            <TourProductActions tour={tour} sourceSlot="hero" initialCity={initialCity} />
+            <Suspense fallback={<TourProductActions tour={tour} sourceSlot="hero" />}>
+              <QueryAwareTourProductActions tour={tour} sourceSlot="hero" />
+            </Suspense>
           </div>
         </div>
       </section>
@@ -339,23 +331,6 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
             </div>
           </section>
 
-          <section className="mt-12" id="reviews">
-            <SectionHeading eyebrow="Reviews" title="Traveler feedback" copy={featuredReviews.length ? "A few customer notes connected with this route or travel style." : "Customer feedback from recent Lexuz public and private trips."} />
-            <div className="grid gap-4 md:grid-cols-3">
-                {(featuredReviews.length ? featuredReviews : reviews.slice(0, 3)).map((review) => (
-                  <article key={`${review.name}-${review.tour}`} className="rounded-2xl border border-forest-900/10 bg-white p-5 shadow-soft">
-                    <div className="flex text-saffron-500" aria-label={`${review.rating} star review`}>
-                      {Array.from({ length: 5 }).map((_, index) => <Star key={index} size={15} fill={index < review.rating ? "currentColor" : "none"} />)}
-                    </div>
-                    <p className="mt-4 text-sm leading-6 text-neutral-700">&ldquo;{review.text}&rdquo;</p>
-                    <p className="mt-4 text-sm font-black text-forest-950">{review.name}</p>
-                    <p className="text-xs font-bold text-neutral-500">{review.city} · {review.badge}</p>
-                  </article>
-                ))}
-              </div>
-            <Link href="/reviews" className="mt-5 inline-flex font-black text-forest-800 hover:text-forest-950">Read all reviews</Link>
-          </section>
-
           <section className="mt-12">
             <SectionHeading eyebrow="Gallery" title="Tour gallery" />
             <div className="grid gap-4 md:grid-cols-3">
@@ -389,7 +364,9 @@ export function TourDetail({ tour, initialCity = "islamabad" }: { tour: Tour; in
                 <h2 className="mt-2 text-3xl font-black">Book {tour.title} with Lexuz</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-white/75">Submit the booking form or message the team on WhatsApp. The Lexuz team reviews payment proof and trip details before final confirmation.</p>
               </div>
-              <TourProductActions tour={tour} sourceSlot="footer" initialCity={initialCity} />
+              <Suspense fallback={<TourProductActions tour={tour} sourceSlot="footer" />}>
+                <QueryAwareTourProductActions tour={tour} sourceSlot="footer" />
+              </Suspense>
             </div>
           </section>
         </main>

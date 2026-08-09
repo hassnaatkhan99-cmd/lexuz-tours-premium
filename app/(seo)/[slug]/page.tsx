@@ -9,6 +9,8 @@ import { buildLandingSections, getRelatedTours, getSeoLandingPage, landingFaqs, 
 import { money } from "@/data/tours";
 import { absoluteUrl, canonical } from "@/lib/seo";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return seoLandingPages.map((page) => ({ slug: page.slug }));
 }
@@ -20,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: page.title,
     description: page.description,
+    robots: { index: false, follow: true },
     alternates: { canonical: canonical(`/${page.slug}`) },
     openGraph: {
       title: page.title,
@@ -101,7 +104,7 @@ export default async function SeoLandingPage({ params }: { params: Promise<{ slu
             </section>
             <section>
               <h2 className="text-3xl font-black text-forest-950">Why Choose Lexuz</h2>
-              <p className="mt-4 leading-8 text-neutral-700">Lexuz Tours & Adventures is a Rawalpindi based travel company serving Islamabad, Rawalpindi, Lahore and nationwide travelers. The company is built around trusted public trips, premium transport, visible customer support and practical travel planning. For customers searching for a tour operator in Rawalpindi, travel agency Islamabad or Pakistan tour packages, Lexuz offers a direct booking path with clear prices and real trip support.</p>
+              <p className="mt-4 leading-8 text-neutral-700">Lexuz Tours & Adventures is a Rawalpindi-based travel company serving Islamabad, Rawalpindi, Lahore and travelers planning Pakistan trips. The company publishes its current public trips, transport imagery, contact details and practical travel information. Customers can compare official tour pages, review current prices and contact the Lexuz team directly before booking.</p>
             </section>
             <section>
               <h2 className="text-3xl font-black text-forest-950">Frequently Asked Questions</h2>

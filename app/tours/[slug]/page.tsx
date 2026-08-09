@@ -4,6 +4,8 @@ import { TourDetail } from "@/components/TourDetail";
 import { getTour, tours } from "@/data/tours";
 import { canonical } from "@/lib/seo";
 
+export const dynamicParams = false;
+
 function metadataTitle(tour: NonNullable<ReturnType<typeof getTour>>) {
   const cityText = tour.category === "one-day" ? "from Islamabad" : "from Islamabad & Lahore";
   return `${tour.title} Tour ${tour.duration} ${cityText}`;
@@ -41,11 +43,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   } : {};
 }
 
-export default async function TourPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ from?: string }> }) {
+export default async function TourPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const query = await searchParams;
   const tour = getTour(slug);
   if (!tour) notFound();
-  const initialCity = query.from === "lahore" && tour.category !== "one-day" ? "lahore" : "islamabad";
-  return <TourDetail tour={tour} initialCity={initialCity} />;
+  return <TourDetail tour={tour} />;
 }
