@@ -5,8 +5,8 @@ import { tripPhotos } from "@/data/tripPhotos";
 import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "University Tours",
-  description: "Organized university and student trips by Lexuz.",
+  title: "University & Student Group Tours Pakistan",
+  description: "Plan a university or student group tour in Pakistan with practical route planning, transport coordination and clear communication for authorised group leaders.",
   alternates: { canonical: canonical("/university-tours") },
   openGraph: {
     title: "Lexuz University Tours",

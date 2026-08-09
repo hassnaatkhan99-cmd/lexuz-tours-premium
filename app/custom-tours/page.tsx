@@ -4,7 +4,11 @@ import { ServiceLandingPage } from "@/components/ServiceLandingPage";
 import { tripPhotos } from "@/data/tripPhotos";
 import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Custom Tours", description: "Custom private tours across Pakistan by Lexuz Tours.", alternates: { canonical: canonical("/custom-tours") } };
+export const metadata: Metadata = {
+  title: "Custom Private Tours Pakistan",
+  description: "Request a custom private tour in Pakistan for your family, friends or group, with dates, destinations, transport and itinerary requirements confirmed in a tailored Lexuz quotation.",
+  alternates: { canonical: canonical("/custom-tours") }
+};
 
 export default function CustomToursPage() {
   return (

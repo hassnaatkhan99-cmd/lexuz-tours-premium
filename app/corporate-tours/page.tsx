@@ -4,7 +4,11 @@ import { ServiceLandingPage } from "@/components/ServiceLandingPage";
 import { tripPhotos } from "@/data/tripPhotos";
 import { canonical } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Corporate Tours", description: "Premium corporate retreats and business tours by Lexuz.", alternates: { canonical: canonical("/corporate-tours") } };
+export const metadata: Metadata = {
+  title: "Corporate Tours & Team Retreats Pakistan",
+  description: "Request a tailored corporate tour plan for team retreats and staff trips across Pakistan, with route, transport and accommodation requirements confirmed in your Lexuz quotation.",
+  alternates: { canonical: canonical("/corporate-tours") }
+};
 
 export default function CorporateToursPage() {
   return (

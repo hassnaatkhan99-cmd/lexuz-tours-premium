@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Bus, CalendarDays, Compass, Headphones, Heart, MapPin, ReceiptText, ShieldCheck, Sparkles, UserRoundCheck, Users } from "lucide-react";
@@ -12,10 +13,16 @@ import { generalFaqs } from "@/data/faqs";
 import { tripPhotos } from "@/data/tripPhotos";
 import { multiDayTours, oneDayTours } from "@/data/tours";
 import { canonical } from "@/lib/seo";
+import { buildFaqSchema } from "@/lib/seo-foundation";
 
-export const metadata: Metadata = { alternates: { canonical: canonical("/") } };
+export const metadata: Metadata = {
+  title: "Pakistan Tours from Islamabad & Lahore | Lexuz Tours",
+  description: "Explore Lexuz public trips and private tour planning from Islamabad, Rawalpindi and Lahore to Hunza, Skardu, Swat, Kashmir, Naran, Kumrat and Fairy Meadows.",
+  alternates: { canonical: canonical("/") }
+};
 
 export default function Home() {
+  const faqSchema = buildFaqSchema(generalFaqs);
   const premiumTrust = [
     [Compass, "Planned Itineraries", "Professionally organised routes."],
     [Bus, "Visible Fleet", "Real Lexuz transport imagery."],
@@ -38,6 +45,7 @@ export default function Home() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <section className="hero-premium min-h-[720px] text-white">
         <Image src="/images/hero-lexuz-premium.webp" alt="" fill priority sizes="100vw" className="hero-premium-media" />
         <div className="hero-premium-overlay" aria-hidden="true" />
@@ -120,4 +128,3 @@ export default function Home() {
     </>
   );
 }
-import type { Metadata } from "next";
