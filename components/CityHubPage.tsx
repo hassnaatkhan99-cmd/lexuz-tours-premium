@@ -10,6 +10,7 @@ import { absoluteUrl } from "@/lib/seo";
 import { CityHubCallButton, CityHubMobileBar, CityHubTourCta, CityHubWhatsAppButton } from "@/components/CityHubActions";
 import { FAQ } from "@/components/FAQ";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RealTripStrip } from "@/components/RealTripStrip";
 
 function cityTourHref(tour: Tour, hub: CityHub) {
   return `/tours/${tour.slug}?from=${hub.code}#from-${hub.code}`;
@@ -196,6 +197,10 @@ export function CityHubPage({ hub }: { hub: CityHub }) {
         </div>
         </div>
       </section>
+
+      <div className="container-page pb-14">
+        <RealTripStrip seed={`city-${hub.code}`} title={`Real Lexuz departures supporting travel from ${hub.name}`} />
+      </div>
 
       <section id="tours" className="bg-neutral-50/70 py-14">
         <div className="container-page">

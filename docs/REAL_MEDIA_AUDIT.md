@@ -100,3 +100,11 @@ Content labels describe only what is visibly evident. Locations and customer typ
 - The reusable gallery uses semantic `figure` and `figcaption` elements.
 - All new media is below the fold, uses Next.js Image, explicit source dimensions or `fill` with a reserved grid row, responsive `sizes`, and default lazy loading.
 - No lightbox was added: it would introduce client-side JavaScript for limited conversion value. The lightweight editorial grid is sufficient.
+
+## Second-pass expansion — 2026-08-10
+
+The remaining photographs were re-reviewed for broader full-site use. Ten additional source photos were selected: six strong group/fleet frames, three secondary documentary frames and one portrait transport frame. They were exported as bounded 1,800 px WebP derivatives at quality 84. Their combined source size was 37,085,178 bytes; the served derivatives total 4,219,560 bytes (an 88.6% reduction). The largest new derivative is `large-coaster-group.webp` at 762,434 bytes.
+
+The site now uses 21 of 32 source photographs. Eleven remain intentionally unserved: `IMG_7319.jpg` is a near-duplicate, `IMG_0640.jpg` is visibly soft, and the remaining individual or awkwardly framed photographs offer less public-page value than the selected set. All 22 videos remain unserved because their 670.1 MiB source payload still requires a dedicated poster and transcoding workflow.
+
+New distribution uses shared, server-rendered components: a no-autoplay CSS scroll-snap carousel on the homepage and blog index, plus three-image neutral real-trip strips on tour products, both city hubs, service pages, contact, price list and blog articles. No image is assigned to a destination that cannot be verified from the photograph. New images remain below the fold, use Next.js Image dimensions and responsive `sizes`, and lazy-load by default.

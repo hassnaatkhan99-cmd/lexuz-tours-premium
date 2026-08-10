@@ -83,6 +83,36 @@ export const realTripMedia = {
     caption: "A real Lexuz trip group with branded transport in the mountains.",
     width: 1537,
     height: 1023
+  },
+  smallGroupVehicle: {
+    src: "/images/real-trips/small-group-vehicle.webp", alt: "Lexuz travellers gathered beside a tour vehicle", caption: "A smaller group moment beside tour transport.", width: 1620, height: 1080
+  },
+  bannerRoadsideGroup: {
+    src: "/images/real-trips/banner-roadside-group.webp", alt: "Lexuz Tours group holding a banner during a road trip", caption: "Travellers pausing together during a Lexuz journey.", width: 1080, height: 809
+  },
+  coasterBoardingCandid: {
+    src: "/images/real-trips/coaster-boarding-candid.webp", alt: "Travellers beside a Lexuz coaster during boarding", caption: "A candid moment as travellers prepare for the road.", width: 1350, height: 1800
+  },
+  wideOutdoorGroup: {
+    src: "/images/real-trips/wide-outdoor-group.webp", alt: "Large Lexuz Tours group gathered outdoors", caption: "A wide group gathering from a real Lexuz trip.", width: 1800, height: 1350
+  },
+  largeCoasterGroup: {
+    src: "/images/real-trips/large-coaster-group.webp", alt: "Large Lexuz Tours group gathered beside a coach", caption: "Travellers together beside Lexuz transport.", width: 1800, height: 1350
+  },
+  twoTravellersBanner: {
+    src: "/images/real-trips/two-travellers-banner.webp", alt: "Two travellers holding a Lexuz Tours banner beside a coach", caption: "A banner moment beside Lexuz transport.", width: 1800, height: 1350
+  },
+  snowyTravelGroup: {
+    src: "/images/real-trips/snowy-travel-group.webp", alt: "Lexuz Tours group gathered in snowy mountain scenery", caption: "A real group experience in winter scenery.", width: 1350, height: 1800
+  },
+  coachBannerMoment: {
+    src: "/images/real-trips/coach-banner-moment.webp", alt: "Lexuz Tours banner displayed beside a coach", caption: "Lexuz branding and transport during a group journey.", width: 1800, height: 1350
+  },
+  sunlitCoachGroup: {
+    src: "/images/real-trips/sunlit-coach-group.webp", alt: "Lexuz Tours group gathered beside a coach in evening light", caption: "A real departure group beside Lexuz transport.", width: 1800, height: 1350
+  },
+  travellerMountainCoach: {
+    src: "/images/real-trips/traveller-mountain-coach.webp", alt: "Traveller beside a Lexuz coach with mountain scenery", caption: "A travel moment beside Lexuz transport.", width: 1350, height: 1800
   }
 } satisfies Record<string, RealTripPhoto>;
 
@@ -96,5 +126,26 @@ export const realTripGallery = [
   realTripMedia.groupCoasterLineup,
   realTripMedia.snowBannerGroup,
   realTripMedia.coasterBoarding,
-  realTripMedia.sunlitDepartureGroup
+  realTripMedia.sunlitDepartureGroup,
+  realTripMedia.largeCoasterGroup,
+  realTripMedia.snowyTravelGroup,
+  realTripMedia.coachBannerMoment,
+  realTripMedia.wideOutdoorGroup
 ];
+
+export const realTripCarousel = [
+  realTripMedia.bannerRiverside,
+  realTripMedia.largeCoasterGroup,
+  realTripMedia.twoTravellersBanner,
+  realTripMedia.snowyTravelGroup,
+  realTripMedia.coachBannerMoment,
+  realTripMedia.smallGroupVehicle,
+  realTripMedia.sunlitCoachGroup,
+  realTripMedia.travellerMountainCoach
+];
+
+export function tripEvidenceFor(seed: string, count = 3) {
+  const pool = realTripCarousel;
+  const start = [...seed].reduce((total, character) => total + character.charCodeAt(0), 0) % pool.length;
+  return Array.from({ length: count }, (_, index) => pool[(start + index) % pool.length]);
+}

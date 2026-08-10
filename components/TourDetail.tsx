@@ -11,6 +11,7 @@ import { FAQ } from "./FAQ";
 import { SectionHeading } from "./SectionHeading";
 import { QueryAwareTourProductActions, StickyTourActions, TourProductActions } from "./TourProductActions";
 import { TourCard } from "./TourCard";
+import { RealTripStrip } from "./RealTripStrip";
 
 function cityAvailability(tour: Tour) {
   return tour.category === "one-day" ? "Islamabad / Rawalpindi" : "Islamabad / Rawalpindi & Lahore";
@@ -351,6 +352,8 @@ export function TourDetail({ tour }: { tour: Tour }) {
               </div>
             ) : null}
           </section>
+
+          <RealTripStrip seed={tour.slug} title="The people and transport behind the journey" />
 
           <section className="mt-12" id="faqs">
             <SectionHeading eyebrow="Questions" title="Frequently asked questions" />

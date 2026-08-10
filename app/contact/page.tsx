@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ButtonLink, WhatsAppButton } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RealTripStrip } from "@/components/RealTripStrip";
 import { SocialContactLinks } from "@/components/SocialContactLinks";
 import { PageBreadcrumbs, PromiseList } from "@/components/TrustSections";
 import { company } from "@/data/company";
@@ -87,6 +88,7 @@ export default function ContactPage() {
           <SectionHeading eyebrow="Contact & complaints" title="Need help after booking?" copy="Use the official Lexuz contact channels below for booking questions, complaints, payment follow-up or travel support." />
           <PromiseList items={sourceFacts.contactComplaints} icon="map" />
         </section>
+        <RealTripStrip seed="contact" title="Real people, real transport, direct support" />
         </div>
       </section>
     </>

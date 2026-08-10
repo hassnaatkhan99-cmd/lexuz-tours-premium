@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink, WhatsAppButton } from "@/components/Button";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RealTripStrip } from "@/components/RealTripStrip";
 import { blogPosts, buildBlogSections, getBlogPost } from "@/data/blogPosts";
 import { absoluteUrl, canonical } from "@/lib/seo";
 
@@ -81,6 +82,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </div>
               </section>
             ))}
+            <RealTripStrip seed={`blog-${post.slug}`} title="Real Lexuz journeys beyond the guide" />
             <section className="rounded-lg border border-forest-900/10 bg-forest-50 p-6">
               <h2 className="text-2xl font-black text-forest-950">Plan This Trip With Lexuz</h2>
               <p className="mt-3 leading-7 text-neutral-700">Use the related links below to compare public trips, check official prices or speak with the Lexuz team before booking.</p>

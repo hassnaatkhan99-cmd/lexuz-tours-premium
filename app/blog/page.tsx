@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RealTripCarousel } from "@/components/RealTripCarousel";
 import { SectionHeading } from "@/components/SectionHeading";
 import { blogPosts } from "@/data/blogPosts";
+import { realTripCarousel } from "@/data/realTripMedia";
 import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -25,5 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <section className="container-page py-14"><SectionHeading eyebrow="Blog" title="Pakistan Travel Guides" copy="Travel planning guidance for Pakistan tours with Lexuz." /><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">{blogPosts.map((post) => <article key={post.slug} className="rounded-lg border border-forest-900/10 bg-white p-6 shadow-soft"><p className="text-xs font-black uppercase text-forest-700">{post.category}</p><h2 className="mt-3 text-xl font-black">{post.title}</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{post.description}</p><Link href={`/blog/${post.slug}`} className="mt-5 inline-flex font-black text-forest-800">Read Guide →</Link></article>)}</div></section>;
+  return <><section className="container-page py-14"><SectionHeading eyebrow="Blog" title="Pakistan Travel Guides" copy="Travel planning guidance for Pakistan tours with Lexuz." /><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">{blogPosts.map((post) => <article key={post.slug} className="rounded-lg border border-forest-900/10 bg-white p-6 shadow-soft"><p className="text-xs font-black uppercase text-forest-700">{post.category}</p><h2 className="mt-3 text-xl font-black">{post.title}</h2><p className="mt-3 text-sm leading-6 text-neutral-600">{post.description}</p><Link href={`/blog/${post.slug}`} className="mt-5 inline-flex font-black text-forest-800">Read Guide →</Link></article>)}</div></section><section className="stone-band py-14"><div className="container-page"><SectionHeading eyebrow="From the road" title="Real Lexuz trip moments" copy="Genuine trip photography complements the general destination guidance in these articles." /><RealTripCarousel photos={realTripCarousel.slice(1, 7)} label="Real Lexuz trip photos accompanying the travel blog" /></div></section></>;
 }

@@ -8,9 +8,10 @@ import { DestinationCard } from "@/components/DestinationCard";
 import { FAQ } from "@/components/FAQ";
 import { PriceList } from "@/components/PriceList";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RealTripCarousel } from "@/components/RealTripCarousel";
 import { TourCard } from "@/components/TourCard";
 import { generalFaqs } from "@/data/faqs";
-import { realTripMedia } from "@/data/realTripMedia";
+import { realTripCarousel, realTripMedia } from "@/data/realTripMedia";
 import { multiDayTours, oneDayTours } from "@/data/tours";
 import { canonical } from "@/lib/seo";
 import { buildFaqSchema } from "@/lib/seo-foundation";
@@ -97,6 +98,7 @@ export default function Home() {
       <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="One Day Trips" title="Quick escapes from Islamabad" copy="Sunday day trips designed for travelers who want mountain air without a multi-day plan." /><div className="grid gap-6 md:grid-cols-3">{oneDayTours.map((tour) => <TourCard key={tour.slug} tour={tour} />)}</div></div></section>
       <section className="stone-band py-20"><div className="container-page"><SectionHeading eyebrow="Destinations" title="Popular destination styles" /><div className="grid gap-6 md:grid-cols-3">{multiDayTours.slice(0, 3).map((tour) => <DestinationCard key={tour.slug} tour={tour} />)}</div></div></section>
       <section className="container-page py-16"><SectionHeading eyebrow="Why Choose Lexuz" title="Built for trust, comfort and clear planning" /><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">{whyChooseCards.map(([Icon, title, copy]) => <div key={String(title)} className="luxury-card rounded-dsLg border border-lexuzNeutral-line bg-white/90 p-6 shadow-ds1 backdrop-blur transition hover:-translate-y-1 hover:shadow-ds2"><Icon className="text-brand-primary" size={30} aria-hidden="true" /><h3 className="mt-4 font-black text-lexuzNeutral-100">{String(title)}</h3><p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{String(copy)}</p></div>)}</div></section>
+      <section className="stone-band py-16"><div className="container-page"><SectionHeading eyebrow="Travel with Lexuz" title="A wider look at real journeys" copy="A curated selection of genuine Lexuz group, banner and transport moments. These photographs show real trip activity without attaching names or testimonials to the people pictured." /><RealTripCarousel photos={realTripCarousel} /></div></section>
       <section className="forest-band py-20 text-white"><div className="container-page grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-center">
         <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds3">
           <Image src={realTripMedia.groupForestBanner.src} alt={realTripMedia.groupForestBanner.alt} width={realTripMedia.groupForestBanner.width} height={realTripMedia.groupForestBanner.height} sizes="(min-width: 1024px) 46vw, 100vw" className="h-[360px] w-full object-cover" />

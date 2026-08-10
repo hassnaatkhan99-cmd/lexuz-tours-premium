@@ -20,6 +20,7 @@ import type { LucideIcon } from "lucide-react";
 import { company, whatsappUrl } from "@/data/company";
 import { FAQ } from "./FAQ";
 import { SectionHeading } from "./SectionHeading";
+import { RealTripStrip } from "./RealTripStrip";
 
 type ServiceFeature = {
   title: string;
@@ -118,6 +119,10 @@ export function ServiceLandingPage({
           </figure>
         </div>
       </section>
+
+      <div className="container-page pb-16">
+        <RealTripStrip seed={eyebrow.toLowerCase().replaceAll(" ", "-")} title="Real Lexuz group travel in motion" />
+      </div>
 
       <section className="container-page py-16">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1fr]">

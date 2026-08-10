@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PriceList } from "@/components/PriceList";
 import { SectionHeading } from "@/components/SectionHeading";
+import { RealTripStrip } from "@/components/RealTripStrip";
 import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = { title: "Price List", description: "Official Lexuz Tours price list for Islamabad and Lahore departures.", alternates: { canonical: canonical("/price-list") } };
@@ -16,6 +17,7 @@ export default function PriceListPage() {
         </div>
       </section>
       <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="Price Table" title="Solo traveler and married couple tabs" copy="Prices remain subject to change. Advance booking is recommended." /><PriceList /></div></section>
+      <section className="container-page pb-16"><RealTripStrip seed="price-list" title="The real travel experience behind the packages" /></section>
     </>
   );
 }
