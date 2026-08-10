@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Bus, FileCheck2, MessageCircle, Route, ShieldCheck } from "lucide-react";
 import { CTASection } from "@/components/CTASection";
+import { RealTripGallery } from "@/components/RealTripGallery";
 import { SectionHeading } from "@/components/SectionHeading";
 import { FounderSection, PageBreadcrumbs, PromiseList, TrustFactGrid } from "@/components/TrustSections";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import { company } from "@/data/company";
+import { realTripGallery, realTripMedia } from "@/data/realTripMedia";
 import { companyImages } from "@/data/tours";
-import { tripPhotos } from "@/data/tripPhotos";
 import { sourceFacts, trustFaqs } from "@/data/trust";
 import { buildBreadcrumbJsonLd, buildFaqSchema, buildOrganizationSchema } from "@/lib/seo-foundation";
 import { canonical } from "@/lib/seo";
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Lexuz Tours & Adventures",
     description: "Real office, fleet and trip proof from Lexuz Tours & Adventures.",
-    images: [tripPhotos.groupDepartureSummer.src]
+    images: [realTripMedia.groupForestBanner.src]
   },
   twitter: {
     card: "summary_large_image",
-    images: [tripPhotos.groupDepartureSummer.src]
+    images: [realTripMedia.groupForestBanner.src]
   }
 };
 
@@ -82,18 +83,7 @@ export default function AboutPage() {
 
       <section className="container-page pb-16">
         <SectionHeading eyebrow="Real photography" title="Office, fleet and trip proof" copy="Real Lexuz photos help customers see the people, vehicles and departures behind the service before they book." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            { src: tripPhotos.groupDepartureSummer.src, alt: tripPhotos.groupDepartureSummer.alt, caption: tripPhotos.groupDepartureSummer.caption, width: tripPhotos.groupDepartureSummer.width, height: tripPhotos.groupDepartureSummer.height },
-            { src: tripPhotos.studentGroupCoaster.src, alt: tripPhotos.studentGroupCoaster.alt, caption: tripPhotos.studentGroupCoaster.caption, width: tripPhotos.studentGroupCoaster.width, height: tripPhotos.studentGroupCoaster.height },
-            { src: companyImages.office, alt: "Lexuz Tours office in Rawalpindi", caption: "Lexuz Tours office in Rawalpindi", width: 720, height: 520 }
-          ].map((photo) => (
-            <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds2">
-              <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 33vw, 100vw" className="h-64 w-full object-cover" />
-              <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{photo.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
+        <RealTripGallery photos={realTripGallery.slice(0, 6)} />
       </section>
 
       <section className="bg-brand-secondary py-16" id="why-choose-lexuz">
@@ -124,8 +114,8 @@ export default function AboutPage() {
 
       <section className="container-page grid gap-8 pb-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
         <figure className="overflow-hidden rounded-dsLg border border-lexuzNeutral-line bg-white shadow-ds3">
-          <Image src={tripPhotos.fleetThreeCoastersNight.src} alt={tripPhotos.fleetThreeCoastersNight.alt} width={tripPhotos.fleetThreeCoastersNight.width} height={tripPhotos.fleetThreeCoastersNight.height} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[360px] w-full object-cover" />
-          <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{tripPhotos.fleetThreeCoastersNight.caption}</figcaption>
+          <Image src={realTripMedia.groupCoasterLineup.src} alt={realTripMedia.groupCoasterLineup.alt} width={realTripMedia.groupCoasterLineup.width} height={realTripMedia.groupCoasterLineup.height} sizes="(min-width: 1024px) 50vw, 100vw" className="h-[360px] w-full object-cover" />
+          <figcaption className="px-5 py-4 text-sm font-black text-brand-primary">{realTripMedia.groupCoasterLineup.caption}</figcaption>
         </figure>
         <div>
           <SectionHeading eyebrow="Our fleet" title="Visible transport before departure" copy="Fleet photography is shown separately from destination imagery so customers can distinguish real Lexuz assets from scenic travel photos." />

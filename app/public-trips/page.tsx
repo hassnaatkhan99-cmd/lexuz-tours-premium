@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { TourCard } from "@/components/TourCard";
 import { tours } from "@/data/tours";
+import { realTripMedia } from "@/data/realTripMedia";
 import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -70,6 +72,16 @@ export default function PublicTripsPage() {
         </div>
       </section>
       <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="Tour Catalog" title="All public departures" copy="Choose a tour card to open the full product page with itinerary, inclusions, city pricing and booking options." /><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{tours.map((tour) => <TourCard key={tour.slug} tour={tour} />)}</div></div></section>
+      <section className="container-page grid gap-8 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div className="grid grid-cols-2 gap-4">
+          <Image src={realTripMedia.coasterBoarding.src} alt={realTripMedia.coasterBoarding.alt} width={realTripMedia.coasterBoarding.width} height={realTripMedia.coasterBoarding.height} sizes="(min-width: 1024px) 23vw, 50vw" className="h-72 w-full rounded-[26px] object-cover shadow-ds2 sm:h-96" />
+          <Image src={realTripMedia.groupMeadowSquare.src} alt={realTripMedia.groupMeadowSquare.alt} width={realTripMedia.groupMeadowSquare.width} height={realTripMedia.groupMeadowSquare.height} sizes="(min-width: 1024px) 25vw, 50vw" className="mt-8 h-72 w-full rounded-[26px] object-cover shadow-ds3 sm:h-96" />
+        </div>
+        <div>
+          <SectionHeading eyebrow="Real trips with Lexuz" title="The people and transport behind each departure" copy="These genuine Lexuz photographs show real group-trip moments and the branded transport used during organised journeys. Tour availability, pickup details and booking confirmation remain specific to each listed product." />
+          <Link href="/reviews" className="focus-ring inline-flex items-center gap-2 font-black text-brand-primary hover:text-brand-primaryHover">View more trip evidence <ArrowRight size={18} aria-hidden="true" /></Link>
+        </div>
+      </section>
     </>
   );
 }

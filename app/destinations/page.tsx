@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { DestinationCard } from "@/components/DestinationCard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { realTripMedia } from "@/data/realTripMedia";
 import { tours } from "@/data/tours";
 import { canonical } from "@/lib/seo";
 
@@ -30,6 +32,15 @@ export default function DestinationsPage() {
         </div>
       </section>
       <section className="cinematic-band py-16"><div className="container-page"><SectionHeading eyebrow="Places to explore" title="Compare destinations and trip styles" copy="Use this page to discover where each journey leads and whether its setting and duration suit the experience you want. For the complete catalog of available public tour products and departure details, visit Public Trips." /><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{tours.map((tour) => <DestinationCard key={tour.slug} tour={tour} />)}</div></div></section>
+      <section className="container-page grid gap-8 py-16 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+        <div>
+          <SectionHeading eyebrow="Travel moments" title="Destination discovery with real trip context" copy="Scenic tour cards help you compare places; these genuine Lexuz photographs show the group-travel setting around the journey. They are presented as general trip imagery where the exact location is not confirmed." />
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Image src={realTripMedia.bannerRiverside.src} alt={realTripMedia.bannerRiverside.alt} width={realTripMedia.bannerRiverside.width} height={realTripMedia.bannerRiverside.height} sizes="(min-width: 1024px) 22vw, 50vw" className="h-72 w-full rounded-[26px] object-cover shadow-ds2" />
+          <Image src={realTripMedia.snowBannerGroup.src} alt={realTripMedia.snowBannerGroup.alt} width={realTripMedia.snowBannerGroup.width} height={realTripMedia.snowBannerGroup.height} sizes="(min-width: 1024px) 22vw, 50vw" className="mt-8 h-72 w-full rounded-[26px] object-cover shadow-ds3" />
+        </div>
+      </section>
     </>
   );
 }

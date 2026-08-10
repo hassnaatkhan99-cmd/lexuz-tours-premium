@@ -148,7 +148,9 @@ export function Header() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2 lg:hidden">
-          <IconAction action={contactActions[0]} mobile />
+          <span className="max-[340px]:hidden">
+            <IconAction action={contactActions[0]} mobile />
+          </span>
           <IconAction action={contactActions[1]} mobile />
           <button
             className="focus-ring group relative grid h-10 w-10 place-items-center rounded-full border border-white/70 bg-white/85 text-brand-primary shadow-ds1 backdrop-blur transition hover:bg-brand-secondary"

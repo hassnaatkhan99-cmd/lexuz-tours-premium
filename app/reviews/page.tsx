@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Bus, CalendarDays, MapPin, ShieldCheck } from "lucide-react";
-import { tripPhotos } from "@/data/tripPhotos";
+import { RealTripGallery } from "@/components/RealTripGallery";
+import { realTripGallery } from "@/data/realTripMedia";
 import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -17,8 +17,6 @@ const facts = [
   [Bus, "Own branded fleet"]
 ] as const;
 
-const photos = [tripPhotos.groupMeadowBanner, tripPhotos.groupDepartureSummer, tripPhotos.studentGroupCoaster, tripPhotos.fleetThreeCoastersNight];
-
 export default function ReviewsPage() {
   return (
     <>
@@ -33,8 +31,8 @@ export default function ReviewsPage() {
         </div>
       </section>
       <section className="cinematic-band py-16">
-        <div className="container-page grid gap-6 md:grid-cols-2">
-          {photos.map((photo) => <figure key={photo.src} className="overflow-hidden rounded-dsLg border border-white/70 bg-white shadow-ds2"><Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(min-width: 1024px) 33vw, 100vw" className="h-80 w-full object-cover" /><figcaption className="p-5 text-sm font-black text-brand-primary">{photo.caption}</figcaption></figure>)}
+        <div className="container-page">
+          <RealTripGallery photos={realTripGallery} />
         </div>
       </section>
     </>
