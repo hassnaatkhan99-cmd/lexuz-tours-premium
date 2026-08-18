@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const fallbackLogo = "/logo-lexuz-display.webp";
+const fallbackLogo = "/brand/lexuz-logo-square.png";
 
 export function FounderImage({ src, name, position }: { src: string | null; name: string; position: string }) {
   const [failed, setFailed] = useState(false);

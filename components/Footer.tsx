@@ -29,9 +29,8 @@ export function Footer() {
     <footer className="night-sky mountain-silhouette text-white">
       <div className="container-page relative z-10 grid gap-10 py-16 md:grid-cols-[1.25fr_0.85fr_0.85fr_1.25fr]">
         <div>
-          <div className="flex items-center gap-3">
-            <Image src="/logo-lexuz-display.webp" alt="Lexuz Tours & Adventures logo" width={72} height={72} sizes="64px" className="h-16 w-16 rounded-full bg-white object-contain ring-1 ring-white/20" />
-            <div><strong className="text-xl font-black uppercase leading-none">Lexuz Tours</strong><p className="text-sm font-bold text-white/75">& Adventures</p></div>
+          <div className="flex items-center">
+            <Image src="/brand/lexuz-logo-header.webp" alt="Lexuz Tours & Adventures" width={1200} height={500} sizes="240px" className="h-24 w-auto max-w-full object-contain" />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/75">{company.mission}</p>
           <div className="luxury-glass mt-5 flex items-center gap-2 rounded-dsMd p-3 text-sm text-forest-950">

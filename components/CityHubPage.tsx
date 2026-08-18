@@ -86,10 +86,18 @@ function citySchema(hub: CityHub, visibleTours: Tour[]) {
     "@type": ["TravelAgency", "LocalBusiness"],
     "@id": `${company.website}/#travelagency-${hub.code}`,
     name: `${company.name} ${hub.name} Departures`,
+    legalName: company.legalName,
     url: absoluteUrl(hub.path),
-    image: `${company.website}/logo.png`,
+    logo: `${company.website}/brand/lexuz-logo-square.png`,
+    image: `${company.website}/brand/lexuz-og-image-1200x630.jpg`,
     email: company.email,
     telephone: company.callPhone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: company.callPhone,
+      url: company.whatsappHref
+    },
     parentOrganization: { "@id": `${company.website}/#organization` },
     areaServed: [{ "@type": "City", name: hub.name }, { "@type": "Country", name: "Pakistan" }],
     makesOffer: visibleTours.slice(0, 8).map((tour) => ({

@@ -17,21 +17,19 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
-      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
-      { url: "/favicon-64x64.png", type: "image/png", sizes: "64x64" },
-      { url: "/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
-      { url: "/android-chrome-512x512.png", type: "image/png", sizes: "512x512" }
+      { url: "/favicon.ico" },
+      { url: "/icons/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/favicon-48x48.png", type: "image/png", sizes: "48x48" }
     ],
     shortcut: "/favicon.ico",
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
   },
   verification: {
     google: "b-8Z_3m32ZPgYpeQnvjOgOfQk1QmORNYK2iBVjnP8W0",
     other: {
-      "facebook-domain-verification": "k0srnh62oggwhxncg0zyb75usylqtd"
+      "facebook-domain-verification": "k0srnh62oggwhxncg0zyb75usylqtd",
+      "msapplication-config": "/browserconfig.xml"
     }
   },
   openGraph: {
@@ -39,14 +37,14 @@ export const metadata: Metadata = {
     description: "Adventure begins with Lexuz. Premium Pakistan travel booking company.",
     url: company.website,
     siteName: company.name,
-    images: [{ url: "/logo.png", width: 1024, height: 1024, alt: "Lexuz Tours & Adventures logo" }],
+    images: [{ url: "/brand/lexuz-og-image-1200x630.jpg", width: 1200, height: 630, alt: "Lexuz Tours & Adventures" }],
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: "Lexuz Tours & Adventures",
     description: "Adventure begins with Lexuz. Premium Pakistan travel booking company.",
-    images: ["/logo.png"]
+    images: ["/brand/lexuz-og-image-1200x630.jpg"]
   }
 };
 
@@ -58,20 +56,45 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "@type": "Organization",
         "@id": `${company.website}/#organization`,
         name: company.name,
+        legalName: company.legalName,
         url: company.website,
-        logo: `${company.website}/logo.png`,
+        logo: `${company.website}/brand/lexuz-logo-square.png`,
+        image: `${company.website}/brand/lexuz-og-image-1200x630.jpg`,
+        email: company.email,
+        telephone: company.callPhone,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Office No. 6, 1st Floor, Mustafa Plaza, 6th Road, D Block, Satellite Town",
+          addressLocality: "Rawalpindi",
+          addressRegion: "Punjab",
+          addressCountry: "PK"
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          telephone: company.callPhone,
+          url: company.whatsappHref
+        },
         sameAs: [company.facebook, company.instagram]
       },
       {
         "@type": ["TravelAgency", "LocalBusiness"],
         "@id": `${company.website}/#travelagency`,
         name: company.name,
+        legalName: company.legalName,
         url: company.website,
-        image: `${company.website}/logo.png`,
+        logo: `${company.website}/brand/lexuz-logo-square.png`,
+        image: `${company.website}/brand/lexuz-og-image-1200x630.jpg`,
         email: company.email,
         telephone: company.callPhone,
         priceRange: "PKR",
         foundingDate: String(company.founded),
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          telephone: company.callPhone,
+          url: company.whatsappHref
+        },
         parentOrganization: { "@id": `${company.website}/#organization` },
         address: {
           "@type": "PostalAddress",

@@ -16,8 +16,25 @@ export function buildOrganizationSchema(_options: OrganizationSchemaOptions = {}
     "@type": "Organization",
     "@id": `${company.website}/#organization`,
     name: company.name,
+    legalName: company.legalName,
     url: company.website,
-    logo: `${company.website}/logo.png`,
+    logo: `${company.website}/brand/lexuz-logo-square.png`,
+    image: `${company.website}/brand/lexuz-og-image-1200x630.jpg`,
+    email: company.email,
+    telephone: company.callPhone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Office No. 6, 1st Floor, Mustafa Plaza, 6th Road, D Block, Satellite Town",
+      addressLocality: "Rawalpindi",
+      addressRegion: "Punjab",
+      addressCountry: "PK"
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: company.callPhone,
+      url: company.whatsappHref
+    },
     sameAs: [company.facebook, company.instagram]
   };
 }
@@ -28,10 +45,18 @@ export function buildTravelAgencySchema() {
     "@type": ["TravelAgency", "LocalBusiness"],
     "@id": `${company.website}/#travelagency`,
     name: company.name,
+    legalName: company.legalName,
     url: company.website,
-    image: `${company.website}/logo.png`,
+    logo: `${company.website}/brand/lexuz-logo-square.png`,
+    image: `${company.website}/brand/lexuz-og-image-1200x630.jpg`,
     email: company.email,
     telephone: company.callPhone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: company.callPhone,
+      url: company.whatsappHref
+    },
     priceRange: "PKR",
     address: {
       "@type": "PostalAddress",
