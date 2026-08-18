@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, FileText, MapPin, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ChevronRight, Crown, FileText, MapPin, ShieldCheck } from "lucide-react";
 import { FounderImage } from "@/components/FounderImage";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import type { BreadcrumbItem } from "@/lib/seo-foundation/breadcrumbs";
@@ -40,6 +40,54 @@ export function FounderSection({ founder }: { founder: { name: string; position:
             <p className="mt-2">{founder.message}</p>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+type LeadershipMember = {
+  name: string;
+  role: string;
+  status: string;
+  isFounder: boolean;
+};
+
+export function LeadershipSection({ members }: { members: LeadershipMember[] }) {
+  return (
+    <section aria-labelledby="leadership-heading">
+      <div className="mb-8 max-w-2xl">
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-primary">Leadership team</p>
+        <h2 id="leadership-heading" className="mt-2 text-3xl font-black tracking-tight text-lexuzNeutral-100 md:text-4xl">
+          The people leading Lexuz operations
+        </h2>
+      </div>
+      <div className="grid items-stretch gap-5 md:grid-cols-2">
+        {members.map((member) => {
+          const Icon = member.isFounder ? Crown : ShieldCheck;
+
+          return (
+            <article
+              key={member.name}
+              className={`luxury-card flex h-full flex-col rounded-dsLg border bg-white p-6 shadow-ds2 md:p-8 ${
+                member.isFounder ? "border-brand-accent/60" : "border-lexuzNeutral-line"
+              }`}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <span className={`inline-flex rounded-full p-3 ${member.isFounder ? "bg-[#fbf6e8] text-brand-accent" : "bg-brand-secondary text-brand-primary"}`}>
+                  <Icon size={24} aria-hidden="true" />
+                </span>
+                {member.isFounder ? (
+                  <span className="rounded-full bg-brand-primary px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.14em] text-white">
+                    Founder leadership
+                  </span>
+                ) : null}
+              </div>
+              <h3 className="mt-6 text-2xl font-black tracking-tight text-lexuzNeutral-100">{member.name}</h3>
+              <p className="mt-2 text-sm font-black text-brand-primary">{member.role}</p>
+              <p className="mt-4 text-sm leading-7 text-lexuzNeutral-60">{member.status}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

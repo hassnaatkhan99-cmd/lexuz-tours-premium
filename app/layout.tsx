@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloating } from "@/components/WhatsAppFloating";
 import { company } from "@/data/company";
+import { sourceFacts } from "@/data/trust";
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.website),
@@ -75,6 +76,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           telephone: company.callPhone,
           url: company.whatsappHref
         },
+        founder: {
+          "@type": "Person",
+          name: sourceFacts.team[0].name,
+          jobTitle: sourceFacts.team[0].role
+        },
+        employee: sourceFacts.team.slice(1).map((member) => ({
+          "@type": "Person",
+          name: member.name,
+          jobTitle: member.role
+        })),
         sameAs: [company.facebook, company.instagram]
       },
       {

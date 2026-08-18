@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Bus, FileCheck2, MessageCircle, Route, ShieldCheck } from "lucide-react";
+import { Bus, FileCheck2, MessageCircle, Route } from "lucide-react";
 import { CTASection } from "@/components/CTASection";
 import { RealTripGallery } from "@/components/RealTripGallery";
 import { SectionHeading } from "@/components/SectionHeading";
-import { FounderSection, PageBreadcrumbs, PromiseList, TrustFactGrid } from "@/components/TrustSections";
+import { FounderSection, LeadershipSection, PageBreadcrumbs, PromiseList, TrustFactGrid } from "@/components/TrustSections";
 import { DesignCard, DesignCardText, DesignCardTitle, DesignIcon } from "@/components/ui";
 import { company } from "@/data/company";
 import { realTripGallery, realTripMedia } from "@/data/realTripMedia";
@@ -124,16 +124,7 @@ export default function AboutPage() {
       </section>
 
       <section className="container-page pb-16">
-        <div className="grid gap-4 rounded-dsLg border border-lexuzNeutral-line bg-white p-6 shadow-ds2 md:grid-cols-3 md:p-8">
-          {sourceFacts.team.map((member) => (
-            <div key={member.name} className="rounded-dsMd bg-lexuzNeutral-canvas p-5">
-              <ShieldCheck className="text-brand-primary" size={22} aria-hidden="true" />
-              <h2 className="mt-3 font-black text-lexuzNeutral-100">{member.name}</h2>
-              <p className="mt-1 text-sm font-bold text-brand-primary">{member.role}</p>
-              <p className="mt-2 text-sm leading-6 text-lexuzNeutral-60">{member.status}</p>
-            </div>
-          ))}
-        </div>
+        <LeadershipSection members={sourceFacts.team} />
       </section>
 
       <CTASection />

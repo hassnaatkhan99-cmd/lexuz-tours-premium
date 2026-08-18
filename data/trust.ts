@@ -14,7 +14,18 @@ export const sourceFacts = {
     message: "We plan every journey with the same reason Lexuz began: a love for Pakistan's mountains and a responsibility to guide travellers with honesty."
   },
   team: [
-    { name: "Hassnaat Khan", role: "CEO & Founder", status: "Leads Lexuz tour planning, customer coordination and trip operations." }
+    {
+      name: "Hassnaat Khan",
+      role: "CEO & Founder",
+      status: "Leads Lexuz tour planning, customer coordination and trip operations.",
+      isFounder: true
+    },
+    {
+      name: "Taha Karim",
+      role: "Director & Operations Manager",
+      status: "Oversees day-to-day tour operations, trip coordination, transport, guides, customer experience and on-ground execution.",
+      isFounder: false
+    }
   ],
   trustClaims: [
     { title: "Since 2018", text: "Lexuz started with the first Miranjani Top departure in 2018." },

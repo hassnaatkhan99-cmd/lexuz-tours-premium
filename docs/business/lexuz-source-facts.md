@@ -29,7 +29,7 @@
 | Name | Role | Status |
 |---|---|---|
 | Hassnaat Khan | CEO & Founder | ✅ name/role |
-| Taha Kareem | Team member | ✅ name (🟡 confirm spelling Kareem vs Karim) · 🔴 role title, photo, consent, years, routes, languages, bio |
+| Taha Karim | Director & Operations Manager | ✅ name/role and public profile wording confirmed by owner · 🔴 photo, years, routes, languages |
 | Saif Butt | Team member | ✅ name (🟡 confirm spelling — Saf or Saif?) · 🔴 same details as above |
 
 Fields needed:

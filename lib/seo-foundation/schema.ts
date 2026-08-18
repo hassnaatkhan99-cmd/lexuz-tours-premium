@@ -1,4 +1,5 @@
 import { company } from "@/data/company";
+import { sourceFacts } from "@/data/trust";
 import { absoluteUrl } from "@/lib/seo";
 
 export type FaqSchemaItem = {
@@ -35,6 +36,16 @@ export function buildOrganizationSchema(_options: OrganizationSchemaOptions = {}
       telephone: company.callPhone,
       url: company.whatsappHref
     },
+    founder: {
+      "@type": "Person",
+      name: sourceFacts.team[0].name,
+      jobTitle: sourceFacts.team[0].role
+    },
+    employee: sourceFacts.team.slice(1).map((member) => ({
+      "@type": "Person",
+      name: member.name,
+      jobTitle: member.role
+    })),
     sameAs: [company.facebook, company.instagram]
   };
 }
